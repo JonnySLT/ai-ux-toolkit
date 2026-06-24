@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "design-system-toolkit",
+  "description": "Skills and automations for design-system work: Figma component/token workflows, the product-design process, brand voice, and changelog automation. Project-agnostic — every skill references the design system of the project it runs in.",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Jonny Bennett"
+  },
+  "plugins": [
+    {
+      "name": "figma-design-system",
+      "source": "./plugins/figma-design-system",
+      "description": "Figma + design-system toolkit: design and audit components in Figma, generate design tokens, reattach raw frames to the system, and annotate screens for developer handoff.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["figma", "design-system", "tokens", "annotation", "handoff"]
+    },
+    {
+      "name": "design-process",
+      "source": "./plugins/design-process",
+      "description": "End-to-end product-design workflow: briefs, information architecture, competitive analysis, frontend build, design review, and task breakdown — orchestrated by design-flow.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["design", "process", "research", "ux", "frontend"]
+    },
+    {
+      "name": "brand-voice",
+      "source": "./plugins/brand-voice",
+      "description": "Review and rewrite UI copy to match a project's brand voice, using a per-project voice profile loaded at run time.",
+      "version": "1.0.0",
+      "category": "content",
+      "tags": ["copywriting", "brand", "voice", "ux-writing"]
+    },
+    {
+      "name": "changelog-automation",
+      "source": "./plugins/changelog-automation",
+      "description": "Weekly Figma changelog sweep: fingerprint a design-system file, detect drift from a stored baseline, and auto-log changes. Includes the canonical fingerprint algorithm.",
+      "version": "1.0.0",
+      "category": "automation",
+      "tags": ["figma", "changelog", "automation", "design-system"]
+    }
+  ]
+}

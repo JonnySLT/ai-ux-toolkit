@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "design-process",
+  "description": "End-to-end product-design workflow: briefs, information architecture, competitive analysis, frontend build, design review, and task breakdown — orchestrated by design-flow.",
+  "version": "1.0.0",
+  "author": { "name": "Jonny Bennett" }
+}
