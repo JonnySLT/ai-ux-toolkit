@@ -57,9 +57,17 @@ Includes `scripts/figma-fingerprint.js` — the canonical fingerprint algorithm.
 
 ---
 
-## A note on the design-process skills
+## Companion design skills (not bundled here)
 
-If you've used skills like `design-flow`, `design-brief`, `design-review`, `design-tokens`, `frontend-design`, `information-architecture`, or `brief-to-tasks` — those are **Anthropic's pre-installed designer skill set**, not part of this marketplace, so they aren't bundled here (they're available through their own official source / pre-installed with Claude Code). This marketplace contains only original, custom skills. The plugins above are designed to work happily alongside that set.
+You may use a broader set of design-process skills alongside this toolkit — `design-flow`, `grill-me`, `design-brief`, `information-architecture`, `design-tokens`, `brief-to-tasks`, `frontend-design`, and `design-review`. **These are not part of this marketplace and aren't mine to redistribute.** They're an excellent open-source set by **Julian Oczkowski**: [github.com/julianoczkowski/designer-skills](https://github.com/julianoczkowski/designer-skills).
+
+Install them directly with the `skills` CLI — the interactive prompt lets you choose which skills, which agents, and project vs. global scope:
+
+```text
+npx skills add julianoczkowski/designer-skills
+```
+
+This marketplace bundles only my own custom skills; the plugins above are designed to work happily alongside Julian's set.
 
 ---
 
