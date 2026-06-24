@@ -106,4 +106,4 @@ design-system-toolkit/
 
 ## License
 
-Add a license of your choice (e.g. MIT) before sharing publicly.
+[MIT](LICENSE) © 2026 Jonny Bennett.
