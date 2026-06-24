@@ -10,18 +10,18 @@
     {
       "name": "figma-design-system",
       "source": "./plugins/figma-design-system",
-      "description": "Figma + design-system toolkit: design and audit components in Figma, generate design tokens, reattach raw frames to the system, and annotate screens for developer handoff.",
+      "description": "Figma + design-system toolkit: design and audit components in Figma, reattach raw frames to the system, and annotate screens for developer handoff.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["figma", "design-system", "tokens", "annotation", "handoff"]
+      "tags": ["figma", "design-system", "annotation", "handoff"]
     },
     {
-      "name": "design-process",
-      "source": "./plugins/design-process",
-      "description": "End-to-end product-design workflow: briefs, information architecture, competitive analysis, frontend build, design review, and task breakdown — orchestrated by design-flow.",
+      "name": "competitive-analysis",
+      "source": "./plugins/competitive-analysis",
+      "description": "Live competitive analysis of 3–6 products: real-time browse + comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
       "version": "1.0.0",
-      "category": "design",
-      "tags": ["design", "process", "research", "ux", "frontend"]
+      "category": "research",
+      "tags": ["research", "competitive", "benchmarking", "ux"]
     },
     {
       "name": "brand-voice",

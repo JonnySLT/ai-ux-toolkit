@@ -2,8 +2,7 @@
 
 Figma + design-system workflow skills. **Requires the Figma MCP server (`use_figma`).**
 
-- **figma-designer** — senior product-designer knowledge for accessible, consistent, polished UI.
-- **design-tokens** — generate a design-tokens file (CSS vars or Tailwind) with light/dark, spacing, type, component tokens.
+- **figma-designer** — senior product-designer knowledge for accessible, consistent, polished UI in Figma.
 - **reattach** — reconnect a raw/detached frame to the design system (variables, text styles, component instances), all discovered at runtime.
 - **annotate** — place annotation cards beside a screen with specs, tokens, icons, and dev-handoff notes.
 
