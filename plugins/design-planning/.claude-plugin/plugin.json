@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "design-planning",
   "description": "Define & plan a design: write a brief through interview, get grilled on it, break it into ordered tasks, and orchestrate the whole design flow. Vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
   "version": "1.0.0",

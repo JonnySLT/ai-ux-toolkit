@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "figma-design-system",
   "description": "Figma + design-system toolkit: design and audit components in Figma, generate design tokens, reattach raw frames to the system, and annotate screens for developer handoff.",
   "version": "1.0.0",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "frontend-design",
   "description": "Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies — working code with exceptional attention to detail that avoids generic AI output. Vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
   "version": "1.0.0",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "ideation",
   "description": "Break fixation early. Generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options so you're editing and selecting rather than staring at a blank page.",
   "version": "1.0.0",
