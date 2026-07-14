@@ -17,6 +17,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 /plugin marketplace add <git-url-of-this-repo>
 
 # 2. Install the plugins you want
+/plugin install research-planning@ai-ux-toolkit
 /plugin install ux-research@ai-ux-toolkit
 /plugin install competitive-analysis@ai-ux-toolkit
 /plugin install design-planning@ai-ux-toolkit
@@ -41,12 +42,13 @@ Install any subset — the plugins are independent. After installing, you can al
 
 ## What's inside — organised by workflow phase
 
-Fourteen plugins, grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
+Fifteen plugins, grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
 
-### 🔬 Research — `ux-research`, `competitive-analysis`
+### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
+| `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft interview guides, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
 | `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritised opportunities. The coding pass that would take hours by hand. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
 
@@ -115,7 +117,13 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 
 ## Roadmap
 
-Planned future additions (not yet built): **research planning** (interview guides, usability-test scripts, survey design), **synthesis artifacts** (personas/JTBD, journey maps, HEART success metrics), and **IA & flows** (sitemaps, card-sort synthesis, user-flow diagrams, empty-state/edge-case enumeration).
+Planned future additions (not yet built), based on a coverage audit of the workflow:
+
+- **Synthesis artifacts** — personas / JTBD, journey & experience maps, and HEART / success-metric definition (turning synthesis into design-ready outputs).
+- **Usability testing** — test plans, moderation scripts, and results synthesis with *real users* (the empirical counterpart to the expert audits in `accessibility-heuristics` and `design-review`).
+- **Content design** — systematic microcopy beyond brand tone: error and empty states, labels, and confirmations as a discipline.
+- **Post-launch measurement** — product-outcome metrics that close the loop back to Discover (distinct from `changelog-automation`, which tracks design-system drift).
+- **Smaller pieces** — card-sort synthesis, empty-state / edge-case enumeration, and prioritisation frameworks.
 
 ---
 
@@ -168,19 +176,20 @@ Because these skills are a **point-in-time copy**, they don't automatically get 
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Fourteen independent plugins; install only what you need, disable individual skills if you want even less.
+- **Pick à la carte.** Fifteen independent plugins; install only what you need, disable individual skills if you want even less.
 - **First filter, not final word.** The check skills (`accessibility-check`, `heuristic-review`) and the research pass are explicitly framed as fast first passes for a human to validate — not replacements for review, testing, or judgement.
 
 ## Repository layout
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 14 plugins)
+├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 15 plugins)
 ├── .github/workflows/                  # check-upstream-skills.yml (weekly upstream drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
 ├── README.md                           # this file
 └── plugins/
+    ├── research-planning/               # original — research-planning
     ├── ux-research/                     # original — research-synthesis
     ├── competitive-analysis/            # original — competitive-analysis
     ├── ideation/                        # original — divergent-exploration

@@ -1,6 +1,6 @@
 ---
 name: design-system-changelog-sweep
-description: Weekly Figma changelog sweep — detect drift between a design system Figma file and its baseline, auto-log any changes
+description: Run a design-system changelog sweep on a Figma file — fingerprint the current state, diff it against a stored baseline to detect drift (added, removed, or changed components, variables, and styles), and auto-log any changes to the file's Changelog page. Resolves the target file key, fingerprint script, and changelog rules from the project's own config, so it works across projects and on a schedule. Trigger when the user wants to run the changelog sweep, check for design-system drift or changes, update the changelog, or schedule a weekly design-system check.
 ---
 
 Run the weekly changelog sweep for a design system Figma file: diff the current Figma state against a stored fingerprint baseline and auto-log any drift to the file's Changelog page.
