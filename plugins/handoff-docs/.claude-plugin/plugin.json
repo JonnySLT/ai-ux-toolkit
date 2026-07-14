@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "handoff-docs",
+  "description": "Draft the documentation that ships a design: component specs (anatomy, variants, states, props, tokens, a11y, do/don't) and design-system documentation generated from a project's existing patterns.",
+  "version": "1.0.0",
+  "author": { "name": "Jonny Bennett" }
+}
