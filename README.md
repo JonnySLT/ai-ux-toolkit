@@ -53,7 +53,7 @@ Twenty plugins, grouped by where they fall in a typical design process. Every sk
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
-| `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft interview guides, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
+| `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
 | `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritised opportunities. The coding pass that would take hours by hand. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
 

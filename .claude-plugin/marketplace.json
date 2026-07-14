@@ -10,10 +10,10 @@
     {
       "name": "research-planning",
       "source": "./plugins/research-planning",
-      "description": "Plan and instrument user research: choose the method, then draft interview guides, usability-test scripts, survey questionnaires, and recruiting screeners. Feeds research-synthesis.",
+      "description": "Plan and instrument research with users and stakeholders: choose the method, then draft user interview guides, stakeholder/kickoff interview guides, usability-test scripts, survey questionnaires, and recruiting screeners. Feeds research-synthesis.",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["research", "planning", "interviews", "usability", "surveys"]
+      "tags": ["research", "planning", "interviews", "stakeholders", "surveys"]
     },
     {
       "name": "ux-research",

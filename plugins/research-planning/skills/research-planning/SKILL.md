@@ -1,6 +1,6 @@
 ---
 name: research-planning
-description: Plan and instrument user research before you collect it. Helps choose the right method for the question, then drafts the actual instrument — interview and discussion guides, usability-test scripts (tasks, scenarios, success criteria), survey questionnaires, and recruiting screeners. Writes non-leading questions, sequences them well, and builds in consent, incentives, and realistic sample sizes. The front end that feeds research-synthesis. Trigger when the user wants to "plan user research", "write an interview guide", "design a survey", "create a usability test script", "write a screener", "discussion guide", "research questions", or asks how to research something with users.
+description: Plan and instrument research before you collect it — with users and with stakeholders. Helps choose the right method for the question, then drafts the actual instrument — user interview and discussion guides, stakeholder / kickoff interview guides, usability-test scripts (tasks, scenarios, success criteria), survey questionnaires, and recruiting screeners. Writes non-leading questions, sequences them well, and builds in consent, incentives, and realistic sample sizes. The front end that feeds research-synthesis. Trigger when the user wants to "plan user research", "write an interview guide", "stakeholder interview", "kickoff questions", "align stakeholders", "design a survey", "create a usability test script", "write a screener", "discussion guide", "research questions", or asks how to research something with users or stakeholders.
 ---
 
 Design the research and write the instrument you'll take into the field. Good research is mostly decided before the first session — the method fit, the questions, and who you talk to. This skill gets those right so the data you collect is worth synthesising. It's the front end; `research-synthesis` (in the `ux-research` plugin) is the back end.
@@ -8,6 +8,7 @@ Design the research and write the instrument you'll take into the field. Good re
 ## Example prompts
 
 - "Write an interview guide to understand why users churn"
+- "Draft stakeholder interview questions for the project kickoff"
 - "Plan a usability test for our new checkout flow"
 - "Design a survey to measure onboarding satisfaction"
 - "I want to research X — what method should I use and what do I ask?"
@@ -22,12 +23,13 @@ Nail these down before writing anything (infer from the prompt; ask only what's 
 1. **The decision or question.** What will this research inform? Good research serves a decision. Turn a vague ask ("learn about users") into specific **research questions** ("what stops first-time users from completing setup?").
 2. **What you already know / assume.** Surface the assumptions being tested, so questions probe them rather than confirm them.
 3. **Method fit.** Match method to question type — don't default to interviews:
-   - **Interviews** — the *why*: motivations, mental models, context, unmet needs.
+   - **User interviews** — the *why*: motivations, mental models, context, unmet needs.
+   - **Stakeholder / kickoff interviews** — *internal* context, not user data: business goals, definition of success, constraints, assumptions, prior attempts, and where stakeholders disagree. Usually run at project start, often alongside user research.
    - **Usability test** — *can they do it*: task success, friction, confusion on a real (or prototype) UI.
    - **Survey** — *how many / how much*: prevalence, satisfaction, segmentation at scale (needs enough responses to matter).
    - **Diary / field study** — behaviour over time or in context.
    - **Card sort / tree test** — IA and labelling (pairs with the `information-architecture` plugin).
-   State the recommended method and why; note when a mix is warranted.
+   State the recommended method and why; note when a mix is warranted. (Studying users and aligning stakeholders are different jobs — don't substitute one for the other.)
 4. **Audience & sample.** Who, how many, and any segments. Be honest about sample size: qualitative (interviews/usability) saturates around **5–8 per distinct segment**; surveys need enough for the cut you'll make.
 5. **Constraints.** Timeline, moderated vs unmoderated, remote vs in-person, tools available.
 
@@ -52,6 +54,20 @@ Produce the artifact for the chosen method. Core craft rules apply to all:
 - **Task/artifact prompts** if relevant ("show me how you currently…").
 - **Wrap-up** — anything we missed, magic-wand question, thanks + next steps.
 - Mark must-ask vs. time-permitting so a short session still lands the essentials.
+
+### Stakeholder / kickoff interview guide
+For internal stakeholders (product, exec, engineering, sales, support, SMEs) at the start of a project. The aim is to gather context and **align**, and to surface disagreement rather than paper over it.
+- **Intro** — purpose, how you'll use their input, and that candid answers help; note confidentiality (who sees attributed vs. aggregated views).
+- **Role & stake** — their relationship to the project and what success looks like *for them*.
+- **Goals & vision** — the business goal, the problem being solved, and how this fits the wider strategy.
+- **Definition of success & metrics** — how they'll know it worked (ties to `success-metrics`); watch for different stakeholders naming different measures.
+- **Users & assumptions** — who they believe the users are and what they're assuming (flag these as hypotheses for *user* research to test, not facts).
+- **Constraints** — technical, legal/compliance, budget, timeline, brand, and organisational realities.
+- **Prior attempts & history** — what's been tried, what exists, what failed and why.
+- **Scope & non-goals** — what's explicitly in and out; where they expect trade-offs.
+- **Risks & concerns** — what worries them; what would make this fail.
+- **Snowball** — who else should be interviewed, and what they might know.
+- **Reconcile** — after the round, compile where stakeholders *agree*, where they *conflict* (goals, success metrics, scope, priorities), and the open questions those conflicts raise. Surfacing and resolving conflict is the primary value; note conflicts explicitly rather than averaging them away.
 
 ### Usability-test script
 - **Intro** — think-aloud instructions, "we're testing the design, not you," consent.
@@ -95,3 +111,4 @@ Offer to save it as a markdown file in the project.
 - **Be realistic about sample size and claims.** Small qualitative studies are directional, not statistical; say what the study can and can't conclude.
 - **Bake in ethics.** Consent, the right to skip/stop, honest framing of purpose, and no collection of sensitive data you don't need.
 - **Test the design, not the user.** For usability scripts, tasks state a goal, never the steps — and the framing must never make a struggling participant feel at fault.
+- **Stakeholders describe the business, not the user.** Treat what stakeholders believe about users as assumptions to validate with real users — never as findings. And surface stakeholder conflict explicitly; don't average away disagreement to look aligned.
