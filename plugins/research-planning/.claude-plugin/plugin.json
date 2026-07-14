@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "research-planning",
   "description": "Plan and instrument research with users and stakeholders: choose the right method, then draft user interview guides, stakeholder/kickoff interview guides, usability-test scripts, survey questionnaires, and recruiting screeners — the front end that feeds research-synthesis.",
   "version": "1.0.0",

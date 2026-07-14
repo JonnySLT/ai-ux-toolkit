@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "synthesis-artifacts",
   "description": "Turn research synthesis into decision-ready define-phase artifacts: personas & JTBD, journey and experience maps, and success-metric definitions (HEART / goal-signal-metric).",
   "version": "1.0.0",

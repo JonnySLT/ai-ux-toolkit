@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "content-design",
   "description": "Design the words and the states: systematic UI microcopy (errors, empty states, buttons, labels, confirmations, onboarding) and enumeration of all the screen states and edge cases a design must cover.",
   "version": "1.0.0",

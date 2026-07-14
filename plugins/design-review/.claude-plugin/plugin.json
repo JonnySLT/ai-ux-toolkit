@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "design-review",
   "description": "Run a structured design critique against the brief and codebase — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. Vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
   "version": "1.0.0",
