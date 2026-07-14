@@ -2,11 +2,19 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
   "description": "AI-assisted skills for UX designers across the whole workflow: research synthesis, planning, divergent exploration, information architecture, design and audit in Figma, design tokens, accessibility and heuristic checks, prototyping and frontend build, design review, brand voice, competitive research, and design-system handoff and changelog automation. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "owner": {
     "name": "Jonny Bennett"
   },
   "plugins": [
+    {
+      "name": "research-planning",
+      "source": "./plugins/research-planning",
+      "description": "Plan and instrument user research: choose the method, then draft interview guides, usability-test scripts, survey questionnaires, and recruiting screeners. Feeds research-synthesis.",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": ["research", "planning", "interviews", "usability", "surveys"]
+    },
     {
       "name": "ux-research",
       "source": "./plugins/ux-research",
