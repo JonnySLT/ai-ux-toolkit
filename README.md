@@ -13,35 +13,136 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 ## Quick start
 
 ```text
-# 1. Add this marketplace (one time)
-/plugin marketplace add <git-url-of-this-repo>
+# 1. Add the marketplace (once)
+/plugin marketplace add JonnySLT/ai-ux-toolkit
 
-# 2. Install the plugins you want
+# 2. Install any single plugin — same pattern for all 20
+/plugin install research-planning@ai-ux-toolkit
+```
+
+That's it for **any individual plugin**: `/plugin install <name>@ai-ux-toolkit`. Prefer to browse? Run **`/plugin`** for an interactive menu of the whole catalog. To grab a **whole workflow phase** or a **curated set** in one paste, see [Install recipes](#install-recipes) just below.
+
+Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
+
+> **Tip:** Skills trigger automatically from natural language (e.g. "synthesise these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
+
+---
+
+## Install recipes
+
+Every line below is a **standalone install** — copy the one plugin you want, a whole phase, or a curated bundle. All install at **user scope**; uninstall any with `/plugin uninstall <name>`. _(In a terminal, the CLI equivalent of `/plugin install X` is `claude plugin install X`.)_
+
+### By workflow phase
+
+Grab an entire phase in one paste.
+
+<details open>
+<summary><b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
+
+```text
+# 🔬 Research
+/plugin install research-planning@ai-ux-toolkit
+/plugin install ux-research@ai-ux-toolkit
+/plugin install competitive-analysis@ai-ux-toolkit
+
+# 📝 Define & plan
+/plugin install synthesis-artifacts@ai-ux-toolkit
+/plugin install design-planning@ai-ux-toolkit
+
+# 💡 Ideate
+/plugin install ideation@ai-ux-toolkit
+/plugin install prioritization@ai-ux-toolkit
+
+# 🗂️ Structure
+/plugin install information-architecture@ai-ux-toolkit
+
+# 🎨 Design
+/plugin install figma-design-system@ai-ux-toolkit
+/plugin install design-tokens@ai-ux-toolkit
+/plugin install frontend-design@ai-ux-toolkit
+```
+</details>
+
+<details open>
+<summary><b>✍️ Content</b> · <b>✅ Check</b> · <b>🧪 Prototype</b> · <b>📦 Handoff &amp; docs</b> · <b>📈 Measure &amp; iterate</b></summary>
+
+```text
+# ✍️ Content
+/plugin install content-design@ai-ux-toolkit
+
+# ✅ Check
+/plugin install accessibility-heuristics@ai-ux-toolkit
+/plugin install design-review@ai-ux-toolkit
+/plugin install usability-testing@ai-ux-toolkit
+
+# 🧪 Prototype
+/plugin install rapid-prototyping@ai-ux-toolkit
+
+# 📦 Handoff & docs
+/plugin install handoff-docs@ai-ux-toolkit
+/plugin install brand-voice@ai-ux-toolkit
+/plugin install changelog-automation@ai-ux-toolkit
+
+# 📈 Measure & iterate
+/plugin install product-analytics@ai-ux-toolkit
+```
+</details>
+
+### By need (curated bundles)
+
+**Research & synthesis** — the whole front end, planning through define-artifacts:
+```text
 /plugin install research-planning@ai-ux-toolkit
 /plugin install ux-research@ai-ux-toolkit
 /plugin install competitive-analysis@ai-ux-toolkit
 /plugin install synthesis-artifacts@ai-ux-toolkit
-/plugin install design-planning@ai-ux-toolkit
-/plugin install ideation@ai-ux-toolkit
-/plugin install prioritization@ai-ux-toolkit
-/plugin install information-architecture@ai-ux-toolkit
-/plugin install figma-design-system@ai-ux-toolkit
-/plugin install design-tokens@ai-ux-toolkit
-/plugin install frontend-design@ai-ux-toolkit
+```
+
+**Content & copy** — the words and the states:
+```text
 /plugin install content-design@ai-ux-toolkit
+/plugin install brand-voice@ai-ux-toolkit
+```
+
+**Quality & validation** — expert audits + real-user testing:
+```text
 /plugin install accessibility-heuristics@ai-ux-toolkit
 /plugin install design-review@ai-ux-toolkit
 /plugin install usability-testing@ai-ux-toolkit
-/plugin install rapid-prototyping@ai-ux-toolkit
-/plugin install handoff-docs@ai-ux-toolkit
-/plugin install brand-voice@ai-ux-toolkit
-/plugin install changelog-automation@ai-ux-toolkit
-/plugin install product-analytics@ai-ux-toolkit
 ```
 
-Install any subset — the plugins are independent. After installing, you can also enable/disable individual skills within a plugin. Update later with `/plugin marketplace update`.
+**Solo designer starter kit** — a lean set spanning the whole workflow:
+```text
+/plugin install ux-research@ai-ux-toolkit
+/plugin install ideation@ai-ux-toolkit
+/plugin install information-architecture@ai-ux-toolkit
+/plugin install frontend-design@ai-ux-toolkit
+/plugin install content-design@ai-ux-toolkit
+/plugin install accessibility-heuristics@ai-ux-toolkit
+/plugin install handoff-docs@ai-ux-toolkit
+```
 
-> **Tip:** Skills trigger automatically from natural language (e.g. "synthesise these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
+**Without Figma** — everything except the two hard Figma-MCP dependencies (`figma-design-system`, `changelog-automation`). Run in a terminal:
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         design-tokens frontend-design content-design accessibility-heuristics \
+         design-review usability-testing rapid-prototyping handoff-docs \
+         brand-voice product-analytics; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
+
+**Everything** — all 20. Run in a terminal:
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         figma-design-system design-tokens frontend-design content-design \
+         accessibility-heuristics design-review usability-testing rapid-prototyping \
+         handoff-docs brand-voice changelog-automation product-analytics; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
 
 ---
 
