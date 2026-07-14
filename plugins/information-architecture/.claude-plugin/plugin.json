@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "information-architecture",
+  "description": "Define the structural layer of a product or site before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. Vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "1.0.0",
+  "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+  "homepage": "https://github.com/julianoczkowski/designer-skills",
+  "license": "Apache-2.0"
+}

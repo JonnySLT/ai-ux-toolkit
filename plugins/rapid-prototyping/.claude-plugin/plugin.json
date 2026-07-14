@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "rapid-prototyping",
+  "description": "Turn a rough idea, brief, or sketch into a clickable, functional prototype you can actually interact with — built as runnable front-end code, verified live in the browser preview.",
+  "version": "1.0.0",
+  "author": { "name": "Jonny Bennett" }
+}

@@ -1,0 +1,24 @@
+{
+  "_comment": "Provenance + baseline for vendored third-party skills. Consumed by scripts/check-upstream-skills.mjs. When you re-sync to a newer upstream, update `synced` (commit + date) and the per-file sha256 to the new vendored state.",
+  "upstream": {
+    "name": "designer-skills",
+    "author": "Julian Oczkowski",
+    "repo": "https://github.com/julianoczkowski/designer-skills",
+    "ref": "main",
+    "license": "Apache-2.0"
+  },
+  "synced": {
+    "commit": "c259656c76d9758d7ead46b0d2f125cbe84f8665",
+    "date": "2026-07-06"
+  },
+  "skills": [
+    { "upstream": "design-brief/SKILL.md",              "vendored": "plugins/design-planning/skills/design-brief/SKILL.md",                       "sha256": "e5b49117e5df4ba48dc95e60a662ab1a15685d04ae9b06cb0598a7314436a7c9" },
+    { "upstream": "grill-me/SKILL.md",                   "vendored": "plugins/design-planning/skills/grill-me/SKILL.md",                          "sha256": "29d68cdb506f3c3e91442e9fd37656fe9a8049282dd49ed36f48d10190ad079c" },
+    { "upstream": "brief-to-tasks/SKILL.md",             "vendored": "plugins/design-planning/skills/brief-to-tasks/SKILL.md",                    "sha256": "9b22fbd915c031a4de4f209f549c6224dab8534b7a3357b1b0086d472858d585" },
+    { "upstream": "design-flow/SKILL.md",                "vendored": "plugins/design-planning/skills/design-flow/SKILL.md",                       "sha256": "8c21b0e75439f78a2e201845f998bbc9e420d9dc3daf048e579988b4dd14c272" },
+    { "upstream": "information-architecture/SKILL.md",   "vendored": "plugins/information-architecture/skills/information-architecture/SKILL.md",  "sha256": "7aad60e5568df242c31c7355543b61e6b65f4d592a5fa3f27a32760826d309e5" },
+    { "upstream": "design-tokens/SKILL.md",              "vendored": "plugins/design-tokens/skills/design-tokens/SKILL.md",                       "sha256": "951eb7680b1c096ebdff7cb9f1a3906ea08890afd01865512a2526b95b15da94" },
+    { "upstream": "frontend-design/SKILL.md",            "vendored": "plugins/frontend-design/skills/frontend-design/SKILL.md",                   "sha256": "6a078fa3e5a5cef2656d621a90c8dff8191bd9d8a3724df1b98760262c88ef60" },
+    { "upstream": "design-review/SKILL.md",              "vendored": "plugins/design-review/skills/design-review/SKILL.md",                       "sha256": "009a4312e410d76d35c01ce61996ca2ac3908434d5bed85ae7333be8c0dd7589" }
+  ]
+}

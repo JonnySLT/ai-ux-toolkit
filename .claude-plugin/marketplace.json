@@ -1,12 +1,58 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
-  "name": "design-system-toolkit",
-  "description": "Skills and automations for design-system work: Figma component/token workflows, the product-design process, brand voice, and changelog automation. Project-agnostic — every skill references the design system of the project it runs in.",
-  "version": "1.0.0",
+  "name": "ai-ux-toolkit",
+  "description": "AI-assisted skills for UX designers across the whole workflow: research synthesis, planning, divergent exploration, information architecture, design and audit in Figma, design tokens, accessibility and heuristic checks, prototyping and frontend build, design review, brand voice, competitive research, and design-system handoff and changelog automation. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "2.1.0",
   "owner": {
     "name": "Jonny Bennett"
   },
   "plugins": [
+    {
+      "name": "ux-research",
+      "source": "./plugins/ux-research",
+      "description": "Synthesise messy qualitative research — interview transcripts, survey responses, support tickets — into themes, evidence-backed insights, and prioritised opportunities.",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": ["research", "synthesis", "qualitative", "ux"]
+    },
+    {
+      "name": "competitive-analysis",
+      "source": "./plugins/competitive-analysis",
+      "description": "Live competitive analysis of 3–6 products: real-time browse + comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": ["research", "competitive", "benchmarking", "ux"]
+    },
+    {
+      "name": "design-planning",
+      "source": "./plugins/design-planning",
+      "description": "Define & plan a design: write a brief, get grilled on it, break it into tasks, and orchestrate the full design flow. Vendored from Julian Oczkowski's designer-skills.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["brief", "planning", "tasks", "orchestration"],
+      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "homepage": "https://github.com/julianoczkowski/designer-skills",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "ideation",
+      "source": "./plugins/ideation",
+      "description": "Break fixation early: generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options so you edit and select rather than start blank.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["ideation", "divergent", "concepts", "ux"]
+    },
+    {
+      "name": "information-architecture",
+      "source": "./plugins/information-architecture",
+      "description": "Define the structural layer — navigation, content hierarchy, page structure, URL patterns, and user flows — before visual design. Vendored from Julian Oczkowski's designer-skills.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["ia", "navigation", "structure", "flows"],
+      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "homepage": "https://github.com/julianoczkowski/designer-skills",
+      "license": "Apache-2.0"
+    },
     {
       "name": "figma-design-system",
       "source": "./plugins/figma-design-system",
@@ -16,12 +62,61 @@
       "tags": ["figma", "design-system", "annotation", "handoff"]
     },
     {
-      "name": "competitive-analysis",
-      "source": "./plugins/competitive-analysis",
-      "description": "Live competitive analysis of 3–6 products: real-time browse + comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
+      "name": "design-tokens",
+      "source": "./plugins/design-tokens",
+      "description": "Generate a design tokens file (CSS variables or Tailwind config): light/dark palettes, spacing scale, type ramp, component-level tokens. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
-      "category": "research",
-      "tags": ["research", "competitive", "benchmarking", "ux"]
+      "category": "design",
+      "tags": ["tokens", "css", "tailwind", "foundations"],
+      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "homepage": "https://github.com/julianoczkowski/designer-skills",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "frontend-design",
+      "source": "./plugins/frontend-design",
+      "description": "Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. Vendored from Julian Oczkowski's designer-skills.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["frontend", "build", "ui", "aesthetic"],
+      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "homepage": "https://github.com/julianoczkowski/designer-skills",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "accessibility-heuristics",
+      "source": "./plugins/accessibility-heuristics",
+      "description": "First-filter quality checks before human review: catch obvious WCAG accessibility issues and evaluate a screen or flow against Nielsen's usability heuristics.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["accessibility", "wcag", "heuristics", "audit"]
+    },
+    {
+      "name": "design-review",
+      "source": "./plugins/design-review",
+      "description": "Run a structured design critique against the brief and codebase: visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. Vendored from Julian Oczkowski's designer-skills.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["review", "critique", "qa", "polish"],
+      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "homepage": "https://github.com/julianoczkowski/designer-skills",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "rapid-prototyping",
+      "source": "./plugins/rapid-prototyping",
+      "description": "Turn a rough idea, brief, or sketch into a clickable, functional prototype — runnable front-end code verified live in the browser preview.",
+      "version": "1.0.0",
+      "category": "prototyping",
+      "tags": ["prototype", "frontend", "clickable", "ux"]
+    },
+    {
+      "name": "handoff-docs",
+      "source": "./plugins/handoff-docs",
+      "description": "Draft the documentation that ships a design: component specs and design-system documentation generated from a project's existing patterns.",
+      "version": "1.0.0",
+      "category": "documentation",
+      "tags": ["handoff", "spec", "documentation", "design-system"]
     },
     {
       "name": "brand-voice",

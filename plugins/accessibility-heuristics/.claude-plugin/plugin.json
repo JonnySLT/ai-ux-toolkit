@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "accessibility-heuristics",
+  "description": "First-filter quality checks before a human review pass: catch obvious WCAG accessibility issues (contrast, labels, focus, target size) and evaluate a screen or flow against Nielsen's usability heuristics.",
+  "version": "1.0.0",
+  "author": { "name": "Jonny Bennett" }
+}
