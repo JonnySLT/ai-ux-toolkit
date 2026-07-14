@@ -18,7 +18,7 @@ Turn a pile of qualitative data into a structured, evidence-backed set of themes
 
 Before analysing, establish:
 
-1. **What's the source?** Interviews, survey open-text, support tickets, sales calls, usability sessions, app-store reviews — the source type changes how you read it (a ticket is a reported problem; an interview answer is a self-report).
+1. **What's the source?** Interviews, survey open-text, support tickets, sales calls, usability sessions, app-store reviews, or **card-sort / tree-test results** — the source type changes how you read it (a ticket is a reported problem; an interview answer is a self-report; a card sort is a grouping/labelling signal — cluster by how participants grouped and named items, and report agreement across participants to inform IA).
 2. **Where is it?** Pasted inline, or file paths (`.txt`, `.md`, `.csv`, `.vtt`/transcript exports, `.json`). Read every file before starting. If a connected source is named (Intercom, Granola, a Drive folder), pull it via the relevant MCP if available; otherwise ask the user to export.
 3. **What's the question?** "General themes" is fine, but if they have a focus ("why are people churning?", "friction in onboarding") let that steer the coding.
 4. **Any segments?** Persona, plan tier, tenure, role — capture if present so themes can be sliced later.
