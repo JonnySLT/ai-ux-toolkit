@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
-  "description": "AI-assisted skills for UX designers across the whole workflow: research synthesis, planning, divergent exploration, information architecture, design and audit in Figma, design tokens, accessibility and heuristic checks, prototyping and frontend build, design review, brand voice, competitive research, and design-system handoff and changelog automation. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.3.0",
+  "description": "AI-assisted skills for UX designers and researchers across the whole workflow: research planning and synthesis, insight repositories, personas, journey maps, service blueprints, empathy maps, success metrics, divergent exploration, facilitation, prioritisation, information architecture, design and audit in Figma, design tokens, frontend build, content design, data visualization, accessibility and inclusive design, usability testing, prototyping, design review, user stories, handoff docs, brand voice, competitive research, experimentation, and post-launch measurement. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "2.4.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -18,10 +18,10 @@
     {
       "name": "ux-research",
       "source": "./plugins/ux-research",
-      "description": "Synthesise messy qualitative research — interview transcripts, survey responses, support tickets — into themes, evidence-backed insights, and prioritised opportunities.",
+      "description": "Synthesise messy qualitative research into themes, evidence-backed insights, and prioritised opportunities — and manage them over time in a tagged, reusable research repository of atomic insights.",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["research", "synthesis", "qualitative", "ux"]
+      "tags": ["research", "synthesis", "qualitative", "insights", "repository"]
     },
     {
       "name": "competitive-analysis",
@@ -34,10 +34,10 @@
     {
       "name": "synthesis-artifacts",
       "source": "./plugins/synthesis-artifacts",
-      "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, journey/experience maps, and success-metric definitions (HEART / goal-signal-metric).",
+      "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, empathy maps, journey/experience maps, service blueprints, and success-metric definitions (HEART / goal-signal-metric).",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["personas", "jtbd", "journey-map", "metrics", "define"]
+      "tags": ["personas", "empathy-map", "journey-map", "service-blueprint", "metrics"]
     },
     {
       "name": "design-planning",
@@ -53,10 +53,10 @@
     {
       "name": "ideation",
       "source": "./plugins/ideation",
-      "description": "Break fixation early: generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options so you edit and select rather than start blank.",
+      "description": "Break fixation and run the room: generate a wide, deliberately-spread set of concepts, copy, or IA/layout options, and plan/facilitate collaborative sessions (kickoffs, design sprints, ideation workshops, retros).",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["ideation", "divergent", "concepts", "ux"]
+      "tags": ["ideation", "divergent", "facilitation", "workshops"]
     },
     {
       "name": "prioritization",
@@ -108,6 +108,14 @@
       "license": "Apache-2.0"
     },
     {
+      "name": "data-viz",
+      "source": "./plugins/data-viz",
+      "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible colour and labelling, and lay out dashboards that answer questions at a glance.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["data-viz", "charts", "dashboards", "visualization"]
+    },
+    {
       "name": "content-design",
       "source": "./plugins/content-design",
       "description": "Design the words and the states: systematic UI microcopy (errors, empty states, buttons, labels, confirmations) and enumeration of every screen state and edge case a design must cover.",
@@ -118,10 +126,10 @@
     {
       "name": "accessibility-heuristics",
       "source": "./plugins/accessibility-heuristics",
-      "description": "First-filter quality checks before human review: catch obvious WCAG accessibility issues and evaluate a screen or flow against Nielsen's usability heuristics.",
+      "description": "Design accessibly and check it: proactive inclusive-design guidance up front, plus first-filter audits — WCAG accessibility issues and a Nielsen usability-heuristics evaluation.",
       "version": "1.0.0",
       "category": "quality",
-      "tags": ["accessibility", "wcag", "heuristics", "audit"]
+      "tags": ["accessibility", "wcag", "inclusive-design", "heuristics"]
     },
     {
       "name": "design-review",
@@ -153,10 +161,10 @@
     {
       "name": "handoff-docs",
       "source": "./plugins/handoff-docs",
-      "description": "Draft the documentation that ships a design: component specs and design-system documentation generated from a project's existing patterns.",
+      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and agile user stories with acceptance criteria.",
       "version": "1.0.0",
       "category": "documentation",
-      "tags": ["handoff", "spec", "documentation", "design-system"]
+      "tags": ["handoff", "spec", "user-stories", "documentation"]
     },
     {
       "name": "brand-voice",
@@ -177,10 +185,10 @@
     {
       "name": "product-analytics",
       "source": "./plugins/product-analytics",
-      "description": "Close the loop after launch: plan instrumentation (events, funnels), then read product-outcome data to judge whether the design worked and feed the next round of research.",
+      "description": "Close the loop after launch: plan instrumentation (events, funnels), design and interpret A/B tests/experiments, and read product-outcome data to judge whether the design worked and feed the next round of research.",
       "version": "1.0.0",
       "category": "analytics",
-      "tags": ["analytics", "metrics", "instrumentation", "measurement"]
+      "tags": ["analytics", "experimentation", "ab-testing", "measurement"]
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "product-analytics",
-  "description": "Close the loop after launch: plan the instrumentation (events, funnels), then read product-outcome data to judge whether the design worked and feed the next round of research.",
+  "description": "Close the loop after launch: plan the instrumentation (events, funnels), design and interpret A/B tests, then read product-outcome data to judge whether the design worked and feed the next round of research.",
   "version": "1.0.0",
   "author": { "name": "Jonny Bennett" }
 }
