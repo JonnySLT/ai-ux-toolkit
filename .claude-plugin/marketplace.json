@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
   "description": "AI-assisted skills for UX designers across the whole workflow: research synthesis, planning, divergent exploration, information architecture, design and audit in Figma, design tokens, accessibility and heuristic checks, prototyping and frontend build, design review, brand voice, competitive research, and design-system handoff and changelog automation. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -32,6 +32,14 @@
       "tags": ["research", "competitive", "benchmarking", "ux"]
     },
     {
+      "name": "synthesis-artifacts",
+      "source": "./plugins/synthesis-artifacts",
+      "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, journey/experience maps, and success-metric definitions (HEART / goal-signal-metric).",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": ["personas", "jtbd", "journey-map", "metrics", "define"]
+    },
+    {
       "name": "design-planning",
       "source": "./plugins/design-planning",
       "description": "Define & plan a design: write a brief, get grilled on it, break it into tasks, and orchestrate the full design flow. Vendored from Julian Oczkowski's designer-skills.",
@@ -49,6 +57,14 @@
       "version": "1.0.0",
       "category": "design",
       "tags": ["ideation", "divergent", "concepts", "ux"]
+    },
+    {
+      "name": "prioritization",
+      "source": "./plugins/prioritization",
+      "description": "Decide what to build first: apply a fitting framework (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano) to ideas, features, or fixes and produce a defensible ranked list.",
+      "version": "1.0.0",
+      "category": "strategy",
+      "tags": ["prioritisation", "rice", "impact-effort", "roadmap"]
     },
     {
       "name": "information-architecture",
@@ -92,6 +108,14 @@
       "license": "Apache-2.0"
     },
     {
+      "name": "content-design",
+      "source": "./plugins/content-design",
+      "description": "Design the words and the states: systematic UI microcopy (errors, empty states, buttons, labels, confirmations) and enumeration of every screen state and edge case a design must cover.",
+      "version": "1.0.0",
+      "category": "content",
+      "tags": ["ux-writing", "microcopy", "content-design", "edge-cases"]
+    },
+    {
       "name": "accessibility-heuristics",
       "source": "./plugins/accessibility-heuristics",
       "description": "First-filter quality checks before human review: catch obvious WCAG accessibility issues and evaluate a screen or flow against Nielsen's usability heuristics.",
@@ -109,6 +133,14 @@
       "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
+    },
+    {
+      "name": "usability-testing",
+      "source": "./plugins/usability-testing",
+      "description": "Run usability tests end-to-end with real users: a test plan with tasks and success criteria, moderation guidance, and a findings report with task-level metrics and severity ratings.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["usability", "testing", "moderation", "severity"]
     },
     {
       "name": "rapid-prototyping",
@@ -141,6 +173,14 @@
       "version": "1.0.0",
       "category": "automation",
       "tags": ["figma", "changelog", "automation", "design-system"]
+    },
+    {
+      "name": "product-analytics",
+      "source": "./plugins/product-analytics",
+      "description": "Close the loop after launch: plan instrumentation (events, funnels), then read product-outcome data to judge whether the design worked and feed the next round of research.",
+      "version": "1.0.0",
+      "category": "analytics",
+      "tags": ["analytics", "metrics", "instrumentation", "measurement"]
     }
   ]
 }
