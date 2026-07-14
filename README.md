@@ -16,7 +16,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 # 1. Add the marketplace (once)
 /plugin marketplace add JonnySLT/ai-ux-toolkit
 
-# 2. Install any single plugin — same pattern for all 20
+# 2. Install any single plugin — same pattern for all 21
 /plugin install research-planning@ai-ux-toolkit
 ```
 
@@ -60,6 +60,7 @@ Grab an entire phase in one paste.
 /plugin install figma-design-system@ai-ux-toolkit
 /plugin install design-tokens@ai-ux-toolkit
 /plugin install frontend-design@ai-ux-toolkit
+/plugin install data-viz@ai-ux-toolkit
 ```
 </details>
 
@@ -126,18 +127,18 @@ Grab an entire phase in one paste.
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
          design-planning ideation prioritization information-architecture \
-         design-tokens frontend-design content-design accessibility-heuristics \
+         design-tokens frontend-design data-viz content-design accessibility-heuristics \
          design-review usability-testing rapid-prototyping handoff-docs \
          brand-voice product-analytics; do
   claude plugin install "$p@ai-ux-toolkit"
 done
 ```
 
-**Everything** — all 20. Run in a terminal:
+**Everything** — all 21. Run in a terminal:
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
          design-planning ideation prioritization information-architecture \
-         figma-design-system design-tokens frontend-design content-design \
+         figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
          handoff-docs brand-voice changelog-automation product-analytics; do
   claude plugin install "$p@ai-ux-toolkit"
@@ -148,7 +149,7 @@ done
 
 ## What's inside — organised by workflow phase
 
-Twenty plugins, grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
+Twenty-one plugins (38 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
 
 ### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`
 
@@ -156,6 +157,7 @@ Twenty plugins, grouped by where they fall in a typical design process. Every sk
 |---|---|---|
 | `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
 | `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritised opportunities. The coding pass that would take hours by hand. |
+| `research-repository` | ux-research | Set up and maintain a repository of atomic, tagged, evidence-linked insights (with a taxonomy) so past research stays findable and reusable across studies. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
 
 ### 📝 Define & plan — `synthesis-artifacts`, `design-planning`
@@ -163,7 +165,9 @@ Twenty plugins, grouped by where they fall in a typical design process. Every sk
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `personas` | synthesis-artifacts | Build evidence-based personas & JTBD statements from real research (flags thin data instead of inventing demographics). |
+| `empathy-map` | synthesis-artifacts | A fast Says / Thinks / Does / Feels (+ Pains & Gains) snapshot that surfaces contradictions and design implications. |
 | `journey-map` | synthesis-artifacts | Map an end-to-end experience — stages, actions, thoughts, emotion curve, pain points, and opportunities. |
+| `service-blueprint` | synthesis-artifacts | Extend a journey with the behind-the-scenes layers (frontstage, backstage, support systems) to expose fail points, handoffs, and ownership gaps. |
 | `success-metrics` | synthesis-artifacts | Define what success looks like *before* building — HEART and goal → signal → metric, with guardrail metrics. |
 | `design-brief` **†** | design-planning | Create a design brief through an interactive interview, codebase exploration, and experience-design decisions. |
 | `grill-me` **†** | design-planning | Get interviewed relentlessly about a plan or design until you reach shared understanding. |
@@ -175,6 +179,7 @@ Twenty plugins, grouped by where they fall in a typical design process. Every sk
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `divergent-exploration` | ideation | Generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options — spanning safe → bold — so you break fixation early and edit rather than start blank. |
+| `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
 ### 🗂️ Structure — `information-architecture`
@@ -183,8 +188,8 @@ Twenty plugins, grouped by where they fall in a typical design process. Every sk
 |---|---|
 | `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
-### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`
-The Figma + design-system workflow **requires the Figma MCP server** (`use_figma`).
+### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
+The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the Figma MCP server** (`use_figma`); the rest don't.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
@@ -193,6 +198,7 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 | `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes. |
 | `design-tokens` **†** | design-tokens | Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens. |
 | `frontend-design` **†** | frontend-design | Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. |
+| `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible colour, honest scales, and glanceable layouts. Tool-agnostic. |
 
 > `annotate` uses the **`Annotation` component that lives in the file you're annotating** — it never pulls from another file. If the file has none, it offers to build one bound to that project's own tokens. Annotation cards always sit **32px** from the frame.
 
@@ -207,6 +213,7 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
+| `inclusive-design` | accessibility-heuristics | Design accessibly **from the start** — for the range of human ability (vision, motor, hearing, cognitive, situational), baking WCAG into decisions before build. |
 | `accessibility-check` | accessibility-heuristics | First-pass WCAG check on a screenshot, Figma frame, URL, or code — contrast, labels, focus, target size, structure. Cites the success criterion and a fix per finding. |
 | `heuristic-review` | accessibility-heuristics | Evaluate a screen or flow against Nielsen's 10 usability heuristics, scored by severity with concrete fixes. |
 | `design-review` **†** | design-review | Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. |
@@ -226,6 +233,7 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 |---|---|---|
 | `component-spec` | handoff-docs | Draft a dev-ready spec for one component — anatomy, variants, states, props, tokens, a11y, do/don't — from Figma, code, or a description. |
 | `design-system-docs` | handoff-docs | Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile. |
+| `user-stories` | handoff-docs | Turn a design or brief into agile user stories ("As a… I want… so that…") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices. |
 | `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice. Loads the voice profile from the project (a brand file, or a quick interview) and applies it — works for any brand or industry. |
 | `design-system-changelog-sweep` | changelog-automation | Diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page. Built to run on a schedule. |
 
@@ -236,6 +244,7 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 | Skill | Use it to… |
 |---|---|
 | `measurement-plan` | Plan instrumentation (events, funnels, cohorts) to capture your metrics, then interpret the results to judge whether a shipped design worked — and turn surprises into the next research question, closing the loop back to Research. |
+| `experimentation` | Design and interpret A/B tests — hypothesis, primary metric + guardrails, sample size / MDE and run-time, and a disciplined read-out (significance, confidence intervals, peeking, novelty, segments). |
 
 > Pairs with `success-metrics` (which *defines* the targets before build) and complements `changelog-automation` (which tracks *design-system* drift, not product outcomes).
 
@@ -243,9 +252,9 @@ The Figma + design-system workflow **requires the Figma MCP server** (`use_figma
 
 ## Roadmap
 
-The workflow-coverage audit's gaps have all been addressed — research planning, synthesis artifacts (personas / journeys / metrics), prioritisation, content design, edge-case enumeration, usability testing, and post-launch measurement are now shipped.
+Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritisation, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
 
-Possible future directions: **service blueprints** (backstage/ops lanes), **experimentation depth** (A/B test design and read-out), **design-ops** automation, and richer **card-sort / tree-test** analysis (today handled within `research-synthesis`).
+Possible future directions: **design-ops** automation, deeper **quant/survey statistics**, and **motion/interaction** specs. Nothing here is a coverage gap — the workflow is complete end to end.
 
 ---
 
@@ -292,40 +301,41 @@ Because these skills are a **point-in-time copy**, they don't automatically get 
 - **Figma MCP server** (`use_figma`) for `figma-design-system` and `changelog-automation`, and for the Figma-output paths of `research-synthesis`, `competitive-analysis`, and `handoff-docs`.
 - **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
 - **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
-- Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `usability-testing`, `product-analytics`, `brand-voice`, and `heuristic-review`.
+- Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `data-viz`, `usability-testing`, `product-analytics`, `brand-voice`, `inclusive-design`, and `heuristic-review`.
 - For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
 
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty independent plugins; install only what you need, disable individual skills if you want even less.
+- **Pick à la carte.** Twenty-one independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Solo designer starter kit** in [Install recipes](#install-recipes).
 - **First filter, not final word.** The check skills (`accessibility-check`, `heuristic-review`) and the research pass are explicitly framed as fast first passes for a human to validate — not replacements for review, testing, or judgement.
 
 ## Repository layout
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 20 plugins)
+├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 21 plugins)
 ├── .github/workflows/                  # check-upstream-skills.yml (weekly upstream drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
 ├── README.md                           # this file
 └── plugins/
     ├── research-planning/               # original — research-planning
-    ├── ux-research/                     # original — research-synthesis
+    ├── ux-research/                     # original — research-synthesis, research-repository
     ├── competitive-analysis/            # original — competitive-analysis
-    ├── synthesis-artifacts/             # original — personas, journey-map, success-metrics
-    ├── ideation/                        # original — divergent-exploration
+    ├── synthesis-artifacts/             # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
+    ├── ideation/                        # original — divergent-exploration, facilitation
     ├── prioritization/                  # original — prioritization
     ├── figma-design-system/             # original — figma-designer, reattach, annotate
+    ├── data-viz/                        # original — data-visualization
     ├── content-design/                  # original — content-design, states-and-edge-cases
-    ├── accessibility-heuristics/        # original — accessibility-check, heuristic-review
+    ├── accessibility-heuristics/        # original — inclusive-design, accessibility-check, heuristic-review
     ├── usability-testing/               # original — usability-testing
     ├── rapid-prototyping/               # original — rapid-prototype
-    ├── handoff-docs/                    # original — component-spec, design-system-docs
+    ├── handoff-docs/                    # original — component-spec, design-system-docs, user-stories
     ├── brand-voice/                     # original — brand-voice-tone
     ├── changelog-automation/            # original — design-system-changelog-sweep (+ scripts/figma-fingerprint.js)
-    ├── product-analytics/               # original — measurement-plan
+    ├── product-analytics/               # original — measurement-plan, experimentation
     ├── design-planning/                 # vendored † — design-brief, grill-me, brief-to-tasks, design-flow
     ├── information-architecture/        # vendored † — information-architecture
     ├── design-tokens/                   # vendored † — design-tokens

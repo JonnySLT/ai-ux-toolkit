@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "ideation",
-  "description": "Break fixation early. Generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options so you're editing and selecting rather than staring at a blank page.",
+  "description": "Break fixation and run the room: generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options, and plan/facilitate collaborative sessions (kickoffs, design sprints, ideation workshops, retros).",
   "version": "1.0.0",
   "author": { "name": "Jonny Bennett" }
 }
