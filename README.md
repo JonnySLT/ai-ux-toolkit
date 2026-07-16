@@ -455,8 +455,9 @@ Using a different client (VS Code, Cursor, etc.) or want deeper setup and best p
 ```text
 ai-ux-toolkit/
 ├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 21 plugins)
-├── .github/workflows/                  # check-upstream-skills.yml (weekly upstream drift check)
+├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
+├── scripts/validate.mjs                # structural integrity check (runs in CI)
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
 ├── templates/CLAUDE.md                 # add to ~/.claude/CLAUDE.md (global) for ask-first skill routing
 ├── README.md                           # this file
