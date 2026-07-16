@@ -1,6 +1,6 @@
 # synthesis-artifacts
 
-The bridge from research to design — turns synthesised insight into the artifacts that steer product decisions.
+The bridge from research to design — turns synthesized insight into the artifacts that steer product decisions.
 
 - **personas** — evidence-based personas and Jobs-to-be-Done statements grounded in real research (not invented demographics).
 - **empathy-map** — a fast Says / Thinks / Does / Feels (+ Pains & Gains) snapshot of a user, grounded in evidence, that surfaces contradictions and design implications.

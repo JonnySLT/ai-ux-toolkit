@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
-  "description": "AI-assisted skills for UX designers and researchers across the whole workflow: research planning and synthesis, insight repositories, personas, journey maps, service blueprints, empathy maps, success metrics, divergent exploration, facilitation, prioritisation, information architecture, design and audit in Figma, design tokens, frontend build, content design, data visualization, accessibility and inclusive design, usability testing, prototyping, design review, user stories, handoff docs, brand voice, competitive research, experimentation, and post-launch measurement. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "description": "AI-assisted skills for UX designers and researchers across the whole workflow: research planning and synthesis, insight repositories, personas, journey maps, service blueprints, empathy maps, success metrics, divergent exploration, facilitation, prioritization, information architecture, design and audit in Figma, design tokens, frontend build, content design, data visualization, accessibility and inclusive design, usability testing, prototyping, design review, user stories, handoff docs, brand voice, competitive research, experimentation, and post-launch measurement. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
   "version": "2.4.0",
   "owner": {
     "name": "Jonny Bennett"
@@ -18,7 +18,7 @@
     {
       "name": "ux-research",
       "source": "./plugins/ux-research",
-      "description": "Synthesise messy qualitative research into themes, evidence-backed insights, and prioritised opportunities — and manage them over time in a tagged, reusable research repository of atomic insights.",
+      "description": "Synthesize messy qualitative research into themes, evidence-backed insights, and prioritized opportunities — and manage them over time in a tagged, reusable research repository of atomic insights.",
       "version": "1.0.0",
       "category": "research",
       "tags": ["research", "synthesis", "qualitative", "insights", "repository"]
@@ -64,7 +64,7 @@
       "description": "Decide what to build first: apply a fitting framework (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano) to ideas, features, or fixes and produce a defensible ranked list.",
       "version": "1.0.0",
       "category": "strategy",
-      "tags": ["prioritisation", "rice", "impact-effort", "roadmap"]
+      "tags": ["prioritization", "rice", "impact-effort", "roadmap"]
     },
     {
       "name": "information-architecture",
@@ -110,7 +110,7 @@
     {
       "name": "data-viz",
       "source": "./plugins/data-viz",
-      "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible colour and labelling, and lay out dashboards that answer questions at a glance.",
+      "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible color and labeling, and lay out dashboards that answer questions at a glance.",
       "version": "1.0.0",
       "category": "design",
       "tags": ["data-viz", "charts", "dashboards", "visualization"]

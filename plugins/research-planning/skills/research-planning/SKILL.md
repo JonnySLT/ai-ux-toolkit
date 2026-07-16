@@ -1,9 +1,9 @@
 ---
 name: research-planning
-description: Plan and instrument research before you collect it — with users and with stakeholders. Helps choose the right method for the question, then drafts the actual instrument — user interview and discussion guides, stakeholder / kickoff interview guides, usability-test scripts (tasks, scenarios, success criteria — the script only; to run and analyse the full study, use the usability-testing skill), survey questionnaires, and recruiting screeners. Writes non-leading questions, sequences them well, and builds in consent, incentives, and realistic sample sizes. The front end that feeds research-synthesis. Trigger when the user wants to "plan user research", "write an interview guide", "stakeholder interview", "kickoff questions", "align stakeholders", "design a survey", "create a usability test script", "write a screener", "discussion guide", "research questions", or asks how to research something with users or stakeholders.
+description: Plan and instrument research before you collect it — with users and with stakeholders. Helps choose the right method for the question, then drafts the actual instrument — user interview and discussion guides, stakeholder / kickoff interview guides, usability-test scripts (tasks, scenarios, success criteria — the script only; to run and analyze the full study, use the usability-testing skill), survey questionnaires, and recruiting screeners. Writes non-leading questions, sequences them well, and builds in consent, incentives, and realistic sample sizes. The front end that feeds research-synthesis. Trigger when the user wants to "plan user research", "write an interview guide", "stakeholder interview", "kickoff questions", "align stakeholders", "design a survey", "create a usability test script", "write a screener", "discussion guide", "research questions", or asks how to research something with users or stakeholders.
 ---
 
-Design the research and write the instrument you'll take into the field. Good research is mostly decided before the first session — the method fit, the questions, and who you talk to. This skill gets those right so the data you collect is worth synthesising. It's the front end; `research-synthesis` (in the `ux-research` plugin) is the back end.
+Design the research and write the instrument you'll take into the field. Good research is mostly decided before the first session — the method fit, the questions, and who you talk to. This skill gets those right so the data you collect is worth synthesizing. It's the front end; `research-synthesis` (in the `ux-research` plugin) is the back end.
 
 ## Example prompts
 
@@ -27,8 +27,8 @@ Nail these down before writing anything (infer from the prompt; ask only what's 
    - **Stakeholder / kickoff interviews** — *internal* context, not user data: business goals, definition of success, constraints, assumptions, prior attempts, and where stakeholders disagree. Usually run at project start, often alongside user research.
    - **Usability test** — *can they do it*: task success, friction, confusion on a real (or prototype) UI.
    - **Survey** — *how many / how much*: prevalence, satisfaction, segmentation at scale (needs enough responses to matter).
-   - **Diary / field study** — behaviour over time or in context.
-   - **Card sort / tree test** — IA and labelling (pairs with the `information-architecture` plugin).
+   - **Diary / field study** — behavior over time or in context.
+   - **Card sort / tree test** — IA and labeling (pairs with the `information-architecture` plugin).
    State the recommended method and why; note when a mix is warranted. (Studying users and aligning stakeholders are different jobs — don't substitute one for the other.)
 4. **Audience & sample.** Who, how many, and any segments. Be honest about sample size: qualitative (interviews/usability) saturates around **5–8 per distinct segment**; surveys need enough for the cut you'll make.
 5. **Constraints.** Timeline, moderated vs unmoderated, remote vs in-person, tools available.
@@ -43,7 +43,7 @@ Produce the artifact for the chosen method. Core craft rules apply to all:
 
 - **Ask open, non-leading questions.** "Walk me through the last time you…" not "Don't you find X frustrating?" Never embed the desired answer or a value judgement.
 - **One idea per question.** No double-barrelled asks.
-- **Behaviour before opinion.** Past/actual behaviour is more reliable than predicted or hypothetical.
+- **Behavior before opinion.** Past/actual behavior is more reliable than predicted or hypothetical.
 - **Sequence intentionally.** Warm-up → broad context → focused topics → sensitive/specific → wrap-up. Easy and rapport-building first.
 - **Neutral language.** Plain words, no jargon, no brand cheerleading.
 
@@ -62,7 +62,7 @@ For internal stakeholders (product, exec, engineering, sales, support, SMEs) at 
 - **Goals & vision** — the business goal, the problem being solved, and how this fits the wider strategy.
 - **Definition of success & metrics** — how they'll know it worked (ties to `success-metrics`); watch for different stakeholders naming different measures.
 - **Users & assumptions** — who they believe the users are and what they're assuming (flag these as hypotheses for *user* research to test, not facts).
-- **Constraints** — technical, legal/compliance, budget, timeline, brand, and organisational realities.
+- **Constraints** — technical, legal/compliance, budget, timeline, brand, and organizational realities.
 - **Prior attempts & history** — what's been tried, what exists, what failed and why.
 - **Scope & non-goals** — what's explicitly in and out; where they expect trade-offs.
 - **Risks & concerns** — what worries them; what would make this fail.
@@ -80,12 +80,12 @@ For internal stakeholders (product, exec, engineering, sales, support, SMEs) at 
 ### Survey questionnaire
 - **Intro** — purpose, length, anonymity.
 - **Questions** — mostly closed for analysis; match scale to intent (Likert for agreement, and note if using a validated measure like SUS/NPS/CSAT). Balanced scales, no leading stems, avoid double negatives. Add "N/A / prefer not to say" where honest.
-- **Screening & demographics** — only what you'll actually analyse; place sensitive items late.
+- **Screening & demographics** — only what you'll actually analyze; place sensitive items late.
 - **Open-text** — a few, sparingly (they feed `research-synthesis`).
 - Flag likely bias (order effects, acquiescence) and note target N for the cuts planned.
 
 ### Recruiting screener
-- **Qualifying criteria** from the target segment (role, behaviour, tenure, tool use).
+- **Qualifying criteria** from the target segment (role, behavior, tenure, tool use).
 - **Screener questions** that don't telegraph the "right" answer (avoid "Do you use X often?" → ask frequency with a neutral scale and set the threshold).
 - **Quotas** per segment, target count (with over-recruit buffer), incentive, and logistics/consent line.
 

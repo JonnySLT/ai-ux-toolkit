@@ -3,7 +3,7 @@ name: service-blueprint
 description: Build a service blueprint — extend a customer journey with the behind-the-scenes layers that deliver it: frontstage actions, backstage actions, support processes, and systems, all tied to line-of-interaction and line-of-visibility. Reveals where breakdowns, handoffs, and ownership gaps cause a poor experience. For service, enterprise, and multi-channel/omnichannel flows. Trigger when the user wants a "service blueprint", to map "frontstage/backstage", "behind the scenes", operational/support processes behind an experience, or handoffs across teams and systems.
 ---
 
-Map not just what the customer experiences, but everything the organisation does to deliver it. A service blueprint extends a journey map **downward** through the layers of delivery — so you can see where a good front-end experience is being undermined by a broken backstage process, a bad handoff, or an unowned step. Essential for service, enterprise, and omnichannel work where the experience spans teams and systems.
+Map not just what the customer experiences, but everything the organization does to deliver it. A service blueprint extends a journey map **downward** through the layers of delivery — so you can see where a good front-end experience is being undermined by a broken backstage process, a bad handoff, or an unowned step. Essential for service, enterprise, and omnichannel work where the experience spans teams and systems.
 
 ## Example prompts
 
@@ -48,7 +48,7 @@ Optionally add **time/SLA** and **owner** per step.
 
 1. **Header** — scenario, customer, scope.
 2. **The blueprint** — a stages × layers table with the three lines (interaction / visibility / internal interaction) marked, plus owner/SLA columns if useful.
-3. **Fail points, handoffs & ownership gaps** — the prioritised list of where the service breaks down.
+3. **Fail points, handoffs & ownership gaps** — the prioritized list of where the service breaks down.
 4. **Opportunities** — highest-impact fixes, often backstage.
 
 Offer to save as markdown or render as a Figma doc page. Feeds `prioritization` (which fixes first) and the `design-planning` brief.

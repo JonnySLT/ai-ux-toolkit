@@ -1,22 +1,22 @@
 ---
 name: research-repository
-description: Make research findable and reusable over time — set up and maintain a research repository of atomic insights. Defines a tagging taxonomy, breaks studies into atomic, evidence-linked insights, deduplicates and merges across studies, and surfaces cross-study patterns so past research isn't lost or re-run. The ResearchOps layer on top of research-synthesis. Trigger when the user wants to "organise research", "build a research repository", "tag insights", "atomic research / atomic insights", "make research findable", "insight taxonomy", or manage findings across many studies.
+description: Make research findable and reusable over time — set up and maintain a research repository of atomic insights. Defines a tagging taxonomy, breaks studies into atomic, evidence-linked insights, deduplicates and merges across studies, and surfaces cross-study patterns so past research isn't lost or re-run. The ResearchOps layer on top of research-synthesis. Trigger when the user wants to "organize research", "build a research repository", "tag insights", "atomic research / atomic insights", "make research findable", "insight taxonomy", or manage findings across many studies.
 ---
 
-Stop research from evaporating after the readout. Individual studies get synthesised (that's `research-synthesis`); this skill is the layer above — turning findings into **atomic, tagged, evidence-linked insights** that accumulate into a searchable body of knowledge, so teams reuse what's known instead of re-running it or losing it in old decks.
+Stop research from evaporating after the readout. Individual studies get synthesized (that's `research-synthesis`); this skill is the layer above — turning findings into **atomic, tagged, evidence-linked insights** that accumulate into a searchable body of knowledge, so teams reuse what's known instead of re-running it or losing it in old decks.
 
 ## Example prompts
 
 - "Set up a research repository / insight taxonomy for us"
 - "Turn these study findings into atomic insights"
-- "Tag and organise our past research"
+- "Tag and organize our past research"
 - "What do we already know about onboarding across studies?"
 
 ---
 
 ## Mode 0 — Which job?
 
-Detect: **set up** a repository structure/taxonomy, **atomise** a study into insights, or **query/synthesise across** existing insights. Do the relevant part.
+Detect: **set up** a repository structure/taxonomy, **atomise** a study into insights, or **query/synthesize across** existing insights. Do the relevant part.
 
 ---
 
@@ -32,7 +32,7 @@ Detect: **set up** a repository structure/taxonomy, **atomise** a study into ins
 - Attach verbatim evidence + source IDs (never fabricate), confidence, and taxonomy tags.
 - Link each insight back to its study for traceability.
 
-## Query & synthesise across studies
+## Query & synthesize across studies
 
 - Pull insights by tag/facet to answer "what do we know about X?".
 - **Deduplicate & merge** — combine insights that say the same thing across studies (strengthening confidence), and flag **contradictions** between studies (a valuable signal — often a segment or time difference).

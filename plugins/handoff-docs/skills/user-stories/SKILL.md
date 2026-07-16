@@ -3,7 +3,7 @@ name: user-stories
 description: Turn a design, feature, or brief into agile user stories with clear acceptance criteria. Writes stories in the "As a [user], I want [goal], so that [benefit]" form scoped to independently shippable slices, plus testable acceptance criteria (checklist or Given/When/Then), and flags edge cases, states, and non-functional needs (a11y, performance). The dev-handoff bridge between design and engineering. Trigger when the user wants to "write user stories", "acceptance criteria", "Gherkin / Given-When-Then", turn a design into tickets/stories, or define done for a feature. 
 ---
 
-Translate design intent into stories engineering can build and QA can verify. A good user story is a **thin, user-centred slice of value** with acceptance criteria that make "done" unambiguous. This complements `brief-to-tasks` (which sequences buildable work): here the output is properly-formed stories + criteria ready for a backlog.
+Translate design intent into stories engineering can build and QA can verify. A good user story is a **thin, user-centered slice of value** with acceptance criteria that make "done" unambiguous. This complements `brief-to-tasks` (which sequences buildable work): here the output is properly-formed stories + criteria ready for a backlog.
 
 ## Example prompts
 
@@ -25,20 +25,20 @@ Translate design intent into stories engineering can build and QA can verify. A 
 
 ### Write the stories
 - Form: **"As a [specific user/role], I want [goal], so that [benefit]."** The *so that* is the point — it captures why, and guards against building the wrong thing.
-- User-centred and solution-agnostic where possible (describe the need, not the widget), unless the story is deliberately UI-specific.
+- User-centered and solution-agnostic where possible (describe the need, not the widget), unless the story is deliberately UI-specific.
 - Independent, negotiable, valuable, estimable, small, testable (INVEST) — flag stories that fail these (too big, no clear value, untestable).
 
 ### Write acceptance criteria
 For each story, define testable conditions for "done". Use whichever fits:
 - **Checklist** — bulleted, verifiable statements ("User sees an inline error when email is invalid").
-- **Given / When / Then** (Gherkin) — for behaviour with clear pre-conditions ("Given a logged-out user, When they submit valid credentials, Then they land on the dashboard").
+- **Given / When / Then** (Gherkin) — for behavior with clear pre-conditions ("Given a logged-out user, When they submit valid credentials, Then they land on the dashboard").
 Criteria must be **specific and testable** — no "works well". Cover the happy path *and* the key alternate/error paths.
 
 ### Don't forget the non-happy-path
 Explicitly enumerate (lean on `states-and-edge-cases`):
 - Empty / loading / error / permission states relevant to the story.
 - Validation and edge cases.
-- **Non-functional needs** — accessibility (per `inclusive-design`/`accessibility-check`), performance, responsive behaviour, security/privacy — as criteria, not afterthoughts.
+- **Non-functional needs** — accessibility (per `inclusive-design`/`accessibility-check`), performance, responsive behavior, security/privacy — as criteria, not afterthoughts.
 
 ---
 

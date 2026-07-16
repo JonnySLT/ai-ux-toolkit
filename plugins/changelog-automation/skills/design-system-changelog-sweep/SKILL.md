@@ -40,7 +40,7 @@ If every bucket in the diff has zero added/removed/changed entries, do nothing a
 ### 4. Write the changelog entry
 If there are changes, write a changelog entry following the rules in `{CHANGELOG_RULES}`. Resolve everything **dynamically from the file** — do not hardcode node or variable IDs:
 - **Find the Changelog page** by name, then its **entries auto-layout container** (the frame that holds the existing entries). Insert the new entry at the top with `entriesFrame.insertChild(0, entry)`.
-- **Clone the most recent existing entry** (the entries container's first child) for all fills, fonts, padding, and badge pills — never hardcode colours or variable IDs. Cloning keeps the entry styled correctly and portable across files. (If the project's rules specify how to build pills from scratch, follow those; otherwise cloning is sufficient.)
+- **Clone the most recent existing entry** (the entries container's first child) for all fills, fonts, padding, and badge pills — never hardcode colors or variable IDs. Cloning keeps the entry styled correctly and portable across files. (If the project's rules specify how to build pills from scratch, follow those; otherwise cloning is sufficient.)
 - **Version**: increment the patch from the most recent entry's name/title.
 - **Date / tag / author badge**: follow `{CHANGELOG_RULES}`. For a sweep, entries are authored `MANUAL` (the sweep detects human/unattributed edits and cannot distinguish them), with **no** repo-push badge. Use the date format the rules prescribe for that author type.
 - **Tag** by what changed (e.g. variables → TOKENS, components → COMPONENTS, pages/styles → DOCUMENTATION); add multiple sections if changes span categories, and include per-section label pills only when there are 2+ sections.

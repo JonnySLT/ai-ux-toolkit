@@ -27,7 +27,7 @@ Start from the metrics (ideally from `success-metrics`). For each metric, define
 1. **Events** — the user actions to log. Name them consistently (`object_action`, e.g. `checkout_completed`), verb in past tense, one clear meaning each. Avoid over-tracking — every event is maintenance.
 2. **Properties** — the context each event needs to answer the question (e.g. `plan_type`, `step`, `error_reason`, `entry_point`). This is what lets you segment later.
 3. **Funnels** — for flows, the ordered steps to measure drop-off between; define the start, the steps, and the conversion window.
-4. **Cohorts / segments** — the cuts you'll analyse (new vs. returning, plan, persona).
+4. **Cohorts / segments** — the cuts you'll analyze (new vs. returning, plan, persona).
 5. **Identity & hygiene** — how users are identified, and guardrails against double-counting, bot traffic, and PII in properties (never put personal data in event properties).
 
 Deliver a **tracking-plan table**: event · trigger · properties · which metric it powers. Flag the minimum set needed vs. nice-to-have.
@@ -48,7 +48,7 @@ When reading data, be rigorous and sceptical:
 ## Output format
 
 - **Plan** — a tracking-plan table (event · trigger · properties · metric), funnel definitions, segments, and hygiene notes.
-- **Interpretation** — metric vs. target, guardrail check, key segment findings, an honest read of confidence, and a prioritised list of next actions (ship/iterate/roll back) plus the open questions to take into qualitative research.
+- **Interpretation** — metric vs. target, guardrail check, key segment findings, an honest read of confidence, and a prioritized list of next actions (ship/iterate/roll back) plus the open questions to take into qualitative research.
 
 Offer to save as markdown. Keep it tool-agnostic; describe events/funnels so they map onto whatever analytics stack the team uses.
 

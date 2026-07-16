@@ -154,7 +154,7 @@ Never assign icon color independently from text color on a button.
    updates automatically because it references the same token as the text.
 
 **Disabled state**: reduce opacity OR use a dedicated disabled color token.
-Never just grey out by changing a hex value manually — use the token.
+Never just gray out by changing a hex value manually — use the token.
 
 **Button sizing**:
 - Padding is horizontal. Height is fixed per size tier. Never let text
@@ -323,7 +323,7 @@ Accessibility is not optional. Apply these to everything without exception.
 Check every text/background pairing. Check icon/background pairings.
 Check border/background pairings for form elements.
 
-Never use light grey text on white background for anything important.
+Never use light gray text on white background for anything important.
 `#767676` on white is the absolute minimum for normal text (4.54:1).
 
 ### 4.2 Never Communicate by Color Alone
@@ -337,7 +337,7 @@ Examples:
 - Error: red color + error icon + error message text (not red border alone)
 - Required field: asterisk (*) + label (not red label color alone)
 - Selected state: filled/checked indicator + color (not color alone)
-- Disabled: reduced opacity + cursor change + aria-disabled (not grey color alone)
+- Disabled: reduced opacity + cursor change + aria-disabled (not gray color alone)
 
 ### 4.3 Focus States
 
@@ -431,7 +431,7 @@ Before finishing any design:
 | Color-only error state | Fails color-blind users | Error = icon + color + text |
 | Arbitrary spacing values | Looks inconsistent at scale | Only use spacing scale values (4, 8, 12, 16, 24, 32…) |
 | Two competing primary buttons | Confuses users about what to do | One primary CTA per view |
-| Light grey text on white for important content | Fails contrast | Check all pairings; min 4.5:1 for normal text |
+| Light gray text on white for important content | Fails contrast | Check all pairings; min 4.5:1 for normal text |
 | Missing disabled state | Designers can't prototype correctly | All interactive components need a disabled variant |
 | Missing hover state on desktop | Breaks desktop UX | All interactive components need a hover variant |
 | Free-floating font properties | Breaks design system | All text uses a defined text style |

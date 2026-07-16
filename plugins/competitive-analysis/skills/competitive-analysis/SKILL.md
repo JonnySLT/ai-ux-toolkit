@@ -1,6 +1,6 @@
 ---
 name: competitive-analysis
-description: Run a live competitive analysis across 3–6 B2B SaaS competitors. Browses each competitor's site in real time, analyses UI patterns, messaging, features, and brand identity, then delivers a structured comparison matrix, written narrative, and opportunities/gaps. Can also push findings into a Figma doc page. Trigger when the user wants to research competitors, benchmark a product, audit the market, or mentions "competitive analysis", "comp analysis", or "research competitors".
+description: Run a live competitive analysis across 3–6 B2B SaaS competitors. Browses each competitor's site in real time, analyzes UI patterns, messaging, features, and brand identity, then delivers a structured comparison matrix, written narrative, and opportunities/gaps. Can also push findings into a Figma doc page. Trigger when the user wants to research competitors, benchmark a product, audit the market, or mentions "competitive analysis", "comp analysis", or "research competitors".
 ---
 
 Run a structured competitive analysis. Default space is **B2B SaaS / productivity tools**, but adapt to whatever market the user names.
@@ -19,7 +19,7 @@ Run a structured competitive analysis. Default space is **B2B SaaS / productivit
 ### Step 1 — Intake
 
 Ask the user:
-1. **What product / space are we analysing?** (e.g. "CRM tools", "analytics dashboards", "design tools")
+1. **What product / space are we analyzing?** (e.g. "CRM tools", "analytics dashboards", "design tools")
 2. **Which competitors?** Get 3–6 names or URLs. If they only give names, find the URLs yourself.
 3. **Any specific focus?** (e.g. "just pricing pages", "onboarding flows", "homepage messaging"). Default is a full sweep.
 4. **Figma output?** Ask if they want findings pushed to a Figma doc page. If yes, get the file URL.
@@ -44,13 +44,13 @@ Take a screenshot at each key page. Note the URL you visited.
 **Research checklist per competitor:**
 - [ ] Homepage screenshotted and headline captured verbatim
 - [ ] Pricing tiers documented (names, prices, what's included)
-- [ ] Top 3–5 features they emphasise on the product page
+- [ ] Top 3–5 features they emphasize on the product page
 - [ ] CTA language noted on each page
 - [ ] Any notable UI patterns, animations, or layout choices
 
 ---
 
-### Step 3 — Analyse each competitor
+### Step 3 — Analyze each competitor
 
 For each competitor, assess all four dimensions:
 
@@ -87,7 +87,7 @@ For each competitor, assess all four dimensions:
 
 ---
 
-### Step 4 — Synthesise
+### Step 4 — Synthesize
 
 #### 4a. Comparison matrix
 

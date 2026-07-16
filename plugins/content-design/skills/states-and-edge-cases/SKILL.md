@@ -36,7 +36,7 @@ Walk these categories and, for each, state whether it applies and whether the cu
 - **Loading** — initial load, skeletons vs. spinners; **slow network**.
 - **Success / confirmation** — the completed action.
 - **Error** — request failed, validation error, server error; recoverable vs. not (copy → `content-design`).
-- **Offline / no connection** — and reconnection behaviour.
+- **Offline / no connection** — and reconnection behavior.
 - **Stale / refreshing** — cached data being updated.
 
 **Permission / access states**
@@ -65,4 +65,4 @@ Hand copy needs to `content-design`, per-component state specs to `component-spe
 - **Flag gaps against the real design.** Don't just recite the generic list — say which states *this* design is missing.
 - **Applicability matters.** Not every state applies; mark the ones that don't rather than padding.
 - **Empty ≠ empty.** Distinguish first-run, no-results, and user-cleared — they need different designs and copy.
-- **Prioritise by risk.** Lead with the states most likely to occur and most damaging if unhandled.
+- **Prioritize by risk.** Lead with the states most likely to occur and most damaging if unhandled.
