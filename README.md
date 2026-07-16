@@ -306,12 +306,20 @@ Because these skills are a **point-in-time copy**, they don't automatically get 
 
 ## Connecting the Figma MCP
 
-A few plugins drive Figma directly and need Figma's **MCP server** connected. That server is **not part of this marketplace** — it's a remote connector you authorize once, so it can't (and shouldn't) be bundled here.
+A few things here talk to Figma through Figma's **MCP server** — a remote connector you authorise once. It is **not part of this marketplace**: you connect it, you don't install it, and it brings both its own tools *and its own skills*.
 
-- **Requires it:** `figma-design-system` (`figma-designer`, `reattach`, `annotate`) and `changelog-automation`.
-- **Optional:** `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs` can *push results to a Figma doc page* if it's connected — but work fine without it.
+**There are two different sets of "Figma skills" — don't confuse them:**
 
-These plugins install fine without the MCP; they just stay inert until it's connected.
+| Set | Where it lives | Skills |
+|---|---|---|
+| **This toolkit's Figma plugins** | Installed from **this** marketplace; they *call* the Figma MCP to do their work | `figma-design-system` → `figma-designer`, `reattach`, `annotate`; `changelog-automation` → `design-system-changelog-sweep` |
+| **The Figma MCP's own skills** | **Part of the Figma MCP itself** — they arrive *with the connection*, **not** from this marketplace (you can't install them here) | `figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect` |
+
+So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
+
+Two more plugins use the MCP *optionally*: `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs` can *push results to a Figma doc page* if it's connected — but work fine without it.
+
+Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
 
 **Connect it (once):**
 
@@ -321,8 +329,6 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp
 ```
 
 Or add it through your client's connector settings / `/mcp`. Full per-client setup (VS Code, Cursor, Claude Code) is in Figma's guide: <https://github.com/figma/mcp-server-guide>.
-
-> Connecting the server also brings Figma's **own** official skills (`figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect`). Those are served live by Figma and kept in sync with the server — which is exactly why this toolkit **references** the Figma MCP rather than vendoring those skills (a copied version would drift out of sync with the remote server).
 
 ## How it's designed to stay reusable
 
