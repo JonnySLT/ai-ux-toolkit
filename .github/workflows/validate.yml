@@ -1,0 +1,25 @@
+name: Validate marketplace
+
+# Structural integrity check on every push / PR: JSON validity, marketplace ↔
+# filesystem consistency, name matches, skill frontmatter, no duplicate skills,
+# vendored licenses, and README install lines / anchors. Pure structural, no network.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate marketplace structure
+        run: node scripts/validate.mjs
