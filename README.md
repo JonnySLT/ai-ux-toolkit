@@ -10,7 +10,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 ---
 
-**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Repository layout](#repository-layout)
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Ask-first routing](#make-routing-ask-first-optional) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Repository layout](#repository-layout)
 
 ---
 
@@ -343,6 +343,22 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ---
 
+## Make routing ask-first (optional)
+
+The decision guide above helps *you* — but Claude only reads a project's **`CLAUDE.md`** at skill-selection time, **not** this README. To make Claude **flag the overlap and ask which skill you want** (instead of silently picking one), add a routing block to your project's `CLAUDE.md`.
+
+**One-step install:** copy [`templates/CLAUDE.md`](templates/CLAUDE.md) into your project root as `CLAUDE.md` — or append its "Skill routing" section to your existing one.
+
+Then an ambiguous request behaves like this:
+
+> **You:** *"Can you review this checkout screen?"*
+>
+> **Claude:** "That could map to a few skills — which would you like? `accessibility-check` (WCAG) · `heuristic-review` (Nielsen) · `design-review` (broad critique) · `usability-testing` (real users). These overlap on 'review' — tell me which, or say 'general feedback' and I'll run `design-review`."
+
+Unambiguous requests ("check this contrast ratio") still route straight to the right skill — no needless question. This works because the block lives in `CLAUDE.md`, which is in Claude's context when it chooses; the README table isn't.
+
+---
+
 ## Roadmap
 
 Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritization, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
@@ -442,6 +458,7 @@ ai-ux-toolkit/
 ├── .github/workflows/                  # check-upstream-skills.yml (weekly upstream drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
+├── templates/CLAUDE.md                 # copy into your project for ask-first skill routing
 ├── README.md                           # this file
 └── plugins/
     ├── research-planning/               # original — research-planning
