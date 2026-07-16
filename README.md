@@ -298,11 +298,31 @@ Because these skills are a **point-in-time copy**, they don't automatically get 
 ## Requirements
 
 - **Claude Code** with plugin support.
-- **Figma MCP server** (`use_figma`) for `figma-design-system` and `changelog-automation`, and for the Figma-output paths of `research-synthesis`, `competitive-analysis`, and `handoff-docs`.
+- **Figma MCP server** (`use_figma`) for `figma-design-system` and `changelog-automation`, and for the optional Figma-output paths of `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs`. See [Connecting the Figma MCP](#connecting-the-figma-mcp).
 - **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
 - **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
 - Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `data-viz`, `usability-testing`, `product-analytics`, `brand-voice`, `inclusive-design`, and `heuristic-review`.
 - For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
+
+## Connecting the Figma MCP
+
+A few plugins drive Figma directly and need Figma's **MCP server** connected. That server is **not part of this marketplace** — it's a remote connector you authorize once, so it can't (and shouldn't) be bundled here.
+
+- **Requires it:** `figma-design-system` (`figma-designer`, `reattach`, `annotate`) and `changelog-automation`.
+- **Optional:** `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs` can *push results to a Figma doc page* if it's connected — but work fine without it.
+
+These plugins install fine without the MCP; they just stay inert until it's connected.
+
+**Connect it (once):**
+
+```bash
+# Add Figma's remote MCP server, then authorise via the OAuth prompt on first use
+claude mcp add --transport http figma https://mcp.figma.com/mcp
+```
+
+Or add it through your client's connector settings / `/mcp`. Full per-client setup (VS Code, Cursor, Claude Code) is in Figma's guide: <https://github.com/figma/mcp-server-guide>.
+
+> Connecting the server also brings Figma's **own** official skills (`figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect`). Those are served live by Figma and kept in sync with the server — which is exactly why this toolkit **references** the Figma MCP rather than vendoring those skills (a copied version would drift out of sync with the remote server).
 
 ## How it's designed to stay reusable
 
