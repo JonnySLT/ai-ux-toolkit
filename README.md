@@ -30,6 +30,41 @@ Plugins are independent — install any subset, uninstall with `/plugin uninstal
 
 ---
 
+## How to use it
+
+You **don't invoke skills by name.** Once a plugin is installed, its skills sit in the background; you just **describe your task in plain language** and Claude Code reads the installed skills' descriptions and routes to the right one(s). Simple tasks fire one skill; a broader request chains several, each feeding the next.
+
+**Example — one request that fans out across skills:**
+
+> **You:** *"I ran 10 onboarding interviews (transcripts attached). Help me figure out what's broken and what to build."*
+
+Claude routes that through the workflow, picking skills by what each is *for*:
+
+1. **`research-synthesis`** → themes, pains, and opportunities from the transcripts
+2. **`personas`** / **`journey-map`** → who's affected and where the experience breaks
+3. **`prioritization`** → rank the opportunities so you know what to tackle first
+
+No skill was named — each was selected from its description, and each output fed the next (exactly the chain shown in the mini-demo we ran).
+
+**More prompts → the skill they trigger:**
+
+| You type… | Claude reaches for… |
+|---|---|
+| "Write an interview guide to understand churn" | `research-planning` |
+| "Give me 8 concepts for this empty state" | `divergent-exploration` |
+| "Is this button's contrast accessible?" | `accessibility-check` |
+| "What should this error message say?" | `content-design` |
+| "Turn this idea into a clickable prototype" | `rapid-prototype` |
+| "Write user stories for this design" | `user-stories` |
+| "Did the redesign actually work?" | `experimentation` / `measurement-plan` |
+
+**Steering it:**
+- **Want a specific skill?** Name it or use its trigger phrase (e.g. "run a *heuristic review*") and Claude uses that one.
+- **Want the whole guided build?** `design-flow` orchestrates the sequence brief → structure → tokens → build → review.
+- **Two skills feel similar?** See [Which skill for which task?](#which-skill-for-which-task) for the overlapping cases.
+
+---
+
 ## Install recipes
 
 Every line below is a **standalone install** — copy the one plugin you want, a whole phase, or a curated bundle. All install at **user scope**; uninstall any with `/plugin uninstall <name>`. _(In a terminal, the CLI equivalent of `/plugin install X` is `claude plugin install X`.)_
@@ -249,6 +284,58 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `experimentation` | Design and interpret A/B tests — hypothesis, primary metric + guardrails, sample size / MDE and run-time, and a disciplined read-out (significance, confidence intervals, peeking, novelty, segments). |
 
 > Pairs with `success-metrics` (which *defines* the targets before build) and complements `changelog-automation` (which tracks *design-system* drift, not product outcomes).
+
+---
+
+## Which skill for which task?
+
+Most skills have an obvious lane — **just describe the outcome you want and Claude picks the right one.** This table is only for the handful of cases where two feel interchangeable.
+
+**Reviewing / evaluating a built screen**
+| Your goal | Use |
+|---|---|
+| Check WCAG accessibility (contrast, labels, focus, targets) | `accessibility-check` |
+| Design accessibly *before* building | `inclusive-design` |
+| Catch usability problems via Nielsen's heuristics | `heuristic-review` |
+| Broad critique against the brief (hierarchy, consistency, aesthetics) | `design-review` |
+| Find real problems by watching **real users** | `usability-testing` |
+
+**Research**
+| Your goal | Use |
+|---|---|
+| Plan a study / write an interview, survey, or usability *script* | `research-planning` |
+| Run + moderate + analyse a full usability study | `usability-testing` |
+| Turn collected data into themes & insights | `research-synthesis` |
+| Store & reuse insights across studies | `research-repository` |
+
+**Building UI**
+| Your goal | Use |
+|---|---|
+| Throwaway, clickable prototype to test an interaction | `rapid-prototype` |
+| Production-grade, ship-quality frontend | `frontend-design` |
+| Design / audit components in Figma | `figma-design-system` |
+
+**Copy & content**
+| Your goal | Use |
+|---|---|
+| Decide what a UI string should say (errors, empty states, labels) | `content-design` |
+| Make copy match your brand's voice/tone | `brand-voice-tone` |
+| Generate many copy options to choose from | `divergent-exploration` |
+
+**Metrics**
+| Your goal | Use |
+|---|---|
+| Define what success means *before* build | `success-metrics` |
+| Instrument events & read outcomes post-launch | `measurement-plan` |
+| Design / read an A/B test | `experimentation` |
+
+**Define artifacts (from research)**
+| Your goal | Use |
+|---|---|
+| A behavioural archetype of a user | `personas` |
+| What a user says / thinks / does / feels | `empathy-map` |
+| The stage-by-stage experience + emotion curve | `journey-map` |
+| Frontstage + backstage layers delivering a service | `service-blueprint` |
 
 ---
 
