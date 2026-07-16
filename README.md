@@ -345,9 +345,9 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ## Make routing ask-first (optional)
 
-The decision guide above helps *you* — but Claude only reads a project's **`CLAUDE.md`** at skill-selection time, **not** this README. To make Claude **flag the overlap and ask which skill you want** (instead of silently picking one), add a routing block to your project's `CLAUDE.md`.
+The decision guide above helps *you* — but Claude only reads a **`CLAUDE.md`** at skill-selection time, **not** this README. To make Claude **flag the overlap and ask which skill you want** (instead of silently picking one), add a routing block to `CLAUDE.md`.
 
-**One-step install:** copy [`templates/CLAUDE.md`](templates/CLAUDE.md) into your project root as `CLAUDE.md` — or append its "Skill routing" section to your existing one.
+**One-time setup, applies to every project:** append the "Skill routing" section from [`templates/CLAUDE.md`](templates/CLAUDE.md) to your **global** user memory at **`~/.claude/CLAUDE.md`**. Claude Code loads that file in *every* session and project, so you set it up once and never have to remember it when you open a new project. *(Want it scoped to a single project instead? Put it in that project's `./CLAUDE.md`.)*
 
 Then an ambiguous request behaves like this:
 
@@ -458,7 +458,7 @@ ai-ux-toolkit/
 ├── .github/workflows/                  # check-upstream-skills.yml (weekly upstream drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
-├── templates/CLAUDE.md                 # copy into your project for ask-first skill routing
+├── templates/CLAUDE.md                 # add to ~/.claude/CLAUDE.md (global) for ask-first skill routing
 ├── README.md                           # this file
 └── plugins/
     ├── research-planning/               # original — research-planning

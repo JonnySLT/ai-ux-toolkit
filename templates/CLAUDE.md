@@ -1,10 +1,14 @@
 <!--
 ai-ux-toolkit — skill-routing hints for Claude Code.
 
-HOW TO USE: copy this file into YOUR project's root as `CLAUDE.md`, or append the
-"Skill routing" section below to your existing `CLAUDE.md`. Claude Code auto-loads
-`CLAUDE.md` into context, so these rules are read at skill-selection time — which is
-why they steer routing when the plain README (which Claude doesn't load) cannot.
+HOW TO USE (recommended: once, applies everywhere):
+Append the "Skill routing" section below to your GLOBAL user memory at
+~/.claude/CLAUDE.md. Claude Code loads that file in every session and every
+project, so you set this up once and never have to remember it per project.
+  • macOS/Linux:  cat this section >> ~/.claude/CLAUDE.md   (create the file if absent)
+  • Or open ~/.claude/CLAUDE.md and paste the "Skill routing" section in.
+Prefer to scope it to a single project instead? Put it in that project's
+./CLAUDE.md rather than the global file.
 
 This makes Claude ASK which skill you want, and name the overlap, instead of
 silently picking one. Delete any rows for plugins you didn't install.
