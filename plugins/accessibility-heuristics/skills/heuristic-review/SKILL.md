@@ -3,7 +3,7 @@ name: heuristic-review
 description: Evaluate a screen or flow against Nielsen's 10 usability heuristics as a first-pass expert review. Takes a screenshot, Figma frame, live URL, or description and flags where the interface violates each heuristic, scoring every issue by severity (0–4) with a concrete fix, then splits results into quick wins and deeper fixes. A first filter before a human critique or usability test — not a replacement for either. This is Nielsen usability heuristics specifically: for a broad design critique against the brief and aesthetics use design-review, and for WCAG accessibility use accessibility-check. Trigger when the user asks for a "heuristic review", "usability review", "expert review", "Nielsen heuristics", or wants to catch obvious usability problems on a screen or flow.
 ---
 
-Run a structured heuristic evaluation — the fast expert-review method for catching common usability problems without recruiting users. This is a **first filter**: it surfaces likely issues so a human critique or a usability test can focus where it matters. It does not measure real user behaviour.
+Run a structured heuristic evaluation — the fast expert-review method for catching common usability problems without recruiting users. This is a **first filter**: it surfaces likely issues so a human critique or a usability test can focus where it matters. It does not measure real user behavior.
 
 ## Example prompts
 
@@ -35,7 +35,7 @@ Evaluate the interface against each. Note where it does well *and* where it viol
 6. **Recognition rather than recall** — options, actions, and info visible when needed; minimal memory load across steps?
 7. **Flexibility and efficiency of use** — accelerators, shortcuts, and paths for both novices and experts?
 8. **Aesthetic and minimalist design** — no irrelevant/competing content diluting the important; clear visual hierarchy?
-9. **Help users recognise, diagnose, and recover from errors** — plain-language error messages that say what's wrong and how to fix it?
+9. **Help users recognize, diagnose, and recover from errors** — plain-language error messages that say what's wrong and how to fix it?
 10. **Help and documentation** — findable, task-focused help where users need it (ideally little needed)?
 
 Extend with domain-specific heuristics (e.g. onboarding, forms, data-density) when the context calls for it — say so when you do.
@@ -78,14 +78,14 @@ Rate each issue on **frequency × impact × persistence**:
 
 **Priorities** — quick wins vs. deeper fixes, ordered.
 
-**Still needs a human** — this is expert judgement, not observed behaviour; call out what a usability test with real users should validate (especially any severity-3/4 calls that hinge on assumptions).
+**Still needs a human** — this is expert judgement, not observed behavior; call out what a usability test with real users should validate (especially any severity-3/4 calls that hinge on assumptions).
 
 ---
 
 ## Guardrails
 
 - **Tie every issue to a heuristic and a task.** "I don't like this" isn't a finding; "recognition rather than recall — the user must remember the code from the previous step" is.
-- **Rate honestly.** Reserve 4 for genuine blockers; inflating severity makes the list useless for prioritising.
+- **Rate honestly.** Reserve 4 for genuine blockers; inflating severity makes the list useless for prioritizing.
 - **Credit strengths.** Flagging what works prevents teams from "fixing" good decisions.
 - **Don't fabricate flow steps.** If you only have one screen, review one screen and say the flow wasn't assessed.
 - **Expert review ≠ user testing.** Always name what still needs real users.

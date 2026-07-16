@@ -1,6 +1,6 @@
 ---
 name: accessibility-check
-description: Run a first-pass accessibility check against WCAG 2.1/2.2 AA before a human review. Works on a screenshot, a Figma frame/URL, a live URL, or code, and flags the obvious mechanical issues — insufficient colour contrast, missing text alternatives and form labels, focus order and visible focus, touch/target size, heading and landmark structure, and meaning carried by colour alone. Each finding cites the WCAG success criterion, a severity, and a concrete fix. Trigger when the user asks to "check accessibility", "audit a11y", "is this contrast okay?", "WCAG check", or wants a first accessibility pass on a design or page.
+description: Run a first-pass accessibility check against WCAG 2.1/2.2 AA before a human review. Works on a screenshot, a Figma frame/URL, a live URL, or code, and flags the obvious mechanical issues — insufficient color contrast, missing text alternatives and form labels, focus order and visible focus, touch/target size, heading and landmark structure, and meaning carried by color alone. Each finding cites the WCAG success criterion, a severity, and a concrete fix. Trigger when the user asks to "check accessibility", "audit a11y", "is this contrast okay?", "WCAG check", or wants a first accessibility pass on a design or page.
 ---
 
 Catch the obvious, checkable accessibility problems fast — the ones worth fixing before spending a person's time on review. This is a **first filter, not a substitute** for manual keyboard testing, screen-reader testing, or testing with disabled users. Never certify a design as "accessible"; report what you can verify and name what still needs a human.
@@ -20,10 +20,10 @@ Determine what you've been given, because it changes what you can check:
 
 | Input | What you can check reliably | What you can't |
 |---|---|---|
-| **Live URL / running app** | Contrast (computed), labels, alt, heading/landmark structure, focus order, target size, ARIA — via the browser-preview tools | Real screen-reader output, actual AT behaviour |
+| **Live URL / running app** | Contrast (computed), labels, alt, heading/landmark structure, focus order, target size, ARIA — via the browser-preview tools | Real screen-reader output, actual AT behavior |
 | **Code / markup** | Semantic elements, labels, alt, ARIA, contrast from token/CSS values, tab order from DOM | Rendered result, dynamic states |
 | **Figma frame** (via Figma MCP) | Contrast from fill tokens, text size, target size, visible labels, order | Anything runtime — focus, keyboard, ARIA |
-| **Screenshot only** | Visible contrast (estimated), visible labels, target size, colour-only signals | Anything not visible — markup, focus, alt text |
+| **Screenshot only** | Visible contrast (estimated), visible labels, target size, color-only signals | Anything not visible — markup, focus, alt text |
 
 Default target is **WCAG 2.1 AA**. Note the level you're testing against, and state up front which checks the given input does and doesn't support.
 
@@ -31,9 +31,9 @@ Default target is **WCAG 2.1 AA**. Note the level you're testing against, and st
 
 ## The checks
 
-### 1. Colour contrast (WCAG 1.4.3 / 1.4.11)
+### 1. Color contrast (WCAG 1.4.3 / 1.4.11)
 - **Body text** ≥ 4.5:1; **large text** (≥ 24px, or ≥ 18.66px bold) ≥ 3:1.
-- **UI components & graphical objects** (borders, icons, focus rings, chart marks) ≥ 3:1 against adjacent colours (1.4.11).
+- **UI components & graphical objects** (borders, icons, focus rings, chart marks) ≥ 3:1 against adjacent colors (1.4.11).
 - Compute the ratio from actual values when you have them (CSS/token/Figma fills). From a screenshot, estimate and mark it as estimated. Report the pair, the ratio, and pass/fail per level.
 
 ### 2. Text alternatives (WCAG 1.1.1)
@@ -57,8 +57,8 @@ Default target is **WCAG 2.1 AA**. Note the level you're testing against, and st
 - Landmarks/regions present (header, nav, main, footer) where applicable.
 - Reading order is meaningful.
 
-### 7. Colour & sensory reliance (WCAG 1.4.1 / 1.3.3)
-- Meaning isn't carried by colour alone (error states, required fields, status, chart series need a second cue: icon, text, pattern).
+### 7. Color & sensory reliance (WCAG 1.4.1 / 1.3.3)
+- Meaning isn't carried by color alone (error states, required fields, status, chart series need a second cue: icon, text, pattern).
 - Instructions don't rely solely on shape/position ("click the round button").
 
 ### 8. Motion & text sizing (quick flags)
@@ -101,4 +101,4 @@ Default target is **WCAG 2.1 AA**. Note the level you're testing against, and st
 - **Never claim a design is accessible or compliant.** You report checkable issues; conformance requires human and AT testing.
 - **Be honest about estimates.** Contrast from a screenshot is approximate — say so, and prefer computed values whenever the input allows.
 - **Cite the specific success criterion** for each finding so it's actionable and verifiable.
-- **Fixes must be concrete** — a target colour, an attribute, a size — not "improve contrast".
+- **Fixes must be concrete** — a target color, an attribute, a size — not "improve contrast".

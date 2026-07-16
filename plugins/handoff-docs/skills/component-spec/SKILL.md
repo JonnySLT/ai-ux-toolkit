@@ -3,7 +3,7 @@ name: component-spec
 description: Draft a developer-ready specification for a single UI component from a Figma component, code, or a description. Documents anatomy, variants, all interaction states, the props/API, token usage, accessibility requirements, and usage do/don't — so engineering can build it without guessing. Discovers variants and tokens at runtime rather than assuming them. Trigger when the user asks to "spec this component", "write a component spec", "document this component for devs", "component handoff", or provides a Figma component/code and wants it documented.
 ---
 
-Produce a spec an engineer can build from without coming back with questions. The job is to make every decision explicit — states, tokens, behaviour, edge cases — and to flag what's genuinely undecided rather than papering over it.
+Produce a spec an engineer can build from without coming back with questions. The job is to make every decision explicit — states, tokens, behavior, edge cases — and to flag what's genuinely undecided rather than papering over it.
 
 ## Example prompts
 
@@ -33,28 +33,28 @@ Discover the project's token names, variant names, and conventions from the sour
 
 ### 2. Anatomy
 - The named parts (container, leading icon, label, trailing element, …) and which are required vs. optional.
-- Layout rules: direction, spacing/gap, padding, alignment, min/max width, truncation/wrap behaviour — in tokens where possible.
+- Layout rules: direction, spacing/gap, padding, alignment, min/max width, truncation/wrap behavior — in tokens where possible.
 
 ### 3. Variants
 - Each variant dimension and its options (e.g. `variant`: primary / secondary / ghost; `size`: sm / md / lg).
-- What actually changes per variant (colour tokens, padding, type style) — as a table.
+- What actually changes per variant (color tokens, padding, type style) — as a table.
 
 ### 4. States
-Document every interaction state that applies: **default, hover, focus(-visible), active/pressed, disabled, loading, error, selected**, and read-only where relevant. For each: what changes visually (tokens) and any behaviour. Missing states are the most common handoff gap — call out any the source doesn't define.
+Document every interaction state that applies: **default, hover, focus(-visible), active/pressed, disabled, loading, error, selected**, and read-only where relevant. For each: what changes visually (tokens) and any behavior. Missing states are the most common handoff gap — call out any the source doesn't define.
 
 ### 5. Props / API
 A table: prop name · type · default · required? · description. Include content slots, event handlers, and boolean flags. Match existing code prop names if the component exists.
 
 ### 6. Token usage
-List the design tokens the component consumes — colour, spacing, radius, type, elevation, motion — by their real names in the project. Flag any hardcoded/raw values that should be tokens.
+List the design tokens the component consumes — color, spacing, radius, type, elevation, motion — by their real names in the project. Flag any hardcoded/raw values that should be tokens.
 
 ### 7. Accessibility
 - Semantic element / role, accessible name source, and required ARIA.
-- Keyboard interaction (Tab, Enter/Space, arrows, Esc) expected behaviour.
+- Keyboard interaction (Tab, Enter/Space, arrows, Esc) expected behavior.
 - Focus handling, target size, and contrast requirements for its states.
 - Anything that needs testing with AT.
 
-### 8. Behaviour & edge cases
+### 8. Behavior & edge cases
 - Interaction/transition details (timing, easing) if defined.
 - Content edge cases: long labels, empty, overflow, RTL, localisation length, loading→loaded.
 

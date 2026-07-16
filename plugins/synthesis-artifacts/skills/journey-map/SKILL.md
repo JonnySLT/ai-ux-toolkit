@@ -1,6 +1,6 @@
 ---
 name: journey-map
-description: Build a journey map or experience map from research — the stages a user moves through and, at each, their actions, thoughts, emotions, touchpoints, pain points, and opportunities. Surfaces the moments that matter (drop-offs, friction, delight) across an end-to-end experience so the team knows where to focus. Trigger when the user wants to "map the user journey", "create a journey map", "experience map", "service blueprint", or visualise a user's end-to-end experience across stages.
+description: Build a journey map or experience map from research — the stages a user moves through and, at each, their actions, thoughts, emotions, touchpoints, pain points, and opportunities. Surfaces the moments that matter (drop-offs, friction, delight) across an end-to-end experience so the team knows where to focus. Trigger when the user wants to "map the user journey", "create a journey map", "experience map", "service blueprint", or visualize a user's end-to-end experience across stages.
 ---
 
 Lay out an experience end-to-end so the team can see where it breaks and where the opportunities are. A journey map is a **structured narrative of one persona pursuing one goal across stages** — grounded in research, not imagined. The payoff is the pattern it reveals: where emotion dips, where users drop off, where a small fix has outsized impact.

@@ -1,6 +1,6 @@
 ---
 name: facilitation
-description: Plan and run collaborative design sessions — kickoffs, design sprints, ideation workshops, prioritisation sessions, and retros. Produces a timed agenda with the right activities for the goal, participant and prep list, facilitation scripts and prompts, and remote/in-person logistics, plus how to capture outcomes and decide next steps. Trigger when the user wants to "plan a workshop", "run a design sprint", "facilitate a session", "kickoff agenda", "ideation workshop", "retro", or structure a group working session.
+description: Plan and run collaborative design sessions — kickoffs, design sprints, ideation workshops, prioritization sessions, and retros. Produces a timed agenda with the right activities for the goal, participant and prep list, facilitation scripts and prompts, and remote/in-person logistics, plus how to capture outcomes and decide next steps. Trigger when the user wants to "plan a workshop", "run a design sprint", "facilitate a session", "kickoff agenda", "ideation workshop", "retro", or structure a group working session.
 ---
 
 Design the session, not just attend it. A good workshop has a clear objective, the right people, activities matched to the goal, tight timeboxes, and a plan to turn output into decisions. This skill builds that plan and gives you the facilitation moves to run it. It pairs with `divergent-exploration` (the idea-generation engine a workshop often uses) and hands outcomes to `prioritization` and `design-planning`.
@@ -16,7 +16,7 @@ Design the session, not just attend it. A good workshop has a clear objective, t
 
 ## Step 0 — Define the session (required first)
 
-1. **Objective & output.** What must exist at the end (aligned goals? a set of concepts? a prioritised list? a decision?). A workshop without a concrete deliverable is a meeting.
+1. **Objective & output.** What must exist at the end (aligned goals? a set of concepts? a prioritized list? a decision?). A workshop without a concrete deliverable is a meeting.
 2. **Participants.** Who's essential, their roles, ideal size (smaller decides faster), and a decider/owner.
 3. **Format & constraints.** Remote / in-person / hybrid, total time available, tools (whiteboard, Figma/FigJam, sticky notes).
 4. **Pre-work.** What must happen before so the session isn't spent on context.
@@ -34,7 +34,7 @@ Sequence activities to move the group **diverge → converge**, each with a time
 - **Decide** — make the call explicit; name the decider and the decision.
 - **Close** — recap decisions, owners, and next steps.
 
-Match the recipe to the session type (kickoff, design sprint, ideation, prioritisation, retro) — offer a known format when one fits (e.g. a 5-day or 1-day design sprint, a Start/Stop/Continue retro), adapted to the time available.
+Match the recipe to the session type (kickoff, design sprint, ideation, prioritization, retro) — offer a known format when one fits (e.g. a 5-day or 1-day design sprint, a Start/Stop/Continue retro), adapted to the time available.
 
 ## Facilitation craft
 

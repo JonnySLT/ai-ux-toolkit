@@ -29,7 +29,7 @@ Confirm: which components/areas are in scope, who the docs are for (designers, e
 ## Process
 
 ### 1. Inventory
-List every component and every token in scope. For components, capture name, purpose, and variant/prop surface. For tokens, capture the collections/scales (colour, spacing, radius, type, elevation, motion) and their real names and values.
+List every component and every token in scope. For components, capture name, purpose, and variant/prop surface. For tokens, capture the collections/scales (color, spacing, radius, type, elevation, motion) and their real names and values.
 
 ### 2. Extract usage from reality
 For each component, derive how it's *actually* used from the source: real variants, real prop defaults, where it appears. Don't prescribe aspirational usage the code doesn't support — document the system as it is, and separately note gaps.
@@ -50,7 +50,7 @@ The highest-value output. As you inventory, record:
 - Components in code but not Figma (or vice versa).
 - Missing states/variants relative to sibling components.
 
-Present these as a prioritised "reconcile" list — separate from the docs themselves.
+Present these as a prioritized "reconcile" list — separate from the docs themselves.
 
 ---
 
@@ -58,9 +58,9 @@ Present these as a prioritised "reconcile" list — separate from the docs thems
 
 1. **System overview** — what it is and how to use it.
 2. **Token reference** — tables per scale, with modes.
-3. **Component catalogue** — one consistent entry per component.
+3. **Component catalog** — one consistent entry per component.
 4. **Patterns** (if any).
-5. **Inconsistencies to reconcile** — prioritised, actionable.
+5. **Inconsistencies to reconcile** — prioritized, actionable.
 
 Deliver as markdown files in the repo's docs by default; offer a Figma `_Doc` page version (mirroring the foundation-page format, using the file's own styles) if the user wants it on-canvas.
 

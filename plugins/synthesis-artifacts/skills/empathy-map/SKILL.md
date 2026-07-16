@@ -1,6 +1,6 @@
 ---
 name: empathy-map
-description: Build an empathy map from research — a shared picture of what a user says, thinks, does, and feels, plus their pains and gains. Grounds each quadrant in evidence, surfaces contradictions (e.g. says vs. does), and turns the result into design implications. Quick, alignment-focused define-phase artifact that pairs with personas and journey maps. Trigger when the user wants to "create an empathy map", "map what users think and feel", "says/thinks/does/feels", or synthesise research into an empathy map.
+description: Build an empathy map from research — a shared picture of what a user says, thinks, does, and feels, plus their pains and gains. Grounds each quadrant in evidence, surfaces contradictions (e.g. says vs. does), and turns the result into design implications. Quick, alignment-focused define-phase artifact that pairs with personas and journey maps. Trigger when the user wants to "create an empathy map", "map what users think and feel", "says/thinks/does/feels", or synthesize research into an empathy map.
 ---
 
 Build an empathy map: a fast, shared snapshot of a user's world that aligns a team before deeper artifacts. It captures **Says / Thinks / Does / Feels** (plus Pains & Gains) for one user or segment, grounded in real research. Its special value is exposing **gaps between quadrants** — what people *say* vs. what they *do* is often the insight.
@@ -27,7 +27,7 @@ For the chosen user and situation, populate:
 
 - **Says** — verbatim or near-verbatim quotes; what they express out loud.
 - **Thinks** — beliefs, questions, and concerns they may *not* say aloud (infer carefully, mark as inference).
-- **Does** — observable actions and behaviours; what they actually do.
+- **Does** — observable actions and behaviors; what they actually do.
 - **Feels** — emotions and their intensity, and what triggers them.
 - **Pains** — frustrations, fears, obstacles, risks.
 - **Gains** — wants, needs, hopes, measures of success.

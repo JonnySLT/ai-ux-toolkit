@@ -28,7 +28,7 @@ Establish:
 ### Goal → Signal → Metric (the core method)
 For each goal, work down the chain:
 - **Goal** — what success means in plain language ("users trust the new flow and complete it").
-- **Signal** — an observable behaviour or attitude that indicates progress toward the goal ("users complete checkout without abandoning", "users report confidence"). Prefer signals that get *worse* when the experience is bad.
+- **Signal** — an observable behavior or attitude that indicates progress toward the goal ("users complete checkout without abandoning", "users report confidence"). Prefer signals that get *worse* when the experience is bad.
 - **Metric** — the specific, trackable number for that signal ("checkout completion rate", "post-purchase confidence score"). Define it precisely (numerator/denominator, window, segment).
 
 ### HEART (for feature/UX quality)
@@ -44,7 +44,7 @@ Run each chosen category through goal → signal → metric.
 Name the single metric that best captures delivered value, plus 2–4 **input metrics** that teams can actually move. Keep it value-based, not a vanity count.
 
 ### Guardrail / counter metrics (do not skip)
-For every primary metric, add a **counter-metric** that catches gaming or unintended harm — e.g. "completion rate" guarded by "refund/complaint rate", "engagement" guarded by "unsubscribe rate". This is what stops a metric from being optimised into a bad experience.
+For every primary metric, add a **counter-metric** that catches gaming or unintended harm — e.g. "completion rate" guarded by "refund/complaint rate", "engagement" guarded by "unsubscribe rate". This is what stops a metric from being optimized into a bad experience.
 
 ### Targets & instrumentation notes
 Set a baseline (if known) and a target/direction for each metric. Note what needs instrumenting to capture it (hands off cleanly to `product-analytics`).
@@ -64,8 +64,8 @@ Keep the set small — a few metrics that matter beat a dashboard of everything.
 
 ## Guardrails
 
-- **Measure outcomes, not vanity.** Prefer value/behaviour metrics over raw counts (page views, total clicks) that look good but mean little.
-- **Always pair a guardrail.** No primary metric ships without a counter-metric; otherwise you invite optimising the number at the user's expense.
+- **Measure outcomes, not vanity.** Prefer value/behavior metrics over raw counts (page views, total clicks) that look good but mean little.
+- **Always pair a guardrail.** No primary metric ships without a counter-metric; otherwise you invite optimizing the number at the user's expense.
 - **Keep it small.** A handful of right metrics; resist the urge to track everything.
 - **Define precisely.** Ambiguous metrics ("engagement") are useless — specify the exact calculation, window, and segment.
 - **This is definition, not measurement.** Setting targets ≠ collecting data; hand instrumentation and post-launch reading to `product-analytics`.

@@ -1,13 +1,13 @@
 ---
 name: prioritization
-description: Turn a list of ideas, features, or fixes into a defensible ranked order using a fitting framework — RICE, impact/effort, MoSCoW, value-vs-complexity, or Kano. Picks the method for the decision, scores each item transparently against evidence (flagging guesses), and surfaces quick wins, the ranked list, and the assumptions it rests on. Trigger when the user wants to "prioritise", "what should we build first?", "RICE score", "impact vs effort", "MoSCoW", rank a backlog, or decide what makes the cut.
+description: Turn a list of ideas, features, or fixes into a defensible ranked order using a fitting framework — RICE, impact/effort, MoSCoW, value-vs-complexity, or Kano. Picks the method for the decision, scores each item transparently against evidence (flagging guesses), and surfaces quick wins, the ranked list, and the assumptions it rests on. Trigger when the user wants to "prioritize", "what should we build first?", "RICE score", "impact vs effort", "MoSCoW", rank a backlog, or decide what makes the cut.
 ---
 
-Help decide what to do first, with reasoning that survives scrutiny. Prioritisation is only useful if it's **transparent and honest about uncertainty** — a ranked list whose scores are invented is just opinion with a number on it. Pick a fitting framework, score against evidence, show the work.
+Help decide what to do first, with reasoning that survives scrutiny. Prioritization is only useful if it's **transparent and honest about uncertainty** — a ranked list whose scores are invented is just opinion with a number on it. Pick a fitting framework, score against evidence, show the work.
 
 ## Example prompts
 
-- "Prioritise these 12 feature ideas"
+- "Prioritize these 12 feature ideas"
 - "RICE-score our backlog"
 - "Impact vs effort on these fixes"
 - "Which of these make the MVP?"
@@ -17,7 +17,7 @@ Help decide what to do first, with reasoning that survives scrutiny. Prioritisat
 ## Step 0 — Frame the decision (required first)
 
 Establish:
-1. **What's being prioritised, and against what goal?** Items only rank relative to an objective (a metric, a release, a strategy). Name it.
+1. **What's being prioritized, and against what goal?** Items only rank relative to an objective (a metric, a release, a strategy). Name it.
 2. **The candidate list** — the ideas/features/fixes. If they come from `divergent-exploration`, `research-synthesis` opportunities, or a journey map, read them.
 3. **What evidence exists** for impact and effort — research, data, estimates — vs. what will be a guess. This determines how much to trust the output.
 
@@ -63,4 +63,4 @@ Offer to save as markdown. Note that top items can flow to `design-planning` (br
 - **Be honest about guesses.** Mark estimates vs. evidence; don't let invented numbers masquerade as data.
 - **Use confidence, don't bury it.** Uncertainty must visibly affect the ranking.
 - **Avoid false precision.** Bands and ties over decimal-point rankings; the framework informs judgement, it doesn't replace it.
-- **Prioritisation is a decision aid.** Present it as input for the team's call, not an authoritative answer.
+- **Prioritization is a decision aid.** Present it as input for the team's call, not an authoritative answer.

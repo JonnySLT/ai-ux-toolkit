@@ -1,16 +1,16 @@
 ---
 name: usability-testing
-description: Run a usability study end-to-end with real users — plan it, moderate it, and analyse the results. Builds a test plan (objectives, realistic tasks with success criteria, metrics like task success, time, error rate, SEQ/SUS), gives moderation guidance, and turns session data into a findings report with task-level metrics and severity-rated issues. The empirical counterpart to expert audits. (To only draft an interview or usability script without running the study, use research-planning.) Trigger when the user wants to "plan/run a usability test", "analyse usability test results", "moderate a session", "rate usability issue severity", or measure whether users can actually complete tasks.
+description: Run a usability study end-to-end with real users — plan it, moderate it, and analyze the results. Builds a test plan (objectives, realistic tasks with success criteria, metrics like task success, time, error rate, SEQ/SUS), gives moderation guidance, and turns session data into a findings report with task-level metrics and severity-rated issues. The empirical counterpart to expert audits. (To only draft an interview or usability script without running the study, use research-planning.) Trigger when the user wants to "plan/run a usability test", "analyze usability test results", "moderate a session", "rate usability issue severity", or measure whether users can actually complete tasks.
 ---
 
-Find out whether real people can actually use the thing. Usability testing observes users attempting real tasks and measures where they succeed, struggle, or fail. This skill covers the whole study — **plan → moderate → analyse** — and is method-specific: it deals in tasks, success criteria, and usability metrics, where an expert `heuristic-review` or `design-review` predicts problems without users. Use both; only this one produces evidence of behaviour.
+Find out whether real people can actually use the thing. Usability testing observes users attempting real tasks and measures where they succeed, struggle, or fail. This skill covers the whole study — **plan → moderate → analyze** — and is method-specific: it deals in tasks, success criteria, and usability metrics, where an expert `heuristic-review` or `design-review` predicts problems without users. Use both; only this one produces evidence of behavior.
 
 > Relationship to neighbours: `research-planning` covers general question craft (and can draft a usability *script*); `research-synthesis` does open qualitative coding. This skill adds the usability-specific spine — task metrics, benchmark scores, and severity — and can hand its qualitative notes to `research-synthesis`.
 
 ## Example prompts
 
 - "Plan a usability test for the new checkout"
-- "Here are my 6 session notes — analyse the results"
+- "Here are my 6 session notes — analyze the results"
 - "What tasks should I test for this flow, and how do I score them?"
 - "Severity-rate these usability issues"
 
@@ -18,7 +18,7 @@ Find out whether real people can actually use the thing. Usability testing obser
 
 ## Mode 0 — Which part do you need?
 
-Detect from the prompt: **plan** a test, **moderate** guidance, or **analyse** results. Do the relevant part(s); a full study runs all three in order.
+Detect from the prompt: **plan** a test, **moderate** guidance, or **analyze** results. Do the relevant part(s); a full study runs all three in order.
 
 ---
 
@@ -41,7 +41,7 @@ Guidance to run clean sessions:
 - **Observe and log** per task: outcome, time, errors, verbatim quotes, and the moment things went wrong.
 - **Post-task/session** — ease rating + why; overall impressions.
 
-## Analyse
+## Analyze
 
 1. **Task-level metrics** — success/partial/fail rate per task, average time, error/assist counts, average SEQ. A completion table across participants makes patterns obvious.
 2. **Issue log** — every problem observed, where it occurred, how many participants hit it, and supporting quotes.
@@ -53,7 +53,7 @@ Guidance to run clean sessions:
 ## Output format
 
 - **Plan** — objectives · method · participants · task list (with success criteria + metrics) · what you'll measure.
-- **Results** — a task × participant completion table, the metrics summary (success rates, times, SEQ/SUS), a severity-ranked issue list with evidence, and prioritised recommendations.
+- **Results** — a task × participant completion table, the metrics summary (success rates, times, SEQ/SUS), a severity-ranked issue list with evidence, and prioritized recommendations.
 
 Offer to save as markdown. Hand rich qualitative notes to `research-synthesis`; feed usability metrics that map to product goals toward `success-metrics` / `product-analytics`.
 

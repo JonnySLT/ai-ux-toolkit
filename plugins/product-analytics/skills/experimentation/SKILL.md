@@ -28,7 +28,7 @@ Detect intent: **design** an experiment or **interpret** results. A full cycle d
 4. **Unit & randomisation** — randomise by user (or session/account) consistently; avoid contamination between variants.
 5. **Sample size & run-time** — estimate from baseline rate, the **minimum detectable effect** worth caring about, significance (α, typically 0.05) and power (typically 80%). State the required n per variant and the calendar time at current traffic. Flag if the test would take impractically long (underpowered → don't run it as an A/B).
 6. **Duration rules** — run at least one to two full business cycles (capture weekday/weekend); pre-commit the stop date to avoid peeking.
-7. **Segments to check later** — pre-declare the cuts you'll analyse (new vs. returning, plan) to avoid fishing.
+7. **Segments to check later** — pre-declare the cuts you'll analyze (new vs. returning, plan) to avoid fishing.
 
 ## Interpret results
 
@@ -44,7 +44,7 @@ Detect intent: **design** an experiment or **interpret** results. A full cycle d
 
 ## Output format
 
-- **Design** — hypothesis · primary metric · guardrails · unit/randomisation · required sample size + run-time (with the assumptions) · duration & stop rule · segments to analyse.
+- **Design** — hypothesis · primary metric · guardrails · unit/randomisation · required sample size + run-time (with the assumptions) · duration & stop rule · segments to analyze.
 - **Interpretation** — effect size + CI, significance/power read, guardrail check, peeking/novelty caveats, segment findings, and a clear decision with its confidence.
 
 Offer to save as markdown. Keep it tool-agnostic (works with any experimentation platform or manual analysis).

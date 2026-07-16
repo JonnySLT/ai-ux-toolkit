@@ -3,7 +3,7 @@ name: rapid-prototype
 description: Turn a rough idea, brief, sketch, or set of chosen concepts into a clickable, functional prototype — minimal runnable front-end code (single-file HTML or React) that you can actually interact with, verified live in the browser preview. Built to test real interaction and flow, not to be production code or a static comp. Uses the project's design system/tokens if present, else clean neutral defaults. Trigger when the user wants to "prototype this", "make it clickable", "build a quick interactive version", "turn this idea into something I can test", or mentions "rapid prototype" or "clickable mockup".
 ---
 
-Get from idea to something a person can click through, fast. The output is a **functional prototype to test interaction and flow** — deliberately not production code, not a design-system contribution, and not a static mockup. Optimise for speed of building and speed of learning.
+Get from idea to something a person can click through, fast. The output is a **functional prototype to test interaction and flow** — deliberately not production code, not a design-system contribution, and not a static mockup. Optimize for speed of building and speed of learning.
 
 ## Example prompts
 
@@ -19,7 +19,7 @@ Get from idea to something a person can click through, fast. The output is a **f
 A prototype is only useful if it answers a question. Establish, briefly:
 
 1. **The core interaction or flow to test** — the one thing that must feel real (the swipe, the multi-step form, the filtering, the state change). Everything else can be faked.
-2. **Fidelity needed** — low (grey boxes, real behaviour) is usually right for testing flow; only go higher if the visual is the thing being tested.
+2. **Fidelity needed** — low (gray boxes, real behavior) is usually right for testing flow; only go higher if the visual is the thing being tested.
 3. **Scope / screens** — which screens or states, and the happy path through them. Resist building the whole app.
 4. **Design system?** — check the project for design tokens / a component library / a running app to match. If present, use its tokens and patterns so the prototype feels native. If not, use clean neutral defaults (system font, restrained palette, generous spacing) — don't invent an elaborate visual language.
 
@@ -44,7 +44,7 @@ This is mandatory — a prototype that hasn't been run isn't a prototype. Follow
 - Start/refresh the preview and load the prototype.
 - Check the console and logs for errors; fix any before showing the user.
 - Drive the core interaction with the browser tools (click, type, navigate) and confirm it behaves — state changes, transitions fire, the flow completes.
-- Check responsive/dark behaviour only if it's relevant to what's being tested.
+- Check responsive/dark behavior only if it's relevant to what's being tested.
 
 ### 4. Share proof
 - Capture a screenshot (or a short interaction trace) showing the prototype working.

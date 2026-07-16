@@ -1,12 +1,16 @@
 # AI UX Toolkit
 
-A Claude Code **plugin marketplace** — a curated set of skills and automations for UX designers, spanning the whole workflow: synthesising research, planning and grilling a brief, exploring divergent ideas, defining information architecture, designing and auditing in Figma, generating tokens, building frontends, checking accessibility and usability, prototyping fast, reviewing, keeping copy on-brand, researching competitors, and documenting design systems for handoff.
+A Claude Code **plugin marketplace** — a curated set of skills and automations that cover the full UX design *and* research workflow: from planning and synthesizing research, through ideation, information architecture, design, content, accessibility, and prototyping, to validation (expert reviews, usability testing, experimentation), developer handoff, and post-launch measurement. 21 plugins, 38 skills, organized by workflow phase.
 
 Everything here is **project-agnostic**. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of **whatever project you run it in**. Add the marketplace once, then install only the plugins you need.
 
-> **Original + vendored.** Most plugins are original to this toolkit. Five (`design-planning`, `information-architecture`, `design-tokens`, `frontend-design`, `design-review`) are vendored **verbatim** from Julian Oczkowski's excellent [designer-skills](https://github.com/julianoczkowski/designer-skills) under the Apache-2.0 licence, so the whole workflow installs from one place — see [Attribution](#attribution--third-party-skills).
+> **Original + vendored.** Most plugins are original to this toolkit. Five (`design-planning`, `information-architecture`, `design-tokens`, `frontend-design`, `design-review`) are vendored **verbatim** from Julian Oczkowski's excellent [designer-skills](https://github.com/julianoczkowski/designer-skills) under the Apache-2.0 license, so the whole workflow installs from one place — see [Attribution](#attribution--third-party-skills).
 
 > Formerly `design-system-toolkit`. The scope has broadened from design-system work to the full UX-design workflow, so the marketplace was renamed to `ai-ux-toolkit`. If you installed the old marketplace, re-add it under the new name (see Quick start) and reinstall — install references now use `@ai-ux-toolkit`.
+
+---
+
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Repository layout](#repository-layout)
 
 ---
 
@@ -26,7 +30,7 @@ Plugins are independent — install any subset, uninstall with `/plugin uninstal
 
 > The Figma-dependent plugins (`figma-design-system`, `changelog-automation`) also need Figma's MCP server connected — a one-time step: see [Connecting the Figma MCP](#connecting-the-figma-mcp). Everything else runs on Claude Code alone.
 
-> **Tip:** Skills trigger automatically from natural language (e.g. "synthesise these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
+> **Tip:** Skills trigger automatically from natural language (e.g. "synthesize these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
 
 ---
 
@@ -184,7 +188,7 @@ done
 
 ---
 
-## What's inside — organised by workflow phase
+## What's inside — organized by workflow phase
 
 Twenty-one plugins (38 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
 
@@ -193,7 +197,7 @@ Twenty-one plugins (38 skills), grouped by where they fall in a typical design p
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
-| `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritised opportunities. The coding pass that would take hours by hand. |
+| `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritized opportunities. The coding pass that would take hours by hand. |
 | `research-repository` | ux-research | Set up and maintain a repository of atomic, tagged, evidence-linked insights (with a taxonomy) so past research stays findable and reusable across studies. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
 
@@ -235,7 +239,7 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes. |
 | `design-tokens` **†** | design-tokens | Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens. |
 | `frontend-design` **†** | frontend-design | Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. |
-| `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible colour, honest scales, and glanceable layouts. Tool-agnostic. |
+| `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible color, honest scales, and glanceable layouts. Tool-agnostic. |
 
 > `annotate` uses the **`Annotation` component that lives in the file you're annotating** — it never pulls from another file. If the file has none, it offers to build one bound to that project's own tokens. Annotation cards always sit **32px** from the frame.
 
@@ -254,7 +258,7 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `accessibility-check` | accessibility-heuristics | First-pass WCAG check on a screenshot, Figma frame, URL, or code — contrast, labels, focus, target size, structure. Cites the success criterion and a fix per finding. |
 | `heuristic-review` | accessibility-heuristics | Evaluate a screen or flow against Nielsen's 10 usability heuristics, scored by severity with concrete fixes. |
 | `design-review` **†** | design-review | Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. |
-| `usability-testing` | usability-testing | Plan, moderate, and analyse a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings. |
+| `usability-testing` | usability-testing | Plan, moderate, and analyze a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings. |
 
 > `accessibility-check`, `heuristic-review`, and `design-review` are **expert** first-filters — fast, no users. `usability-testing` is the **empirical** counterpart that puts a real person in front of the design. Use both: experts predict problems, users prove them.
 
@@ -304,7 +308,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 | Your goal | Use |
 |---|---|
 | Plan a study / write an interview, survey, or usability *script* | `research-planning` |
-| Run + moderate + analyse a full usability study | `usability-testing` |
+| Run + moderate + analyze a full usability study | `usability-testing` |
 | Turn collected data into themes & insights | `research-synthesis` |
 | Store & reuse insights across studies | `research-repository` |
 
@@ -332,7 +336,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 **Define artifacts (from research)**
 | Your goal | Use |
 |---|---|
-| A behavioural archetype of a user | `personas` |
+| A behavioral archetype of a user | `personas` |
 | What a user says / thinks / does / feels | `empathy-map` |
 | The stage-by-stage experience + emotion curve | `journey-map` |
 | Frontstage + backstage layers delivering a service | `service-blueprint` |
@@ -341,7 +345,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ## Roadmap
 
-Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritisation, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
+Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritization, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
 
 Possible future directions: **design-ops** automation, deeper **quant/survey statistics**, and **motion/interaction** specs. Nothing here is a coverage gap — the workflow is complete end to end.
 
@@ -361,7 +365,7 @@ Five plugins bundle skills that are **not original to this toolkit**. They are v
 
 - **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>
 - **Source:** <https://github.com/julianoczkowski/designer-skills>
-- **Licence:** Apache-2.0. A copy of the licence ships in each of the five plugin directories (`plugins/<name>/LICENSE`). The skill files are unmodified; only packaging (`plugin.json`, `README.md`) was added to make them installable through this marketplace.
+- **License:** Apache-2.0. A copy of the license ships in each of the five plugin directories (`plugins/<name>/LICENSE`). The skill files are unmodified; only packaging (`plugin.json`, `README.md`) was added to make them installable through this marketplace.
 
 His set is the convergent **build pipeline** (brief → structure → tokens → build → review); this toolkit's original plugins cover the bookends — research and ideation up front, dedicated auditing, prototyping, and handoff at the back. They're designed to interlock.
 
@@ -428,7 +432,7 @@ Using a different client (VS Code, Cursor, etc.) or want deeper setup and best p
 
 - **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
 - **Pick à la carte.** Twenty-one independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Solo designer starter kit** in [Install recipes](#install-recipes).
-- **First filter, not final word.** The check skills (`accessibility-check`, `heuristic-review`) and the research pass are explicitly framed as fast first passes for a human to validate — not replacements for review, testing, or judgement.
+- **First filter, not final word.** The expert checks (`accessibility-check`, `heuristic-review`, `design-review`, `inclusive-design`) and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing (`usability-testing`), assistive-tech testing, or design judgment.
 
 ## Repository layout
 

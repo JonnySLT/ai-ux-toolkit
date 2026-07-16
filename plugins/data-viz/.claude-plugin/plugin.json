@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "data-viz",
-  "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible colour and labelling, and lay out dashboards that answer questions at a glance.",
+  "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible color and labeling, and lay out dashboards that answer questions at a glance.",
   "version": "1.0.0",
   "author": { "name": "Jonny Bennett" }
 }
