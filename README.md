@@ -24,6 +24,8 @@ That's it for **any individual plugin**: `/plugin install <name>@ai-ux-toolkit`.
 
 Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
 
+> The Figma-dependent plugins (`figma-design-system`, `changelog-automation`) also need Figma's MCP server connected — a one-time step: see [Connecting the Figma MCP](#connecting-the-figma-mcp). Everything else runs on Claude Code alone.
+
 > **Tip:** Skills trigger automatically from natural language (e.g. "synthesise these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
 
 ---
@@ -189,7 +191,7 @@ Twenty-one plugins (38 skills), grouped by where they fall in a typical design p
 | `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the Figma MCP server** (`use_figma`); the rest don't.
+The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the [Figma MCP server](#connecting-the-figma-mcp)** (`use_figma`); the rest don't.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
@@ -321,14 +323,19 @@ Two more plugins use the MCP *optionally*: `research-synthesis`, `competitive-an
 
 Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
 
-**Connect it (once):**
+### Connect it (once)
 
-```bash
-# Add Figma's remote MCP server, then authorise via the OAuth prompt on first use
-claude mcp add --transport http figma https://mcp.figma.com/mcp
-```
+The Figma MCP is a **hosted remote server** (`https://mcp.figma.com/mcp`) — there's **nothing to download or install**. You just add the connection and sign in with your Figma account.
 
-Or add it through your client's connector settings / `/mcp`. Full per-client setup (VS Code, Cursor, Claude Code) is in Figma's guide: <https://github.com/figma/mcp-server-guide>.
+1. **Add the server** (from a terminal):
+   ```bash
+   claude mcp add --transport http figma https://mcp.figma.com/mcp
+   ```
+   Or add it through your client's connector settings / `/mcp`.
+2. **Authorise** — sign in via the Figma OAuth prompt the first time a Figma tool is used.
+3. **Done** — `figma-design-system`, `changelog-automation`, and the optional Figma-output paths now work.
+
+Using a different client (VS Code, Cursor, etc.) or want deeper setup and best practices? Figma's own guide has per-client instructions: <https://github.com/figma/mcp-server-guide>.
 
 ## How it's designed to stay reusable
 
