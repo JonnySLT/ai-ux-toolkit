@@ -8,4 +8,4 @@ Bundled: `scripts/figma-fingerprint.js` — the canonical fingerprint algorithm 
 
 **Project-agnostic:** the routine hardcodes nothing. At run time it resolves the Figma file key, the fingerprint-script path, and the changelog conventions from the **current project's own config** (its `CLAUDE.md` / `AGENTS.md`), and discovers all node/variable IDs dynamically — so the same routine works across every project.
 
-Install: `/plugin install changelog-automation@design-system-toolkit`
+Install: `/plugin install changelog-automation@ai-ux-toolkit`

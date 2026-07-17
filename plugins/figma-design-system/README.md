@@ -8,4 +8,4 @@ Figma + design-system workflow skills. **Requires the Figma MCP server (`use_fig
 
 **Project-agnostic:** every skill reads the **current file's own** design system — components, variables, and styles — and never imports from another Figma file. `annotate` uses the file's own `Annotation` component (and offers to build one bound to that project's tokens if missing); cards always sit 32px from the frame.
 
-Install: `/plugin install figma-design-system@design-system-toolkit`
+Install: `/plugin install figma-design-system@ai-ux-toolkit`

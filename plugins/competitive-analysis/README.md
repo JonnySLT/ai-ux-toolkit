@@ -4,4 +4,4 @@
 
 Triggers from natural language ("research these competitors", "run a comp analysis", "benchmark this product"). Browsing requires a browser/MCP the skill can drive; pushing to Figma requires the Figma MCP.
 
-Install: `/plugin install competitive-analysis@design-system-toolkit`
+Install: `/plugin install competitive-analysis@ai-ux-toolkit`

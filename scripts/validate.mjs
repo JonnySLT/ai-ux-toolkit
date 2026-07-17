@@ -57,6 +57,10 @@ if (mkt) {
     if (pj.name !== src.split("/").pop()) fail(`${p.name}: plugin.json name != directory`);
     for (const k of ["name", "version", "description"]) if (!pj[k]) fail(`${p.name}: plugin.json missing "${k}"`);
     if (!existsSync(P(src, "README.md"))) fail(`${p.name}: no README.md`);
+    else {
+      const prme = readFileSync(P(src, "README.md"), "utf8");
+      if (!prme.includes(`/plugin install ${p.name}@${mkt.name}`)) fail(`${p.name}: README install line missing or names the wrong marketplace (expected @${mkt.name})`);
+    }
 
     if (VENDORED.has(p.name)) {
       if (p.license !== "Apache-2.0") fail(`${p.name}: marketplace license != Apache-2.0`);
