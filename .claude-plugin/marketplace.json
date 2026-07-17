@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
-  "description": "AI-assisted skills for UX designers and researchers across the whole workflow: research planning and synthesis, insight repositories, personas, journey maps, service blueprints, empathy maps, success metrics, divergent exploration, facilitation, prioritization, information architecture, design and audit in Figma, design tokens, frontend build, content design, data visualization, accessibility and inclusive design, usability testing, prototyping, design review, user stories, handoff docs, brand voice, competitive research, experimentation, and post-launch measurement. Project-agnostic — every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.4.0",
+  "description": "AI-assisted skills for UX designers and researchers covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. 21 plugins / 38 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "2.4.1",
   "owner": {
     "name": "Jonny Bennett"
   },
