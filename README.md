@@ -10,7 +10,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 ---
 
-**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Ask-first routing](#make-routing-ask-first-optional) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Repository layout](#repository-layout)
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Ask-first routing](#make-routing-ask-first-optional) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
 
 ---
 
@@ -458,6 +458,16 @@ Using a different client (VS Code, Cursor, etc.) or want deeper setup and best p
 - **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
 - **Pick à la carte.** Twenty-one independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Solo designer starter kit** in [Install recipes](#install-recipes).
 - **First filter, not final word.** The expert checks (`accessibility-check`, `heuristic-review`, `design-review`, `inclusive-design`) and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing (`usability-testing`), assistive-tech testing, or design judgment.
+
+## Maintaining the toolkit
+
+For anyone on the team editing or extending this repo:
+
+- **Before committing:** run `node scripts/validate.mjs` — the same structural check CI runs on every push/PR (manifests, name matches, frontmatter, licenses, install lines).
+- **After adding a skill or editing any description:** run `node scripts/route-eval.mjs` to confirm skill routing still lands (~20 model calls; a single `NONE` miss is usually sampling noise — rerun that prompt before editing anything).
+- **Never edit the five vendored † plugins' skill files** — they're kept byte-identical to upstream (pinned in `.vendor/designer-skills.lock.json`). The weekly workflow opens a GitHub issue when the upstream author ships changes; re-syncing = re-copy the changed files verbatim + update the lockfile.
+- **Adding a plugin:** follow the existing shape (`.claude-plugin/plugin.json` + `README.md` ending in its install line + `skills/<name>/SKILL.md`), register it in `.claude-plugin/marketplace.json`, and add it to this README's install recipes and phase tables — `validate.mjs` enforces most of this.
+- **Bump the marketplace `version`** in `.claude-plugin/marketplace.json` on any catalog change, so `/plugin marketplace update` picks it up cleanly.
 
 ## Repository layout
 
