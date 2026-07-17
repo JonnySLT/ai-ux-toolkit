@@ -6,4 +6,4 @@
 
 No external services required. Triggers from natural language ("is this on-brand?", "rewrite this in our voice").
 
-Install: `/plugin install brand-voice@design-system-toolkit`
+Install: `/plugin install brand-voice@ai-ux-toolkit`
