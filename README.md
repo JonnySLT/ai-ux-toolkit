@@ -458,6 +458,7 @@ ai-ux-toolkit/
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)
+├── scripts/route-eval.mjs              # measures skill-routing accuracy (run after editing descriptions; uses claude -p)
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
 ├── templates/CLAUDE.md                 # add to ~/.claude/CLAUDE.md (global) for ask-first skill routing
 ├── README.md                           # this file
