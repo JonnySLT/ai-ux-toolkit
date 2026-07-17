@@ -6,8 +6,6 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 > **Original + vendored.** Most plugins are original to this toolkit. Five (`design-planning`, `information-architecture`, `design-tokens`, `frontend-design`, `design-review`) are vendored **verbatim** from Julian Oczkowski's excellent [designer-skills](https://github.com/julianoczkowski/designer-skills) under the Apache-2.0 license, so the whole workflow installs from one place — see [Attribution](#attribution--third-party-skills).
 
-> Formerly `design-system-toolkit`. The scope has broadened from design-system work to the full UX-design workflow, so the marketplace was renamed to `ai-ux-toolkit`. If you installed the old marketplace, re-add it under the new name (see Quick start) and reinstall — install references now use `@ai-ux-toolkit`.
-
 ---
 
 **Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Ask-first routing](#make-routing-ask-first-optional) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
