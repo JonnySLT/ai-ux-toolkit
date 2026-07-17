@@ -24,6 +24,12 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 /plugin install research-planning@ai-ux-toolkit
 ```
 
+**Want everything?** The easiest way — just ask Claude, right in your Claude Code session:
+
+> *"Install all 21 plugins from the ai-ux-toolkit marketplace."*
+
+Claude runs the installs for you. (Prefer a terminal? Copy the one-block [**Everything** recipe](#install-recipes) below.)
+
 That's it for **any individual plugin**: `/plugin install <name>@ai-ux-toolkit`. Prefer to browse? Run **`/plugin`** for an interactive menu of the whole catalog. To grab a **whole workflow phase** or a **curated set** in one paste, see [Install recipes](#install-recipes) just below.
 
 Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
@@ -132,6 +138,19 @@ Grab an entire phase in one paste.
 
 ### By need (curated bundles)
 
+**Everything** — all 21 plugins. Two ways, pick one:
+- *In Claude Code:* just ask — **"Install all 21 plugins from the ai-ux-toolkit marketplace"** — and Claude runs the installs.
+- *In a terminal:* paste this loop:
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         figma-design-system design-tokens frontend-design data-viz content-design \
+         accessibility-heuristics design-review usability-testing rapid-prototyping \
+         handoff-docs brand-voice changelog-automation product-analytics; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
+
 **Research & synthesis** — the whole front end, planning through define-artifacts:
 ```text
 /plugin install research-planning@ai-ux-toolkit
@@ -174,17 +193,7 @@ for p in research-planning ux-research competitive-analysis synthesis-artifacts 
   claude plugin install "$p@ai-ux-toolkit"
 done
 ```
-
-**Everything** — all 21. Run in a terminal:
-```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         figma-design-system design-tokens frontend-design data-viz content-design \
-         accessibility-heuristics design-review usability-testing rapid-prototyping \
-         handoff-docs brand-voice changelog-automation product-analytics; do
-  claude plugin install "$p@ai-ux-toolkit"
-done
-```
+_(Or ask Claude: "Install every ai-ux-toolkit plugin except the Figma-dependent ones.")_
 
 ---
 
