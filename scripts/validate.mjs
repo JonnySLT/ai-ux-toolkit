@@ -62,6 +62,20 @@ if (mkt) {
       if (!prme.includes(`/plugin install ${p.name}@${mkt.name}`)) fail(`${p.name}: README install line missing or names the wrong marketplace (expected @${mkt.name})`);
     }
 
+    // Hooks (optional): if a plugin ships hooks, guard the JSON and any files its commands reference.
+    const hooksJson = P(src, "hooks/hooks.json");
+    if (existsSync(hooksJson)) {
+      let hk;
+      try { hk = JSON.parse(readFileSync(hooksJson, "utf8")); } catch (e) { fail(`${p.name}: hooks/hooks.json invalid JSON: ${e.message}`); }
+      if (hk) {
+        if (!hk.hooks || typeof hk.hooks !== "object") fail(`${p.name}: hooks/hooks.json has no "hooks" object`);
+        // Any command referencing ${CLAUDE_PLUGIN_ROOT}/<path> must point to a file that exists.
+        for (const m of JSON.stringify(hk).matchAll(/\$\{CLAUDE_PLUGIN_ROOT\}\/([A-Za-z0-9._/-]+)/g)) {
+          if (!existsSync(P(src, m[1]))) fail(`${p.name}: hook references missing file ${m[1]}`);
+        }
+      }
+    }
+
     if (VENDORED.has(p.name)) {
       if (p.license !== "Apache-2.0") fail(`${p.name}: marketplace license != Apache-2.0`);
       if (pj.license !== "Apache-2.0") fail(`${p.name}: plugin.json license != Apache-2.0`);
