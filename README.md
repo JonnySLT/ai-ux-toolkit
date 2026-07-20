@@ -1,6 +1,8 @@
 # AI UX Toolkit
 
-A Claude Code **plugin marketplace** — a curated set of skills and automations that cover the full UX design *and* research workflow: from planning and synthesizing research, through ideation, information architecture, design, content, accessibility, and prototyping, to validation (expert reviews, usability testing, experimentation), developer handoff, and post-launch measurement. 21 plugins, 38 skills, organized by workflow phase.
+A Claude Code **plugin marketplace** — a curated set of skills and automations that cover the full UX design *and* research workflow: from planning and synthesizing research, through ideation, information architecture, design, content, accessibility, and prototyping, to validation (expert reviews, usability testing, experimentation), developer handoff, and post-launch measurement. 22 plugins, 39 skills, organized by workflow phase.
+
+**Built for designers working on a team.** The workflow assumes you're not designing in a vacuum — it has first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, developer handoff specs and user stories, and cross-functional review. Solo designers can use it too, but the toolkit is shaped around designers, researchers, PMs, and engineers working in concert.
 
 Everything here is **project-agnostic**. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of **whatever project you run it in**. Add the marketplace once, then install only the plugins you need.
 
@@ -8,7 +10,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 ---
 
-**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Ask-first routing](#make-routing-ask-first-optional) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
 
 ---
 
@@ -18,13 +20,13 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 # 1. Add the marketplace (once)
 /plugin marketplace add JonnySLT/ai-ux-toolkit
 
-# 2. Install any single plugin — same pattern for all 21
+# 2. Install any single plugin — same pattern for all 22
 /plugin install research-planning@ai-ux-toolkit
 ```
 
 **Want everything?** The easiest way — just ask Claude, right in your Claude Code session:
 
-> *"Install all 21 plugins from the ai-ux-toolkit marketplace."*
+> *"Install all 22 plugins from the ai-ux-toolkit marketplace."*
 
 Claude runs the installs for you. (Prefer a terminal? Copy the one-block [**Everything** recipe](#install-recipes) below.)
 
@@ -82,9 +84,12 @@ Every line below is a **standalone install** — copy the one plugin you want, a
 Grab an entire phase in one paste.
 
 <details open>
-<summary><b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
+<summary><b>🧰 Meta</b> · <b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
 
 ```text
+# 🧰 Meta — install first; sits in front of every phase
+/plugin install prompt-builder@ai-ux-toolkit
+
 # 🔬 Research
 /plugin install research-planning@ai-ux-toolkit
 /plugin install ux-research@ai-ux-toolkit
@@ -136,15 +141,16 @@ Grab an entire phase in one paste.
 
 ### By need (curated bundles)
 
-**Everything** — all 21 plugins. Two ways, pick one:
-- *In Claude Code:* just ask — **"Install all 21 plugins from the ai-ux-toolkit marketplace"** — and Claude runs the installs.
+**Everything** — all 22 plugins. Two ways, pick one:
+- *In Claude Code:* just ask — **"Install all 22 plugins from the ai-ux-toolkit marketplace"** — and Claude runs the installs.
 - *In a terminal:* paste this loop:
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
          design-planning ideation prioritization information-architecture \
          figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
-         handoff-docs brand-voice changelog-automation product-analytics; do
+         handoff-docs brand-voice changelog-automation product-analytics \
+         prompt-builder; do
   claude plugin install "$p@ai-ux-toolkit"
 done
 ```
@@ -170,7 +176,7 @@ done
 /plugin install usability-testing@ai-ux-toolkit
 ```
 
-**Solo designer starter kit** — a lean set spanning the whole workflow:
+**Starter kit** — a lean set spanning the whole workflow:
 ```text
 /plugin install ux-research@ai-ux-toolkit
 /plugin install ideation@ai-ux-toolkit
@@ -187,7 +193,7 @@ for p in research-planning ux-research competitive-analysis synthesis-artifacts 
          design-planning ideation prioritization information-architecture \
          design-tokens frontend-design data-viz content-design accessibility-heuristics \
          design-review usability-testing rapid-prototyping handoff-docs \
-         brand-voice product-analytics; do
+         brand-voice product-analytics prompt-builder; do
   claude plugin install "$p@ai-ux-toolkit"
 done
 ```
@@ -197,7 +203,23 @@ _(Or ask Claude: "Install every ai-ux-toolkit plugin except the Figma-dependent 
 
 ## What's inside — organized by workflow phase
 
-Twenty-one plugins (38 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
+Twenty-two plugins (39 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
+
+### 🧰 Meta — `prompt-builder`
+
+Not tied to any phase — it sits *in front of* all of them, so it leads the list. Install it first; it makes every other plugin easier to drive.
+
+| Skill | Use it to… |
+|---|---|
+| `prompt-builder` | Brief Claude properly before it starts: turn a rough ask into a complete, self-contained prompt via a short interview (or upgrade a pasted draft), then run it on the spot. Scans the project first so it never asks for what Claude can discover itself, and promotes standing rules into `CLAUDE.md`/memory so future prompts stay short. |
+
+**It also ships the toolkit's ask-first routing.** Claude only reads a `CLAUDE.md` at skill-selection time — not this README — so the "[Which skill for which task?](#which-skill-for-which-task)" guidance below would normally be inert. `prompt-builder` fixes that with a `SessionStart` hook that loads the overlap map into context automatically (**no setup, no editing your `CLAUDE.md`**). With it installed, an ambiguous request behaves like this:
+
+> **You:** *"Can you review this checkout screen?"*
+>
+> **Claude:** "That could map to a few skills — which would you like? `accessibility-check` (WCAG) · `heuristic-review` (Nielsen) · `design-review` (broad critique) · `usability-testing` (real users). These overlap on 'review' — tell me which, or say 'general feedback' and I'll run `design-review`."
+
+Unambiguous requests ("check this contrast ratio") still route straight through — no needless question. On by default once installed; to turn it off, uninstall `prompt-builder`. *(Prefer to scope routing to a single project, or customize the overlaps by hand? A manual `CLAUDE.md` snippet lives in [`templates/CLAUDE.md`](templates/CLAUDE.md) as an alternative to the hook.)*
 
 ### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`
 
@@ -350,22 +372,6 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ---
 
-## Make routing ask-first (optional)
-
-The decision guide above helps *you* — but Claude only reads a **`CLAUDE.md`** at skill-selection time, **not** this README. To make Claude **flag the overlap and ask which skill you want** (instead of silently picking one), add a routing block to `CLAUDE.md`.
-
-**One-time setup, applies to every project:** append the "Skill routing" section from [`templates/CLAUDE.md`](templates/CLAUDE.md) to your **global** user memory at **`~/.claude/CLAUDE.md`**. Claude Code loads that file in *every* session and project, so you set it up once and never have to remember it when you open a new project. *(Want it scoped to a single project instead? Put it in that project's `./CLAUDE.md`.)*
-
-Then an ambiguous request behaves like this:
-
-> **You:** *"Can you review this checkout screen?"*
->
-> **Claude:** "That could map to a few skills — which would you like? `accessibility-check` (WCAG) · `heuristic-review` (Nielsen) · `design-review` (broad critique) · `usability-testing` (real users). These overlap on 'review' — tell me which, or say 'general feedback' and I'll run `design-review`."
-
-Unambiguous requests ("check this contrast ratio") still route straight to the right skill — no needless question. This works because the block lives in `CLAUDE.md`, which is in Claude's context when it chooses; the README table isn't.
-
----
-
 ## Roadmap
 
 Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritization, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
@@ -417,7 +423,7 @@ Because these skills are a **point-in-time copy**, they don't automatically get 
 - **Figma MCP server** (`use_figma`) for `figma-design-system` and `changelog-automation`, and for the optional Figma-output paths of `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs`. See [Connecting the Figma MCP](#connecting-the-figma-mcp).
 - **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
 - **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
-- Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `data-viz`, `usability-testing`, `product-analytics`, `brand-voice`, `inclusive-design`, and `heuristic-review`.
+- Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `data-viz`, `usability-testing`, `product-analytics`, `brand-voice`, `prompt-builder`, `inclusive-design`, and `heuristic-review`.
 - For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
 
 ## Connecting the Figma MCP
@@ -454,7 +460,7 @@ Using a different client (VS Code, Cursor, etc.) or want deeper setup and best p
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty-one independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Solo designer starter kit** in [Install recipes](#install-recipes).
+- **Pick à la carte.** Twenty-two independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Starter kit** in [Install recipes](#install-recipes).
 - **First filter, not final word.** The expert checks (`accessibility-check`, `heuristic-review`, `design-review`, `inclusive-design`) and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing (`usability-testing`), assistive-tech testing, or design judgment.
 
 ## Maintaining the toolkit
@@ -471,13 +477,13 @@ For anyone on the team editing or extending this repo:
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 21 plugins)
+├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 22 plugins)
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)
 ├── scripts/route-eval.mjs              # measures skill-routing accuracy (run after editing descriptions; uses claude -p)
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
-├── templates/CLAUDE.md                 # add to ~/.claude/CLAUDE.md (global) for ask-first skill routing
+├── templates/CLAUDE.md                 # manual/project-scoped alternative for ask-first routing (the prompt-builder hook does this automatically)
 ├── README.md                           # this file
 └── plugins/
     ├── research-planning/               # original — research-planning
@@ -496,6 +502,7 @@ ai-ux-toolkit/
     ├── brand-voice/                     # original — brand-voice-tone
     ├── changelog-automation/            # original — design-system-changelog-sweep (+ scripts/figma-fingerprint.js)
     ├── product-analytics/               # original — measurement-plan, experimentation
+    ├── prompt-builder/                  # original — prompt-builder (meta: better briefs for everything)
     ├── design-planning/                 # vendored † — design-brief, grill-me, brief-to-tasks, design-flow
     ├── information-architecture/        # vendored † — information-architecture
     ├── design-tokens/                   # vendored † — design-tokens

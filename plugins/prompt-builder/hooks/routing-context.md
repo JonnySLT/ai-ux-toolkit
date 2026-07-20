@@ -1,31 +1,12 @@
-<!--
-ai-ux-toolkit — skill-routing hints for Claude Code.
+# ai-ux-toolkit — skill routing (ask-first on overlap)
 
-YOU PROBABLY DON'T NEED THIS FILE. The `prompt-builder` plugin ships this exact
-routing behavior as a SessionStart hook, so once prompt-builder is installed
-ask-first routing works automatically — no setup, in every session and project.
+When choosing which skill to run for a request, if it could reasonably map to **more than one** installed skill, do **not** silently pick one. Instead:
 
-This template is only a MANUAL ALTERNATIVE, for when you want to:
-  • scope routing to a single project — put this in that project's ./CLAUDE.md; or
-  • customize the overlap rows by hand; or
-  • get the behavior without installing prompt-builder.
-To use it manually, append the "Skill routing" section below to your GLOBAL user
-memory at ~/.claude/CLAUDE.md (or a project ./CLAUDE.md):
-  • macOS/Linux:  cat this section >> ~/.claude/CLAUDE.md   (create the file if absent)
-
-This makes Claude ASK which skill you want, and name the overlap, instead of
-silently picking one. Delete any rows for plugins you didn't install.
--->
-
-## Skill routing (ai-ux-toolkit)
-
-Before using a skill: if the request could reasonably map to **more than one** skill, do **not** silently pick one. Instead —
-
-1. Tell the user their request overlaps more than one skill.
+1. Tell the user the request overlaps more than one skill.
 2. List the candidate skills, each with a one-line "use this if…".
 3. Ask which they want (you may offer to run the closest fit as a default).
 
-Skip this only when the user named a skill directly, or the match is unambiguous.
+Skip this only when the user named a skill directly, or the match is unambiguous. Only consider skills that are actually installed — ignore any row below whose skill isn't available.
 
 **Overlaps to watch:**
 

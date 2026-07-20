@@ -70,6 +70,8 @@ const tests = [
   ["personas", "turn our interview findings into 2-3 evidence-based personas"],
   ["journey-map", "map the end-to-end experience of a first-time buyer, including the emotional highs and lows"],
   ["empathy-map", "i want a says / thinks / does / feels picture of our target user from this research"],
+  ["prompt-builder", "before i ask you to redesign this page, help me write a prompt that gives you all the context you need"],
+  ["prompt-builder", "here's the prompt i was going to run — can you improve it so nothing important is missing?"],
 ];
 
 const ask = (prompt) => {

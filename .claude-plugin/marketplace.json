@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
-  "description": "AI-assisted skills for UX designers and researchers covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. 21 plugins / 38 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.4.1",
+  "description": "AI-assisted skills for UX design and research teams covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. Built for designers working alongside researchers, PMs, and engineers: stakeholder interviews, facilitated workshops, shared research repositories, and dev handoff are first-class. 22 plugins / 39 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "2.5.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -181,6 +181,14 @@
       "version": "1.0.0",
       "category": "automation",
       "tags": ["figma", "changelog", "automation", "design-system"]
+    },
+    {
+      "name": "prompt-builder",
+      "source": "./plugins/prompt-builder",
+      "description": "Brief Claude properly before it starts: turn a rough ask into a complete, context-rich prompt via a short targeted interview (or by upgrading a pasted draft), then run it on the spot. Promotes standing rules into CLAUDE.md/memory so future prompts stay short. Also ships the toolkit's ask-first routing as a SessionStart hook (Claude asks which skill you want on overlap — no setup). Meta — pairs with every other plugin.",
+      "version": "1.0.0",
+      "category": "meta",
+      "tags": ["prompting", "context", "briefing", "routing", "meta"]
     },
     {
       "name": "product-analytics",
