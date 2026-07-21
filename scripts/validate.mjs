@@ -111,7 +111,9 @@ if (mkt) {
 
   // --- README ---
   const rme = readFileSync(P("README.md"), "utf8");
-  for (const n of entryNames) if (!rme.includes(`/plugin install ${n}@ai-ux-toolkit`)) fail(`README: no install line for ${n}`);
+  // Every plugin must be documented in the root README (a `plugin-name` mention, e.g. in a What's-inside phase heading).
+  // Per-plugin copy-paste install lines live in each plugin's own README (checked above), not here.
+  for (const n of entryNames) if (!rme.includes("`" + n + "`")) fail(`README: plugin ${n} not documented (no \`${n}\` mention)`);
   const slug = (h) => h.toLowerCase().replace(/[^a-z0-9 -]/g, "").replace(/ /g, "-");
   const heads = new Set((rme.match(/^#{1,4} .+$/gm) || []).map((h) => slug(h.replace(/^#+ /, ""))));
   const links = [...new Set((rme.match(/\]\(#([a-z0-9-]+)\)/g) || []).map((s) => s.replace(/\]\(#|\)/g, "")))];

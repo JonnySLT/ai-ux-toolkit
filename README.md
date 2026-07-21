@@ -10,7 +10,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 ---
 
-**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Install recipes](#install-recipes) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
 
 ---
 
@@ -24,11 +24,26 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 /plugin install research-planning@ai-ux-toolkit
 ```
 
-**Want everything?** The easiest way — just ask Claude, right in your Claude Code session:
+**Want everything?** Just ask Claude, right in your Claude Code session:
 
 > *"Install all 22 plugins from the ai-ux-toolkit marketplace."*
 
-Claude runs the installs for you. Prefer to browse? Run **`/plugin`** for an interactive menu. To grab a **whole workflow phase** or the **whole set** in one paste, see [Install recipes](#install-recipes).
+You can ask for **any subset** the same way — *"install just the research plugins,"* or *"everything except the Figma-dependent ones."* Prefer to browse? Run **`/plugin`** for an interactive menu.
+
+<details>
+<summary>Prefer a copy-paste terminal one-liner to install all 22?</summary>
+
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         figma-design-system design-tokens frontend-design data-viz content-design \
+         accessibility-heuristics design-review usability-testing rapid-prototyping \
+         handoff-docs brand-voice changelog-automation product-analytics \
+         prompt-builder; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
+</details>
 
 Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
 
@@ -166,97 +181,6 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 
 ---
 
-## Install recipes
-
-Copy the one plugin you want, a whole phase, or the whole set. All install at **user scope**; uninstall any with `/plugin uninstall <name>`. _(In a terminal, the CLI equivalent of `/plugin install X` is `claude plugin install X`.)_
-
-### By workflow phase
-
-Grab an entire phase in one paste — expand a group:
-
-<details>
-<summary><b>🧰 Meta</b> · <b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
-
-```text
-# 🧰 Meta — install first; sits in front of every phase
-/plugin install prompt-builder@ai-ux-toolkit
-
-# 🔬 Research
-/plugin install research-planning@ai-ux-toolkit
-/plugin install ux-research@ai-ux-toolkit
-/plugin install competitive-analysis@ai-ux-toolkit
-
-# 📝 Define & plan
-/plugin install synthesis-artifacts@ai-ux-toolkit
-/plugin install design-planning@ai-ux-toolkit
-
-# 💡 Ideate
-/plugin install ideation@ai-ux-toolkit
-/plugin install prioritization@ai-ux-toolkit
-
-# 🗂️ Structure
-/plugin install information-architecture@ai-ux-toolkit
-
-# 🎨 Design
-/plugin install figma-design-system@ai-ux-toolkit
-/plugin install design-tokens@ai-ux-toolkit
-/plugin install frontend-design@ai-ux-toolkit
-/plugin install data-viz@ai-ux-toolkit
-```
-</details>
-
-<details>
-<summary><b>✍️ Content</b> · <b>✅ Check</b> · <b>🧪 Prototype</b> · <b>📦 Handoff &amp; docs</b> · <b>📈 Measure &amp; iterate</b></summary>
-
-```text
-# ✍️ Content
-/plugin install content-design@ai-ux-toolkit
-
-# ✅ Check
-/plugin install accessibility-heuristics@ai-ux-toolkit
-/plugin install design-review@ai-ux-toolkit
-/plugin install usability-testing@ai-ux-toolkit
-
-# 🧪 Prototype
-/plugin install rapid-prototyping@ai-ux-toolkit
-
-# 📦 Handoff & docs
-/plugin install handoff-docs@ai-ux-toolkit
-/plugin install brand-voice@ai-ux-toolkit
-/plugin install changelog-automation@ai-ux-toolkit
-
-# 📈 Measure & iterate
-/plugin install product-analytics@ai-ux-toolkit
-```
-</details>
-
-### The whole set
-
-**Everything (22 plugins)** — in Claude Code, just ask: **"Install all 22 plugins from the ai-ux-toolkit marketplace."** Or run in a terminal:
-```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         figma-design-system design-tokens frontend-design data-viz content-design \
-         accessibility-heuristics design-review usability-testing rapid-prototyping \
-         handoff-docs brand-voice changelog-automation product-analytics \
-         prompt-builder; do
-  claude plugin install "$p@ai-ux-toolkit"
-done
-```
-
-**Without Figma** — everything except the two hard Figma-MCP dependencies (`figma-design-system`, `changelog-automation`). Ask Claude *"install every ai-ux-toolkit plugin except the Figma-dependent ones,"* or run:
-```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         design-tokens frontend-design data-viz content-design accessibility-heuristics \
-         design-review usability-testing rapid-prototyping handoff-docs \
-         brand-voice product-analytics prompt-builder; do
-  claude plugin install "$p@ai-ux-toolkit"
-done
-```
-
----
-
 ## Which skill for which task?
 
 Most skills have an obvious lane — **just describe the outcome you want and Claude picks the right one.** This table is only for the handful of cases where two feel interchangeable.
@@ -346,7 +270,7 @@ Using a different client (VS Code, Cursor) or want deeper setup? Figma's own gui
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Every skill resolves the design system, tokens, voice, and config from the project it runs in. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty-two independent plugins; install only what you need. New here? Install `prompt-builder` first, then add whole phases from [Install recipes](#install-recipes).
+- **Pick à la carte.** Twenty-two independent plugins; install only what you need. New here? Install `prompt-builder` first, then ask Claude for whatever phase you're working in.
 - **First filter, not final word.** The expert checks and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing, assistive-tech testing, or design judgment.
 
 ## Attribution & third-party skills
