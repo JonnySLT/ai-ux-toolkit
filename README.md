@@ -10,7 +10,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 ---
 
-**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [Install recipes](#install-recipes) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
+**Jump to:** [Quick start](#quick-start) · [How to use it](#how-to-use-it) · [What's inside](#whats-inside--organized-by-workflow-phase) · [Install recipes](#install-recipes) · [Which skill for which task?](#which-skill-for-which-task) · [Requirements](#requirements) · [Connecting the Figma MCP](#connecting-the-figma-mcp) · [Maintaining](#maintaining-the-toolkit) · [Repository layout](#repository-layout)
 
 ---
 
@@ -28,15 +28,13 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 > *"Install all 22 plugins from the ai-ux-toolkit marketplace."*
 
-Claude runs the installs for you. (Prefer a terminal? Copy the one-block [**Everything** recipe](#install-recipes) below.)
-
-That's it for **any individual plugin**: `/plugin install <name>@ai-ux-toolkit`. Prefer to browse? Run **`/plugin`** for an interactive menu of the whole catalog. To grab a **whole workflow phase** or a **curated set** in one paste, see [Install recipes](#install-recipes) just below.
+Claude runs the installs for you. Prefer to browse? Run **`/plugin`** for an interactive menu. To grab a **whole workflow phase** or the **whole set** in one paste, see [Install recipes](#install-recipes).
 
 Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
 
 > The Figma-dependent plugins (`figma-design-system`, `changelog-automation`) also need Figma's MCP server connected — a one-time step: see [Connecting the Figma MCP](#connecting-the-figma-mcp). Everything else runs on Claude Code alone.
 
-> **Tip:** Skills trigger automatically from natural language (e.g. "synthesize these interviews", "give me 10 concepts", "check this for accessibility", "prototype this flow"). You don't call them by name — just describe what you want.
+> **Tip:** Skills trigger automatically from natural language (e.g. "synthesize these interviews", "give me 10 concepts", "check this for accessibility"). You don't call them by name — just describe what you want.
 
 ---
 
@@ -48,156 +46,16 @@ You **don't invoke skills by name.** Once a plugin is installed, its skills sit 
 
 > **You:** *"I ran 10 onboarding interviews (transcripts attached). Help me figure out what's broken and what to build."*
 
-Claude routes that through the workflow, picking skills by what each is *for*:
+Claude picks skills by what each is *for* — no skill named, each output feeding the next:
 
 1. **`research-synthesis`** → themes, pains, and opportunities from the transcripts
 2. **`personas`** / **`journey-map`** → who's affected and where the experience breaks
 3. **`prioritization`** → rank the opportunities so you know what to tackle first
 
-No skill was named — each was selected from its description, and each output fed the next (exactly the chain shown in the mini-demo we ran).
-
-**More prompts → the skill they trigger:**
-
-| You type… | Claude reaches for… |
-|---|---|
-| "Write an interview guide to understand churn" | `research-planning` |
-| "Give me 8 concepts for this empty state" | `divergent-exploration` |
-| "Is this button's contrast accessible?" | `accessibility-check` |
-| "What should this error message say?" | `content-design` |
-| "Turn this idea into a clickable prototype" | `rapid-prototype` |
-| "Write user stories for this design" | `user-stories` |
-| "Did the redesign actually work?" | `experimentation` / `measurement-plan` |
-
 **Steering it:**
 - **Want a specific skill?** Name it or use its trigger phrase (e.g. "run a *heuristic review*") and Claude uses that one.
 - **Want the whole guided build?** `design-flow` orchestrates the sequence brief → structure → tokens → build → review.
 - **Two skills feel similar?** See [Which skill for which task?](#which-skill-for-which-task) for the overlapping cases.
-
----
-
-## Install recipes
-
-Every line below is a **standalone install** — copy the one plugin you want, a whole phase, or a curated bundle. All install at **user scope**; uninstall any with `/plugin uninstall <name>`. _(In a terminal, the CLI equivalent of `/plugin install X` is `claude plugin install X`.)_
-
-### By workflow phase
-
-Grab an entire phase in one paste.
-
-<details open>
-<summary><b>🧰 Meta</b> · <b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
-
-```text
-# 🧰 Meta — install first; sits in front of every phase
-/plugin install prompt-builder@ai-ux-toolkit
-
-# 🔬 Research
-/plugin install research-planning@ai-ux-toolkit
-/plugin install ux-research@ai-ux-toolkit
-/plugin install competitive-analysis@ai-ux-toolkit
-
-# 📝 Define & plan
-/plugin install synthesis-artifacts@ai-ux-toolkit
-/plugin install design-planning@ai-ux-toolkit
-
-# 💡 Ideate
-/plugin install ideation@ai-ux-toolkit
-/plugin install prioritization@ai-ux-toolkit
-
-# 🗂️ Structure
-/plugin install information-architecture@ai-ux-toolkit
-
-# 🎨 Design
-/plugin install figma-design-system@ai-ux-toolkit
-/plugin install design-tokens@ai-ux-toolkit
-/plugin install frontend-design@ai-ux-toolkit
-/plugin install data-viz@ai-ux-toolkit
-```
-</details>
-
-<details open>
-<summary><b>✍️ Content</b> · <b>✅ Check</b> · <b>🧪 Prototype</b> · <b>📦 Handoff &amp; docs</b> · <b>📈 Measure &amp; iterate</b></summary>
-
-```text
-# ✍️ Content
-/plugin install content-design@ai-ux-toolkit
-
-# ✅ Check
-/plugin install accessibility-heuristics@ai-ux-toolkit
-/plugin install design-review@ai-ux-toolkit
-/plugin install usability-testing@ai-ux-toolkit
-
-# 🧪 Prototype
-/plugin install rapid-prototyping@ai-ux-toolkit
-
-# 📦 Handoff & docs
-/plugin install handoff-docs@ai-ux-toolkit
-/plugin install brand-voice@ai-ux-toolkit
-/plugin install changelog-automation@ai-ux-toolkit
-
-# 📈 Measure & iterate
-/plugin install product-analytics@ai-ux-toolkit
-```
-</details>
-
-### By need (curated bundles)
-
-**Everything** — all 22 plugins. Two ways, pick one:
-- *In Claude Code:* just ask — **"Install all 22 plugins from the ai-ux-toolkit marketplace"** — and Claude runs the installs.
-- *In a terminal:* paste this loop:
-```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         figma-design-system design-tokens frontend-design data-viz content-design \
-         accessibility-heuristics design-review usability-testing rapid-prototyping \
-         handoff-docs brand-voice changelog-automation product-analytics \
-         prompt-builder; do
-  claude plugin install "$p@ai-ux-toolkit"
-done
-```
-
-**Research & synthesis** — the whole front end, planning through define-artifacts:
-```text
-/plugin install research-planning@ai-ux-toolkit
-/plugin install ux-research@ai-ux-toolkit
-/plugin install competitive-analysis@ai-ux-toolkit
-/plugin install synthesis-artifacts@ai-ux-toolkit
-```
-
-**Content & copy** — the words and the states:
-```text
-/plugin install content-design@ai-ux-toolkit
-/plugin install brand-voice@ai-ux-toolkit
-```
-
-**Quality & validation** — expert audits + real-user testing:
-```text
-/plugin install accessibility-heuristics@ai-ux-toolkit
-/plugin install design-review@ai-ux-toolkit
-/plugin install usability-testing@ai-ux-toolkit
-```
-
-**Starter kit** — a lean set spanning the whole workflow:
-```text
-/plugin install ux-research@ai-ux-toolkit
-/plugin install ideation@ai-ux-toolkit
-/plugin install information-architecture@ai-ux-toolkit
-/plugin install frontend-design@ai-ux-toolkit
-/plugin install content-design@ai-ux-toolkit
-/plugin install accessibility-heuristics@ai-ux-toolkit
-/plugin install handoff-docs@ai-ux-toolkit
-```
-
-**Without Figma** — everything except the two hard Figma-MCP dependencies (`figma-design-system`, `changelog-automation`). Run in a terminal:
-```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         design-tokens frontend-design data-viz content-design accessibility-heuristics \
-         design-review usability-testing rapid-prototyping handoff-docs \
-         brand-voice product-analytics prompt-builder; do
-  claude plugin install "$p@ai-ux-toolkit"
-done
-```
-_(Or ask Claude: "Install every ai-ux-toolkit plugin except the Figma-dependent ones.")_
 
 ---
 
@@ -207,19 +65,13 @@ Twenty-two plugins (39 skills), grouped by where they fall in a typical design p
 
 ### 🧰 Meta — `prompt-builder`
 
-Not tied to any phase — it sits *in front of* all of them, so it leads the list. Install it first; it makes every other plugin easier to drive.
+Not tied to any phase — it sits *in front of* all of them. Install it first; it makes every other plugin easier to drive.
 
 | Skill | Use it to… |
 |---|---|
 | `prompt-builder` | Brief Claude properly before it starts: turn a rough ask into a complete, self-contained prompt via a short interview (or upgrade a pasted draft), then run it on the spot. Scans the project first so it never asks for what Claude can discover itself, and promotes standing rules into `CLAUDE.md`/memory so future prompts stay short. |
 
-**It also ships the toolkit's ask-first routing.** Claude only reads a `CLAUDE.md` at skill-selection time — not this README — so the "[Which skill for which task?](#which-skill-for-which-task)" guidance below would normally be inert. `prompt-builder` fixes that with a `SessionStart` hook that loads the overlap map into context automatically (**no setup, no editing your `CLAUDE.md`**). With it installed, an ambiguous request behaves like this:
-
-> **You:** *"Can you review this checkout screen?"*
->
-> **Claude:** "That could map to a few skills — which would you like? `accessibility-check` (WCAG) · `heuristic-review` (Nielsen) · `design-review` (broad critique) · `usability-testing` (real users). These overlap on 'review' — tell me which, or say 'general feedback' and I'll run `design-review`."
-
-Unambiguous requests ("check this contrast ratio") still route straight through — no needless question. On by default once installed; to turn it off, uninstall `prompt-builder`. *(Prefer to scope routing to a single project, or customize the overlaps by hand? A manual `CLAUDE.md` snippet lives in [`templates/CLAUDE.md`](templates/CLAUDE.md) as an alternative to the hook.)*
+> **It also ships the toolkit's ask-first routing.** A `SessionStart` hook auto-loads the overlap map (below) into context — so when a request could map to more than one skill, Claude names the options and asks which you want, instead of silently picking. Zero setup; on by default once installed. *(A manual, project-scoped alternative lives in [`templates/CLAUDE.md`](templates/CLAUDE.md).)*
 
 ### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`
 
@@ -259,18 +111,16 @@ Unambiguous requests ("check this contrast ratio") still route straight through 
 | `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the [Figma MCP server](#connecting-the-figma-mcp)** (`use_figma`); the rest don't.
+The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the [Figma MCP server](#connecting-the-figma-mcp)**; the rest don't.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `figma-designer` | figma-design-system | Senior-designer knowledge for building accessible, consistent, polished UI in Figma. |
 | `reattach` | figma-design-system | Audit a raw/detached Figma frame and reconnect it to the design system — variables, text styles, and component instances (all discovered at runtime). |
-| `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes. |
+| `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). |
 | `design-tokens` **†** | design-tokens | Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens. |
 | `frontend-design` **†** | frontend-design | Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. |
 | `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible color, honest scales, and glanceable layouts. Tool-agnostic. |
-
-> `annotate` uses the **`Annotation` component that lives in the file you're annotating** — it never pulls from another file. If the file has none, it offers to build one bound to that project's own tokens. Annotation cards always sit **32px** from the frame.
 
 ### ✍️ Content — `content-design`
 
@@ -289,13 +139,13 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `design-review` **†** | design-review | Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. |
 | `usability-testing` | usability-testing | Plan, moderate, and analyze a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings. |
 
-> `accessibility-check`, `heuristic-review`, and `design-review` are **expert** first-filters — fast, no users. `usability-testing` is the **empirical** counterpart that puts a real person in front of the design. Use both: experts predict problems, users prove them.
+> The first four are **expert** first-filters — fast, no users. `usability-testing` is the **empirical** counterpart that puts a real person in front of the design. Use both.
 
 ### 🧪 Prototype — `rapid-prototyping`
 
 | Skill | Use it to… |
 |---|---|
-| `rapid-prototype` | Turn a rough idea, brief, or sketch into a **throwaway, clickable** prototype — runnable front-end code verified live in the browser preview, so you can test real interaction instead of static comps. (For **production-grade** builds, use `frontend-design` above.) |
+| `rapid-prototype` | Turn a rough idea, brief, or sketch into a **throwaway, clickable** prototype — runnable front-end code verified live in the browser preview, so you can test real interaction instead of static comps. (For **production-grade** builds, use `frontend-design`.) |
 
 ### 📦 Handoff & docs — `handoff-docs`, `brand-voice`, `changelog-automation`
 
@@ -304,10 +154,8 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `component-spec` | handoff-docs | Draft a dev-ready spec for one component — anatomy, variants, states, props, tokens, a11y, do/don't — from Figma, code, or a description. |
 | `design-system-docs` | handoff-docs | Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile. |
 | `user-stories` | handoff-docs | Turn a design or brief into agile user stories ("As a… I want… so that…") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices. |
-| `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice. Loads the voice profile from the project (a brand file, or a quick interview) and applies it — works for any brand or industry. |
-| `design-system-changelog-sweep` | changelog-automation | Diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page. Built to run on a schedule. |
-
-`changelog-automation` includes `scripts/figma-fingerprint.js` — the canonical fingerprint algorithm — and resolves the target file key, script, and rules from the **project's own config** (`CLAUDE.md`/`AGENTS.md`), so the same routine works across every project. Schedule it weekly with `/schedule`. **Requires the Figma MCP server.**
+| `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice — loaded from a brand file or a quick interview, so it works for any brand. |
+| `design-system-changelog-sweep` | changelog-automation | Diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page. Built to run weekly via `/schedule`. **Requires the Figma MCP.** |
 
 ### 📈 Measure & iterate — `product-analytics`
 
@@ -316,7 +164,96 @@ The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the 
 | `measurement-plan` | Plan instrumentation (events, funnels, cohorts) to capture your metrics, then interpret the results to judge whether a shipped design worked — and turn surprises into the next research question, closing the loop back to Research. |
 | `experimentation` | Design and interpret A/B tests — hypothesis, primary metric + guardrails, sample size / MDE and run-time, and a disciplined read-out (significance, confidence intervals, peeking, novelty, segments). |
 
-> Pairs with `success-metrics` (which *defines* the targets before build) and complements `changelog-automation` (which tracks *design-system* drift, not product outcomes).
+---
+
+## Install recipes
+
+Copy the one plugin you want, a whole phase, or the whole set. All install at **user scope**; uninstall any with `/plugin uninstall <name>`. _(In a terminal, the CLI equivalent of `/plugin install X` is `claude plugin install X`.)_
+
+### By workflow phase
+
+Grab an entire phase in one paste — expand a group:
+
+<details>
+<summary><b>🧰 Meta</b> · <b>🔬 Research</b> · <b>📝 Define &amp; plan</b> · <b>💡 Ideate</b> · <b>🗂️ Structure</b> · <b>🎨 Design</b></summary>
+
+```text
+# 🧰 Meta — install first; sits in front of every phase
+/plugin install prompt-builder@ai-ux-toolkit
+
+# 🔬 Research
+/plugin install research-planning@ai-ux-toolkit
+/plugin install ux-research@ai-ux-toolkit
+/plugin install competitive-analysis@ai-ux-toolkit
+
+# 📝 Define & plan
+/plugin install synthesis-artifacts@ai-ux-toolkit
+/plugin install design-planning@ai-ux-toolkit
+
+# 💡 Ideate
+/plugin install ideation@ai-ux-toolkit
+/plugin install prioritization@ai-ux-toolkit
+
+# 🗂️ Structure
+/plugin install information-architecture@ai-ux-toolkit
+
+# 🎨 Design
+/plugin install figma-design-system@ai-ux-toolkit
+/plugin install design-tokens@ai-ux-toolkit
+/plugin install frontend-design@ai-ux-toolkit
+/plugin install data-viz@ai-ux-toolkit
+```
+</details>
+
+<details>
+<summary><b>✍️ Content</b> · <b>✅ Check</b> · <b>🧪 Prototype</b> · <b>📦 Handoff &amp; docs</b> · <b>📈 Measure &amp; iterate</b></summary>
+
+```text
+# ✍️ Content
+/plugin install content-design@ai-ux-toolkit
+
+# ✅ Check
+/plugin install accessibility-heuristics@ai-ux-toolkit
+/plugin install design-review@ai-ux-toolkit
+/plugin install usability-testing@ai-ux-toolkit
+
+# 🧪 Prototype
+/plugin install rapid-prototyping@ai-ux-toolkit
+
+# 📦 Handoff & docs
+/plugin install handoff-docs@ai-ux-toolkit
+/plugin install brand-voice@ai-ux-toolkit
+/plugin install changelog-automation@ai-ux-toolkit
+
+# 📈 Measure & iterate
+/plugin install product-analytics@ai-ux-toolkit
+```
+</details>
+
+### The whole set
+
+**Everything (22 plugins)** — in Claude Code, just ask: **"Install all 22 plugins from the ai-ux-toolkit marketplace."** Or run in a terminal:
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         figma-design-system design-tokens frontend-design data-viz content-design \
+         accessibility-heuristics design-review usability-testing rapid-prototyping \
+         handoff-docs brand-voice changelog-automation product-analytics \
+         prompt-builder; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
+
+**Without Figma** — everything except the two hard Figma-MCP dependencies (`figma-design-system`, `changelog-automation`). Ask Claude *"install every ai-ux-toolkit plugin except the Figma-dependent ones,"* or run:
+```bash
+for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+         design-planning ideation prioritization information-architecture \
+         design-tokens frontend-design data-viz content-design accessibility-heuristics \
+         design-review usability-testing rapid-prototyping handoff-docs \
+         brand-voice product-analytics prompt-builder; do
+  claude plugin install "$p@ai-ux-toolkit"
+done
+```
 
 ---
 
@@ -372,13 +309,45 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ---
 
-## Roadmap
+## Requirements
 
-Both coverage audits' gaps are now shipped — research planning & stakeholder interviews, insight repository, synthesis artifacts (personas / empathy maps / journeys / **service blueprints** / metrics), prioritization, facilitation, content design, edge-case enumeration, **inclusive design**, usability testing, **data visualization**, user stories, **experimentation (A/B)**, and post-launch measurement.
+- **Claude Code** with plugin support.
+- **Figma MCP server** for `figma-design-system` and `changelog-automation`, and for the optional Figma-output paths of `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs`. See [Connecting the Figma MCP](#connecting-the-figma-mcp).
+- **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
+- **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
+- **Everything else needs nothing beyond Claude Code** — the research, define, ideate, content, metrics, and `prompt-builder` plugins all run on their own.
+- For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
 
-Possible future directions: **design-ops** automation, deeper **quant/survey statistics**, and **motion/interaction** specs. Nothing here is a coverage gap — the workflow is complete end to end.
+## Connecting the Figma MCP
 
----
+A few things here talk to Figma through Figma's **MCP server** — a remote connector you authorize once. It is **not part of this marketplace**: you connect it, you don't install it, and it brings both its own tools *and its own skills*.
+
+**There are two different sets of "Figma skills" — don't confuse them:**
+
+| Set | Where it lives | Skills |
+|---|---|---|
+| **This toolkit's Figma plugins** | Installed from **this** marketplace; they *call* the Figma MCP to do their work | `figma-design-system` → `figma-designer`, `reattach`, `annotate`; `changelog-automation` → `design-system-changelog-sweep` |
+| **The Figma MCP's own skills** | **Part of the Figma MCP itself** — they arrive *with the connection*, **not** from this marketplace | `figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect` |
+
+So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
+
+Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
+
+### Connect it (once)
+
+The Figma MCP is a **hosted remote server** (`https://mcp.figma.com/mcp`) — **nothing to download**. You add the connection and sign in with your Figma account:
+
+1. **Add the server** (from a terminal): `claude mcp add --transport http figma https://mcp.figma.com/mcp` — or through your client's connector settings / `/mcp`.
+2. **Authorize** via the Figma OAuth prompt the first time a Figma tool is used.
+3. **Done** — the Figma-dependent plugins now work.
+
+Using a different client (VS Code, Cursor) or want deeper setup? Figma's own guide has per-client instructions: <https://github.com/figma/mcp-server-guide>.
+
+## How it's designed to stay reusable
+
+- **No hardcoded files or companies.** Every skill resolves the design system, tokens, voice, and config from the project it runs in. Drop any plugin into a new project and it adapts.
+- **Pick à la carte.** Twenty-two independent plugins; install only what you need. New here? Install `prompt-builder` first, then add whole phases from [Install recipes](#install-recipes).
+- **First filter, not final word.** The expert checks and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing, assistive-tech testing, or design judgment.
 
 ## Attribution & third-party skills
 
@@ -393,85 +362,21 @@ Five plugins bundle skills that are **not original to this toolkit**. They are v
 | `design-review` | `design-review` |
 
 - **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>
-- **Source:** <https://github.com/julianoczkowski/designer-skills>
-- **License:** Apache-2.0. A copy of the license ships in each of the five plugin directories (`plugins/<name>/LICENSE`). The skill files are unmodified; only packaging (`plugin.json`, `README.md`) was added to make them installable through this marketplace.
+- **License:** Apache-2.0. A copy ships in each of the five plugin directories (`plugins/<name>/LICENSE`). The skill files are unmodified; only packaging (`plugin.json`, `README.md`) was added to make them installable here.
 
-His set is the convergent **build pipeline** (brief → structure → tokens → build → review); this toolkit's original plugins cover the bookends — research and ideation up front, dedicated auditing, prototyping, and handoff at the back. They're designed to interlock.
+His set is the convergent **build pipeline** (brief → structure → tokens → build → review); this toolkit's original plugins cover the bookends — research and ideation up front, dedicated auditing, prototyping, and handoff at the back. *(Prefer his skills straight from source, with automatic updates? `npx skills add julianoczkowski/designer-skills`.)*
 
-> Prefer to pull his skills straight from source (and get his updates automatically)? Install them directly instead: `npx skills add julianoczkowski/designer-skills`.
-
-### Staying in sync with upstream
-
-Because these skills are a **point-in-time copy**, they don't automatically get Julian's later updates. To catch that drift, the repo ships an automated cross-reference:
-
-- **`.vendor/designer-skills.lock.json`** records exactly which upstream commit each skill was vendored from, plus a content hash per file.
-- **`scripts/check-upstream-skills.mjs`** clones the live upstream repo and diffs it against the vendored copies. Run it any time:
-  ```text
-  node scripts/check-upstream-skills.mjs            # prints a drift report
-  node scripts/check-upstream-skills.mjs --fail-on-drift   # non-zero exit if drift (for CI/hooks)
-  ```
-  It flags changed, removed, or locally-modified skills (with diffs) and **new upstream skills** you haven't vendored yet.
-- **`.github/workflows/check-upstream-skills.yml`** runs that check **weekly** (Mondays) and on demand, and opens/updates a GitHub issue when anything drifts — so you get a nudge to re-sync rather than silently falling behind.
-
-**To re-sync** after a nudge: re-copy the changed upstream `SKILL.md` file(s) into their vendored paths (keep them verbatim), then update `synced.commit`, `synced.date`, and the affected `sha256` in the lockfile. Re-run the check to confirm it's green.
-
----
-
-## Requirements
-
-- **Claude Code** with plugin support.
-- **Figma MCP server** (`use_figma`) for `figma-design-system` and `changelog-automation`, and for the optional Figma-output paths of `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs`. See [Connecting the Figma MCP](#connecting-the-figma-mcp).
-- **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
-- **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
-- Most plugins need nothing beyond Claude Code — including `research-planning`, `ux-research`, `synthesis-artifacts`, `ideation`, `prioritization`, `design-planning`, `information-architecture`, `content-design`, `data-viz`, `usability-testing`, `product-analytics`, `brand-voice`, `prompt-builder`, `inclusive-design`, and `heuristic-review`.
-- For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
-
-## Connecting the Figma MCP
-
-A few things here talk to Figma through Figma's **MCP server** — a remote connector you authorise once. It is **not part of this marketplace**: you connect it, you don't install it, and it brings both its own tools *and its own skills*.
-
-**There are two different sets of "Figma skills" — don't confuse them:**
-
-| Set | Where it lives | Skills |
-|---|---|---|
-| **This toolkit's Figma plugins** | Installed from **this** marketplace; they *call* the Figma MCP to do their work | `figma-design-system` → `figma-designer`, `reattach`, `annotate`; `changelog-automation` → `design-system-changelog-sweep` |
-| **The Figma MCP's own skills** | **Part of the Figma MCP itself** — they arrive *with the connection*, **not** from this marketplace (you can't install them here) | `figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect` |
-
-So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
-
-Two more plugins use the MCP *optionally*: `research-synthesis`, `competitive-analysis`, `synthesis-artifacts`, and `handoff-docs` can *push results to a Figma doc page* if it's connected — but work fine without it.
-
-Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
-
-### Connect it (once)
-
-The Figma MCP is a **hosted remote server** (`https://mcp.figma.com/mcp`) — there's **nothing to download or install**. You just add the connection and sign in with your Figma account.
-
-1. **Add the server** (from a terminal):
-   ```bash
-   claude mcp add --transport http figma https://mcp.figma.com/mcp
-   ```
-   Or add it through your client's connector settings / `/mcp`.
-2. **Authorise** — sign in via the Figma OAuth prompt the first time a Figma tool is used.
-3. **Done** — `figma-design-system`, `changelog-automation`, and the optional Figma-output paths now work.
-
-Using a different client (VS Code, Cursor, etc.) or want deeper setup and best practices? Figma's own guide has per-client instructions: <https://github.com/figma/mcp-server-guide>.
-
-## How it's designed to stay reusable
-
-- **No hardcoded files or companies.** Figma skills resolve components/tokens from the current file; the research and ideation skills read whatever you point them at; the voice skill loads a per-project profile; the changelog routine reads the project's own config. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty-two independent plugins; install only what you need, disable individual skills if you want even less. New here? Start with the **Starter kit** in [Install recipes](#install-recipes).
-- **First filter, not final word.** The expert checks (`accessibility-check`, `heuristic-review`, `design-review`, `inclusive-design`) and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing (`usability-testing`), assistive-tech testing, or design judgment.
+**Staying in sync:** because these are a point-in-time copy, `scripts/check-upstream-skills.mjs` (run weekly by `.github/workflows/check-upstream-skills.yml`, and on demand) diffs the vendored copies against live upstream via the hashes in `.vendor/designer-skills.lock.json`, and opens a GitHub issue when anything drifts. Re-sync = re-copy the changed `SKILL.md` verbatim + update the lockfile.
 
 ## Maintaining the toolkit
 
 For anyone on the team editing or extending this repo:
 
-- **Before committing:** run `node scripts/validate.mjs` — the same structural check CI runs on every push/PR (manifests, name matches, frontmatter, licenses, install lines).
+- **Before committing:** run `node scripts/validate.mjs` — the same structural check CI runs on every push/PR (manifests, name matches, frontmatter, licenses, install lines, hooks).
 - **After adding a skill or editing any description:** run `node scripts/route-eval.mjs` to confirm skill routing still lands (~20 model calls; a single `NONE` miss is usually sampling noise — rerun that prompt before editing anything).
-- **Never edit the five vendored † plugins' skill files** — they're kept byte-identical to upstream (pinned in `.vendor/designer-skills.lock.json`). The weekly workflow opens a GitHub issue when the upstream author ships changes; re-syncing = re-copy the changed files verbatim + update the lockfile.
+- **Never edit the five vendored † plugins' skill files** — they're kept byte-identical to upstream (pinned in `.vendor/designer-skills.lock.json`). The weekly workflow flags upstream changes; re-syncing = re-copy verbatim + update the lockfile.
 - **Adding a plugin:** follow the existing shape (`.claude-plugin/plugin.json` + `README.md` ending in its install line + `skills/<name>/SKILL.md`), register it in `.claude-plugin/marketplace.json`, and add it to this README's install recipes and phase tables — `validate.mjs` enforces most of this.
-- **Bump the marketplace `version`** in `.claude-plugin/marketplace.json` on any catalog change, so `/plugin marketplace update` picks it up cleanly.
+- **Bump the marketplace `version`** in `.claude-plugin/marketplace.json` on any catalog change.
 
 ## Repository layout
 
@@ -481,33 +386,33 @@ ai-ux-toolkit/
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)
-├── scripts/route-eval.mjs              # measures skill-routing accuracy (run after editing descriptions; uses claude -p)
+├── scripts/route-eval.mjs              # measures skill-routing accuracy (run after editing descriptions)
 ├── scripts/check-upstream-skills.mjs   # cross-references vendored skills against upstream
 ├── templates/CLAUDE.md                 # manual/project-scoped alternative for ask-first routing (the prompt-builder hook does this automatically)
 ├── README.md                           # this file
 └── plugins/
-    ├── research-planning/               # original — research-planning
-    ├── ux-research/                     # original — research-synthesis, research-repository
-    ├── competitive-analysis/            # original — competitive-analysis
-    ├── synthesis-artifacts/             # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
-    ├── ideation/                        # original — divergent-exploration, facilitation
-    ├── prioritization/                  # original — prioritization
-    ├── figma-design-system/             # original — figma-designer, reattach, annotate
-    ├── data-viz/                        # original — data-visualization
-    ├── content-design/                  # original — content-design, states-and-edge-cases
-    ├── accessibility-heuristics/        # original — inclusive-design, accessibility-check, heuristic-review
-    ├── usability-testing/               # original — usability-testing
-    ├── rapid-prototyping/               # original — rapid-prototype
-    ├── handoff-docs/                    # original — component-spec, design-system-docs, user-stories
-    ├── brand-voice/                     # original — brand-voice-tone
-    ├── changelog-automation/            # original — design-system-changelog-sweep (+ scripts/figma-fingerprint.js)
-    ├── product-analytics/               # original — measurement-plan, experimentation
-    ├── prompt-builder/                  # original — prompt-builder (meta: better briefs for everything)
-    ├── design-planning/                 # vendored † — design-brief, grill-me, brief-to-tasks, design-flow
-    ├── information-architecture/        # vendored † — information-architecture
-    ├── design-tokens/                   # vendored † — design-tokens
-    ├── frontend-design/                 # vendored † — frontend-design
-    └── design-review/                   # vendored † — design-review
+    ├── research-planning/              # original — research-planning
+    ├── ux-research/                    # original — research-synthesis, research-repository
+    ├── competitive-analysis/           # original — competitive-analysis
+    ├── synthesis-artifacts/            # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
+    ├── ideation/                       # original — divergent-exploration, facilitation
+    ├── prioritization/                 # original — prioritization
+    ├── figma-design-system/            # original — figma-designer, reattach, annotate
+    ├── data-viz/                       # original — data-visualization
+    ├── content-design/                 # original — content-design, states-and-edge-cases
+    ├── accessibility-heuristics/       # original — inclusive-design, accessibility-check, heuristic-review
+    ├── usability-testing/              # original — usability-testing
+    ├── rapid-prototyping/              # original — rapid-prototype
+    ├── handoff-docs/                   # original — component-spec, design-system-docs, user-stories
+    ├── brand-voice/                    # original — brand-voice-tone
+    ├── changelog-automation/           # original — design-system-changelog-sweep (+ scripts/figma-fingerprint.js)
+    ├── product-analytics/              # original — measurement-plan, experimentation
+    ├── prompt-builder/                 # original — prompt-builder (meta: better briefs + ask-first routing hook)
+    ├── design-planning/                # vendored † — design-brief, grill-me, brief-to-tasks, design-flow
+    ├── information-architecture/       # vendored † — information-architecture
+    ├── design-tokens/                  # vendored † — design-tokens
+    ├── frontend-design/                # vendored † — frontend-design
+    └── design-review/                  # vendored † — design-review
 ```
 
 _(Each plugin has `.claude-plugin/plugin.json`, its own `README.md`, and a `skills/<name>/SKILL.md` per skill. The five **†** vendored plugins also carry a `LICENSE` (Apache-2.0).)_
