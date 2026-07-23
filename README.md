@@ -248,16 +248,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ## Connecting the Figma MCP
 
-A few things here talk to Figma through Figma's **MCP server** — a remote connector you authorize once. It is **not part of this marketplace**: you connect it, you don't install it, and it brings both its own tools *and its own skills*.
-
-**There are two different sets of "Figma skills" — don't confuse them:**
-
-| Set | Where it lives | Skills |
-|---|---|---|
-| **This toolkit's Figma plugins** | Installed from **this** marketplace; they *call* the Figma MCP to do their work | `figma-design-system` → `figma-designer`, `reattach`, `annotate`; `changelog-automation` → `design-system-changelog-sweep` |
-| **The Figma MCP's own skills** | **Part of the Figma MCP itself** — they arrive *with the connection*, **not** from this marketplace | `figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect` |
-
-So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync). You'll also find these four in [What's inside](#whats-inside--organized-by-workflow-phase), marked **§**, so the whole Figma workflow reads in one place.
+A few skills talk to Figma through Figma's **MCP server** — a remote connector you authorize once, **not** part of this marketplace: you connect it, you don't install it. It also brings its own skills (`figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect`) — the **§** rows in [What's inside](#whats-inside--organized-by-workflow-phase). Figma maintains and versions those against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
 
 Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
 
