@@ -76,7 +76,7 @@ Claude picks skills by what each is *for* — no skill named, each output feedin
 
 ## What's inside — organized by workflow phase
 
-Twenty-two plugins (39 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills).
+Twenty-two plugins (39 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
 
 ### 🧰 Meta — `prompt-builder`
 
@@ -126,13 +126,17 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-The three Figma skills (`figma-designer`, `reattach`, `annotate`) **require the [Figma MCP server](#connecting-the-figma-mcp)**; the rest don't.
+`figma-designer`, `reattach`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this marketplace. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `figma-designer` | figma-design-system | Senior-designer knowledge for building accessible, consistent, polished UI in Figma. |
 | `reattach` | figma-design-system | Audit a raw/detached Figma frame and reconnect it to the design system — variables, text styles, and component instances (all discovered at runtime). |
 | `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). |
+| `figma-use` **§** | Figma MCP | The low-level engine behind every Figma canvas write — create/edit/delete nodes, set up variables & tokens, build components/variants, and wire auto-layout, fills, and variable bindings. Most other Figma work calls it under the hood. |
+| `figma-generate-design` **§** | Figma MCP | Turn an app page, view, or multi-section layout — from code or a description — into a Figma screen, reusing your design system's components, variables, and styles section by section. |
+| `figma-generate-library` **§** | Figma MCP | Build or update a full design system *in* Figma from a codebase — variables/tokens, component libraries, light/dark theming, and documented foundations. |
+| `figma-code-connect` **§** | Figma MCP | Create and maintain Code Connect files (`.figma.ts` / `.figma.js`) that map Figma components to their code snippets, for design-to-code translation. |
 | `design-tokens` **†** | design-tokens | Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens. |
 | `frontend-design` **†** | frontend-design | Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. |
 | `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible color, honest scales, and glanceable layouts. Tool-agnostic. |
@@ -253,7 +257,7 @@ A few things here talk to Figma through Figma's **MCP server** — a remote conn
 | **This toolkit's Figma plugins** | Installed from **this** marketplace; they *call* the Figma MCP to do their work | `figma-design-system` → `figma-designer`, `reattach`, `annotate`; `changelog-automation` → `design-system-changelog-sweep` |
 | **The Figma MCP's own skills** | **Part of the Figma MCP itself** — they arrive *with the connection*, **not** from this marketplace | `figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect` |
 
-So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
+So `figma-use` and friends are **Figma's**, provided by the MCP; this toolkit only ships the plugins in the first row. Figma maintains and versions its own skills against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync). You'll also find these four in [What's inside](#whats-inside--organized-by-workflow-phase), marked **§**, so the whole Figma workflow reads in one place.
 
 Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
 
