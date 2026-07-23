@@ -1,0 +1,579 @@
+{
+  "generatedFrom": "ai-ux-toolkit README files",
+  "phases": [
+    {
+      "num": "01",
+      "emoji": "🧰",
+      "name": "Meta",
+      "plugins": [
+        "prompt-builder"
+      ],
+      "skills": [
+        {
+          "skill": "prompt-builder",
+          "marker": null,
+          "plugin": null,
+          "desc": "Brief Claude properly before it starts: turn a rough ask into a complete, self-contained prompt via a short interview (or upgrade a pasted draft), then run it on the spot. Scans the project first so it never asks for what Claude can discover itself, and promotes standing rules into `CLAUDE.md`/memory so future prompts stay short."
+        }
+      ]
+    },
+    {
+      "num": "02",
+      "emoji": "🔬",
+      "name": "Research",
+      "plugins": [
+        "research-planning",
+        "ux-research",
+        "competitive-analysis"
+      ],
+      "skills": [
+        {
+          "skill": "research-planning",
+          "marker": null,
+          "plugin": "research-planning",
+          "desc": "Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes)."
+        },
+        {
+          "skill": "research-synthesis",
+          "marker": null,
+          "plugin": "ux-research",
+          "desc": "Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritized opportunities. The coding pass that would take hours by hand."
+        },
+        {
+          "skill": "research-repository",
+          "marker": null,
+          "plugin": "ux-research",
+          "desc": "Set up and maintain a repository of atomic, tagged, evidence-linked insights (with a taxonomy) so past research stays findable and reusable across studies."
+        },
+        {
+          "skill": "competitive-analysis",
+          "marker": null,
+          "plugin": "competitive-analysis",
+          "desc": "Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page."
+        }
+      ]
+    },
+    {
+      "num": "03",
+      "emoji": "📝",
+      "name": "Define & plan",
+      "plugins": [
+        "synthesis-artifacts",
+        "design-planning"
+      ],
+      "skills": [
+        {
+          "skill": "personas",
+          "marker": null,
+          "plugin": "synthesis-artifacts",
+          "desc": "Build evidence-based personas & JTBD statements from real research (flags thin data instead of inventing demographics)."
+        },
+        {
+          "skill": "empathy-map",
+          "marker": null,
+          "plugin": "synthesis-artifacts",
+          "desc": "A fast Says / Thinks / Does / Feels (+ Pains & Gains) snapshot that surfaces contradictions and design implications."
+        },
+        {
+          "skill": "journey-map",
+          "marker": null,
+          "plugin": "synthesis-artifacts",
+          "desc": "Map an end-to-end experience — stages, actions, thoughts, emotion curve, pain points, and opportunities."
+        },
+        {
+          "skill": "service-blueprint",
+          "marker": null,
+          "plugin": "synthesis-artifacts",
+          "desc": "Extend a journey with the behind-the-scenes layers (frontstage, backstage, support systems) to expose fail points, handoffs, and ownership gaps."
+        },
+        {
+          "skill": "success-metrics",
+          "marker": null,
+          "plugin": "synthesis-artifacts",
+          "desc": "Define what success looks like *before* building — HEART and goal → signal → metric, with guardrail metrics."
+        },
+        {
+          "skill": "design-brief",
+          "marker": "†",
+          "plugin": "design-planning",
+          "desc": "Create a design brief through an interactive interview, codebase exploration, and experience-design decisions."
+        },
+        {
+          "skill": "grill-me",
+          "marker": "†",
+          "plugin": "design-planning",
+          "desc": "Get interviewed relentlessly about a plan or design until you reach shared understanding."
+        },
+        {
+          "skill": "brief-to-tasks",
+          "marker": "†",
+          "plugin": "design-planning",
+          "desc": "Break a brief into an ordered checklist of independently buildable tasks (vertical slices)."
+        },
+        {
+          "skill": "design-flow",
+          "marker": "†",
+          "plugin": "design-planning",
+          "desc": "The full design-to-build orchestrator — runs the whole sequence from grilling through review. Expects the other vendored plugins installed."
+        }
+      ]
+    },
+    {
+      "num": "04",
+      "emoji": "💡",
+      "name": "Ideate",
+      "plugins": [
+        "ideation",
+        "prioritization"
+      ],
+      "skills": [
+        {
+          "skill": "divergent-exploration",
+          "marker": null,
+          "plugin": "ideation",
+          "desc": "Generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options — spanning safe → bold — so you break fixation early and edit rather than start blank."
+        },
+        {
+          "skill": "facilitation",
+          "marker": null,
+          "plugin": "ideation",
+          "desc": "Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture."
+        },
+        {
+          "skill": "prioritization",
+          "marker": null,
+          "plugin": "prioritization",
+          "desc": "Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced."
+        }
+      ]
+    },
+    {
+      "num": "05",
+      "emoji": "🗂️",
+      "name": "Structure",
+      "plugins": [
+        "information-architecture"
+      ],
+      "skills": [
+        {
+          "skill": "information-architecture",
+          "marker": "†",
+          "plugin": null,
+          "desc": "Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows."
+        }
+      ]
+    },
+    {
+      "num": "06",
+      "emoji": "🎨",
+      "name": "Design",
+      "plugins": [
+        "figma-design-system",
+        "design-tokens",
+        "frontend-design",
+        "data-viz"
+      ],
+      "skills": [
+        {
+          "skill": "figma-designer",
+          "marker": null,
+          "plugin": "figma-design-system",
+          "desc": "Senior-designer knowledge for building accessible, consistent, polished UI in Figma."
+        },
+        {
+          "skill": "reattach",
+          "marker": null,
+          "plugin": "figma-design-system",
+          "desc": "Audit a raw/detached Figma frame and reconnect it to the design system — variables, text styles, and component instances (all discovered at runtime)."
+        },
+        {
+          "skill": "annotate",
+          "marker": null,
+          "plugin": "figma-design-system",
+          "desc": "Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame)."
+        },
+        {
+          "skill": "figma-use",
+          "marker": "§",
+          "plugin": "Figma MCP",
+          "desc": "The low-level engine behind every Figma canvas write — create/edit/delete nodes, set up variables & tokens, build components/variants, and wire auto-layout, fills, and variable bindings. Most other Figma work calls it under the hood."
+        },
+        {
+          "skill": "figma-generate-design",
+          "marker": "§",
+          "plugin": "Figma MCP",
+          "desc": "Turn an app page, view, or multi-section layout — from code or a description — into a Figma screen, reusing your design system's components, variables, and styles section by section."
+        },
+        {
+          "skill": "figma-generate-library",
+          "marker": "§",
+          "plugin": "Figma MCP",
+          "desc": "Build or update a full design system *in* Figma from a codebase — variables/tokens, component libraries, light/dark theming, and documented foundations."
+        },
+        {
+          "skill": "figma-code-connect",
+          "marker": "§",
+          "plugin": "Figma MCP",
+          "desc": "Create and maintain Code Connect files (`.figma.ts` / `.figma.js`) that map Figma components to their code snippets, for design-to-code translation."
+        },
+        {
+          "skill": "design-tokens",
+          "marker": "†",
+          "plugin": "design-tokens",
+          "desc": "Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens."
+        },
+        {
+          "skill": "frontend-design",
+          "marker": "†",
+          "plugin": "frontend-design",
+          "desc": "Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies."
+        },
+        {
+          "skill": "data-visualization",
+          "marker": null,
+          "plugin": "data-viz",
+          "desc": "Design clear, accessible charts and dashboards — the right chart for the question, accessible color, honest scales, and glanceable layouts. Tool-agnostic."
+        }
+      ]
+    },
+    {
+      "num": "07",
+      "emoji": "✍️",
+      "name": "Content",
+      "plugins": [
+        "content-design"
+      ],
+      "skills": [
+        {
+          "skill": "content-design",
+          "marker": null,
+          "plugin": null,
+          "desc": "Write functional UI microcopy systematically — errors, empty states, buttons, labels, confirmations, onboarding. Decides *what to say*; pair with `brand-voice` for tone."
+        },
+        {
+          "skill": "states-and-edge-cases",
+          "marker": null,
+          "plugin": null,
+          "desc": "Enumerate every state and edge case a screen must handle (empty, loading, error, offline, permission, overflow…) so they're designed on purpose, not found in production."
+        }
+      ]
+    },
+    {
+      "num": "08",
+      "emoji": "✅",
+      "name": "Check",
+      "plugins": [
+        "accessibility-heuristics",
+        "design-review",
+        "usability-testing"
+      ],
+      "skills": [
+        {
+          "skill": "inclusive-design",
+          "marker": null,
+          "plugin": "accessibility-heuristics",
+          "desc": "Design accessibly **from the start** — for the range of human ability (vision, motor, hearing, cognitive, situational), baking WCAG into decisions before build."
+        },
+        {
+          "skill": "accessibility-check",
+          "marker": null,
+          "plugin": "accessibility-heuristics",
+          "desc": "First-pass WCAG check on a screenshot, Figma frame, URL, or code — contrast, labels, focus, target size, structure. Cites the success criterion and a fix per finding."
+        },
+        {
+          "skill": "heuristic-review",
+          "marker": null,
+          "plugin": "accessibility-heuristics",
+          "desc": "Evaluate a screen or flow against Nielsen's 10 usability heuristics, scored by severity with concrete fixes."
+        },
+        {
+          "skill": "design-review",
+          "marker": "†",
+          "plugin": "design-review",
+          "desc": "Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity."
+        },
+        {
+          "skill": "usability-testing",
+          "marker": null,
+          "plugin": "usability-testing",
+          "desc": "Plan, moderate, and analyze a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings."
+        }
+      ]
+    },
+    {
+      "num": "09",
+      "emoji": "🧪",
+      "name": "Prototype",
+      "plugins": [
+        "rapid-prototyping"
+      ],
+      "skills": [
+        {
+          "skill": "rapid-prototype",
+          "marker": null,
+          "plugin": null,
+          "desc": "Turn a rough idea, brief, or sketch into a **throwaway, clickable** prototype — runnable front-end code verified live in the browser preview, so you can test real interaction instead of static comps. (For **production-grade** builds, use `frontend-design`.)"
+        }
+      ]
+    },
+    {
+      "num": "10",
+      "emoji": "📦",
+      "name": "Handoff & docs",
+      "plugins": [
+        "handoff-docs",
+        "brand-voice",
+        "changelog-automation"
+      ],
+      "skills": [
+        {
+          "skill": "component-spec",
+          "marker": null,
+          "plugin": "handoff-docs",
+          "desc": "Draft a dev-ready spec for one component — anatomy, variants, states, props, tokens, a11y, do/don't — from Figma, code, or a description."
+        },
+        {
+          "skill": "design-system-docs",
+          "marker": null,
+          "plugin": "handoff-docs",
+          "desc": "Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile."
+        },
+        {
+          "skill": "user-stories",
+          "marker": null,
+          "plugin": "handoff-docs",
+          "desc": "Turn a design or brief into agile user stories (\"As a… I want… so that…\") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices."
+        },
+        {
+          "skill": "brand-voice-tone",
+          "marker": null,
+          "plugin": "brand-voice",
+          "desc": "Review and rewrite UI copy to match a project's brand voice — loaded from a brand file or a quick interview, so it works for any brand."
+        },
+        {
+          "skill": "design-system-changelog-sweep",
+          "marker": null,
+          "plugin": "changelog-automation",
+          "desc": "Diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page. Built to run weekly via `/schedule`. **Requires the Figma MCP.**"
+        }
+      ]
+    },
+    {
+      "num": "11",
+      "emoji": "📈",
+      "name": "Measure & iterate",
+      "plugins": [
+        "product-analytics"
+      ],
+      "skills": [
+        {
+          "skill": "measurement-plan",
+          "marker": null,
+          "plugin": null,
+          "desc": "Plan instrumentation (events, funnels, cohorts) to capture your metrics, then interpret the results to judge whether a shipped design worked — and turn surprises into the next research question, closing the loop back to Research."
+        },
+        {
+          "skill": "experimentation",
+          "marker": null,
+          "plugin": null,
+          "desc": "Design and interpret A/B tests — hypothesis, primary metric + guardrails, sample size / MDE and run-time, and a disciplined read-out (significance, confidence intervals, peeking, novelty, segments)."
+        }
+      ]
+    }
+  ],
+  "plugins": [
+    {
+      "name": "accessibility-heuristics",
+      "phase": "Check",
+      "phaseNum": "08",
+      "vendored": false,
+      "requirements": [
+        "browser"
+      ],
+      "readme": "# accessibility-heuristics\n\n- **inclusive-design** — proactive guidance for designing accessibly *from the start*: designing for the range of human ability (vision, motor, hearing, cognitive, situational) and baking WCAG into decisions before build.\n- **accessibility-check** — a first-pass WCAG check on a screenshot, Figma frame, live URL, or code: contrast ratios, missing labels/alt text, focus order and visible focus, target sizes, heading/landmark structure, and color-only signals. Each finding cites the WCAG success criterion and a suggested fix.\n- **heuristic-review** — evaluate a screen or flow against Nielsen's 10 usability heuristics, scoring each issue by severity with a concrete fix.\n\n**A first filter, not a replacement.** These catch the obvious, mechanical issues so a human review (and real assistive-tech / user testing) can focus on judgement calls. They never certify a design as accessible or usable.\n\n`accessibility-check` can drive the browser preview when given a URL, and computes contrast from tokens/CSS when given code. Triggers from natural language (\"check this for accessibility\", \"run a heuristic review\", \"is this contrast okay?\").\n\nInstall: `/plugin install accessibility-heuristics@ai-ux-toolkit`"
+    },
+    {
+      "name": "brand-voice",
+      "phase": "Handoff & docs",
+      "phaseNum": "10",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# brand-voice\n\n- **brand-voice-tone** — review and rewrite UI copy (CTAs, errors, onboarding, notifications, marketing) to match a brand's voice.\n\n**Project-agnostic:** the voice itself isn't baked in. At the start of a run the skill loads a **voice profile** from the project (a `brand-voice.md` / brand guide, a `brand-voice:*` plugin, or a quick interview), then applies it. Works for any brand or industry; the Acme profile in the skill is only a labeled example of the shape to fill in.\n\nNo external services required. Triggers from natural language (\"is this on-brand?\", \"rewrite this in our voice\").\n\nInstall: `/plugin install brand-voice@ai-ux-toolkit`"
+    },
+    {
+      "name": "changelog-automation",
+      "phase": "Handoff & docs",
+      "phaseNum": "10",
+      "vendored": false,
+      "requirements": [
+        "figma-mcp"
+      ],
+      "readme": "# changelog-automation\n\n- **design-system-changelog-sweep** — diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page.\n\nBundled: `scripts/figma-fingerprint.js` — the canonical fingerprint algorithm (deep-hashes pages, components, variables, text/effect styles). Drop a copy into a project's design-system repo if it doesn't have one.\n\n**Requires the Figma MCP server (`use_figma`).** Built to run on a schedule — after installing, schedule it weekly with `/schedule`.\n\n**Project-agnostic:** the routine hardcodes nothing. At run time it resolves the Figma file key, the fingerprint-script path, and the changelog conventions from the **current project's own config** (its `CLAUDE.md` / `AGENTS.md`), and discovers all node/variable IDs dynamically — so the same routine works across every project.\n\nInstall: `/plugin install changelog-automation@ai-ux-toolkit`"
+    },
+    {
+      "name": "competitive-analysis",
+      "phase": "Research",
+      "phaseNum": "02",
+      "vendored": false,
+      "requirements": [
+        "browser"
+      ],
+      "readme": "# competitive-analysis\n\n- **competitive-analysis** — run a live competitive teardown of 3–6 products. Browses each in real time and analyzes UI patterns, messaging, features, and brand identity, then delivers a comparison matrix, a written narrative, and an opportunities/gaps list. Can optionally push findings into a Figma doc page.\n\nTriggers from natural language (\"research these competitors\", \"run a comp analysis\", \"benchmark this product\"). Browsing requires a browser/MCP the skill can drive; pushing to Figma requires the Figma MCP.\n\nInstall: `/plugin install competitive-analysis@ai-ux-toolkit`"
+    },
+    {
+      "name": "content-design",
+      "phase": "Content",
+      "phaseNum": "07",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# content-design\n\n- **content-design** — write functional UI microcopy systematically: error messages, empty states, buttons/CTAs, form labels and helper text, confirmations, notifications, and onboarding. Clear, concise, useful; consistent patterns across the product.\n- **states-and-edge-cases** — enumerate every state and edge case a screen or flow must handle (empty, loading, partial, error, offline, permission, first-run, max/overflow, zero-results…) so they're designed on purpose, not discovered in production.\n\n**Project-agnostic.** `content-design` writes the copy and works alongside `brand-voice` (which enforces *voice and tone* — content-design decides *what to say and its structure*; brand-voice makes it sound like you). `states-and-edge-cases` pairs with `component-spec` (states per component) and `rapid-prototyping`.\n\nNo external services required. Triggers from natural language (\"write the error messages\", \"what should this empty state say?\", \"what states does this screen need?\", \"enumerate the edge cases\").\n\nInstall: `/plugin install content-design@ai-ux-toolkit`"
+    },
+    {
+      "name": "data-viz",
+      "phase": "Design",
+      "phaseNum": "06",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# data-viz\n\n- **data-visualization** — design the chart, dashboard, or data display: choose the right chart type for the question, apply accessible color and clear labeling, respect the data-ink ratio, and lay out dashboards that answer questions at a glance (KPI tiles, hierarchy, filters).\n\n**Project-agnostic** and tool-agnostic — the design guidance applies whether you build in Figma, a charting library (Recharts, D3, Plotly, matplotlib), or a BI tool. Uses the project's design tokens/palette when present. Pairs with `frontend-design`/`figma-design-system` (to build it) and `accessibility-heuristics` (chart contrast & non-color encodings).\n\nNo external services required. Triggers from natural language (\"what chart should I use?\", \"design this dashboard\", \"visualize this data\", \"is this chart accessible?\").\n\nInstall: `/plugin install data-viz@ai-ux-toolkit`"
+    },
+    {
+      "name": "design-planning",
+      "phase": "Define & plan",
+      "phaseNum": "03",
+      "vendored": true,
+      "requirements": [],
+      "readme": "# design-planning\n\n- **design-brief** — create a design brief through an interactive interview, codebase exploration, and experience-design decisions; saved as markdown.\n- **grill-me** — interview you relentlessly about a plan or design until you reach shared understanding, resolving each branch of the decision tree.\n- **brief-to-tasks** — break a design brief into an ordered checklist of independently buildable tasks (vertical slices).\n- **design-flow** — the full design-to-build orchestrator: runs the whole sequence from grilling through review.\n\n> `design-flow` orchestrates the other design skills by name — for the full sequence, also install the companion vendored plugins: `information-architecture`, `design-tokens`, `frontend-design`, and `design-review`.\n\n---\n\n## Attribution\n\nThese skills are **not original to this toolkit.** They are vendored **verbatim** from Julian Oczkowski's `designer-skills`:\n\n- **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>\n- **Source:** <https://github.com/julianoczkowski/designer-skills>\n- **License:** Apache-2.0 (see `LICENSE` in this plugin directory). Unmodified.\n\nInstall: `/plugin install design-planning@ai-ux-toolkit`"
+    },
+    {
+      "name": "design-review",
+      "phase": "Check",
+      "phaseNum": "08",
+      "vendored": true,
+      "requirements": [
+        "browser"
+      ],
+      "readme": "# design-review\n\n- **design-review** — run a structured design critique against the brief and codebase: visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. A polish/QA pass after building.\n\n> Complements this toolkit's `accessibility-heuristics` plugin: `design-review` is a broad, holistic critique (with accessibility as one lens); `accessibility-check` and `heuristic-review` are dedicated, deeper, standardized audits (WCAG success criteria; Nielsen's 10 heuristics). They stack well.\n\n---\n\n## Attribution\n\nThis skill is **not original to this toolkit.** It is vendored **verbatim** from Julian Oczkowski's `designer-skills`:\n\n- **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>\n- **Source:** <https://github.com/julianoczkowski/designer-skills>\n- **License:** Apache-2.0 (see `LICENSE` in this plugin directory). Unmodified.\n\nInstall: `/plugin install design-review@ai-ux-toolkit`"
+    },
+    {
+      "name": "design-tokens",
+      "phase": "Design",
+      "phaseNum": "06",
+      "vendored": true,
+      "requirements": [
+        "codebase"
+      ],
+      "readme": "# design-tokens\n\n- **design-tokens** — generate a design tokens file (CSS variables or Tailwind config) from a chosen aesthetic philosophy: light and dark palettes, spacing scale, type ramp, and component-level tokens. Run after the brief, before building components.\n\nComplements this toolkit's `handoff-docs` → `design-system-docs`, which runs in the opposite direction (documenting tokens that *already* exist).\n\n---\n\n## Attribution\n\nThis skill is **not original to this toolkit.** It is vendored **verbatim** from Julian Oczkowski's `designer-skills`:\n\n- **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>\n- **Source:** <https://github.com/julianoczkowski/designer-skills>\n- **License:** Apache-2.0 (see `LICENSE` in this plugin directory). Unmodified.\n\nInstall: `/plugin install design-tokens@ai-ux-toolkit`"
+    },
+    {
+      "name": "figma-design-system",
+      "phase": "Design",
+      "phaseNum": "06",
+      "vendored": false,
+      "requirements": [
+        "figma-mcp"
+      ],
+      "readme": "# figma-design-system\n\nFigma + design-system workflow skills. **Requires the Figma MCP server (`use_figma`).**\n\n- **figma-designer** — senior product-designer knowledge for accessible, consistent, polished UI in Figma.\n- **reattach** — reconnect a raw/detached frame to the design system (variables, text styles, component instances), all discovered at runtime.\n- **annotate** — place annotation cards beside a screen with specs, tokens, icons, and dev-handoff notes.\n\n**Project-agnostic:** every skill reads the **current file's own** design system — components, variables, and styles — and never imports from another Figma file. `annotate` uses the file's own `Annotation` component (and offers to build one bound to that project's tokens if missing); cards always sit 32px from the frame.\n\nInstall: `/plugin install figma-design-system@ai-ux-toolkit`"
+    },
+    {
+      "name": "frontend-design",
+      "phase": "Design",
+      "phaseNum": "06",
+      "vendored": true,
+      "requirements": [
+        "codebase"
+      ],
+      "readme": "# frontend-design\n\n- **frontend-design** — build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. Generates working code with exceptional attention to aesthetic detail, avoiding generic AI output.\n\n> Related but distinct from this toolkit's `rapid-prototyping` → `rapid-prototype`: that one builds **throwaway, low-fidelity** prototypes to test a single interaction; this one builds **production-grade, ship-quality** interfaces. Reach for whichever matches your intent.\n\n---\n\n## Attribution\n\nThis skill is **not original to this toolkit.** It is vendored **verbatim** from Julian Oczkowski's `designer-skills`:\n\n- **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>\n- **Source:** <https://github.com/julianoczkowski/designer-skills>\n- **License:** Apache-2.0 (see `LICENSE` in this plugin directory). Unmodified.\n\nInstall: `/plugin install frontend-design@ai-ux-toolkit`"
+    },
+    {
+      "name": "handoff-docs",
+      "phase": "Handoff & docs",
+      "phaseNum": "10",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# handoff-docs\n\n- **component-spec** — draft a developer-ready spec for a single component from a Figma component, code, or a description: anatomy, variants, states, props/API, token usage, accessibility notes, and usage do/don't.\n- **design-system-docs** — generate design-system documentation from a project's *existing* patterns: a component inventory, per-component usage guidelines, a token reference, and a list of inconsistencies to reconcile.\n- **user-stories** — turn a design or brief into agile user stories (\"As a… I want… so that…\") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices.\n\n**Project-agnostic:** both read the project's own system as the source of truth — variants, tokens, and props are discovered at runtime, never assumed. Pairs with the `figma-design-system` plugin's `annotate` skill for on-canvas handoff.\n\nReading from Figma needs the Figma MCP server; reading from code needs the repo. Triggers from natural language (\"write a spec for this component\", \"document our design system\", \"generate component docs\").\n\nInstall: `/plugin install handoff-docs@ai-ux-toolkit`"
+    },
+    {
+      "name": "ideation",
+      "phase": "Ideate",
+      "phaseNum": "04",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# ideation\n\n- **divergent-exploration** — generate a broad spread of options — product concepts, copy variants, or IA/layout structures — spanning safe → bold, each with a one-line rationale, so you break fixation early and edit rather than start blank.\n- **facilitation** — plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, prioritization, retros): a timed agenda, the right activities for the goal, facilitation scripts, and how to capture outcomes.\n\n**Project-agnostic:** works for any problem in any domain. Reads the project's design system, brand voice, or constraints if they exist, but needs none of them to run. The point is genuine variety — different underlying strategies, not reworded twins.\n\nNo external services required. Triggers from natural language (\"give me 10 concepts for…\", \"some variants of this CTA\", \"different ways to structure this nav\").\n\nInstall: `/plugin install ideation@ai-ux-toolkit`"
+    },
+    {
+      "name": "information-architecture",
+      "phase": "Structure",
+      "phaseNum": "05",
+      "vendored": true,
+      "requirements": [],
+      "readme": "# information-architecture\n\n- **information-architecture** — define the structural layer of a product or site before visual design begins: navigation, content hierarchy, page structure, URL patterns, and user flows.\n\nSits between the design brief and the build. Pairs with the `ideation` plugin's `divergent-exploration` (which can generate *options* for structure) — this skill commits to and details one.\n\n---\n\n## Attribution\n\nThis skill is **not original to this toolkit.** It is vendored **verbatim** from Julian Oczkowski's `designer-skills`:\n\n- **Author:** Julian Oczkowski — <https://github.com/julianoczkowski>\n- **Source:** <https://github.com/julianoczkowski/designer-skills>\n- **License:** Apache-2.0 (see `LICENSE` in this plugin directory). Unmodified.\n\nInstall: `/plugin install information-architecture@ai-ux-toolkit`"
+    },
+    {
+      "name": "prioritization",
+      "phase": "Ideate",
+      "phaseNum": "04",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# prioritization\n\n- **prioritization** — take a messy list of ideas, features, or fixes and turn it into a defensible ranked order. Picks the framework that fits the decision (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano), scores each item transparently, and surfaces the quick wins and the assumptions the ranking rests on.\n\n**Project-agnostic.** Works on the output of `ideation` → `divergent-exploration`, research opportunities from `research-synthesis`, journey-map opportunities, or a backlog. Grounds scores in evidence where it exists and flags where they're guesses.\n\nNo external services required. Triggers from natural language (\"prioritize these\", \"what should we build first?\", \"RICE-score this backlog\", \"impact vs effort\").\n\nInstall: `/plugin install prioritization@ai-ux-toolkit`"
+    },
+    {
+      "name": "product-analytics",
+      "phase": "Measure & iterate",
+      "phaseNum": "11",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# product-analytics\n\n- **measurement-plan** — the post-launch half of measurement: design the instrumentation (events, properties, funnels) needed to capture your metrics, then interpret the results to judge whether a shipped design actually worked — and turn surprises into the next research question.\n- **experimentation** — design and interpret A/B tests: a testable hypothesis, primary metric + guardrails, sample-size / minimum-detectable-effect and run-time, and a disciplined read-out (significance, confidence intervals, peeking, novelty, segments).\n\nThis closes the loop back to Discover. It's distinct from `synthesis-artifacts` → `success-metrics` (which *defines* the targets before build) and from `changelog-automation` (which tracks *design-system* drift, not product outcomes). It picks up where `success-metrics` leaves off: metrics chosen → instrument them → read them.\n\n**Project-agnostic** and tool-agnostic (works whether you use Amplitude, Mixpanel, GA4, PostHog, or SQL). No external services required — it produces plans and interpretations, not live queries. Triggers from natural language (\"what events should we track?\", \"plan instrumentation\", \"did the redesign work?\", \"interpret these metrics\").\n\nInstall: `/plugin install product-analytics@ai-ux-toolkit`"
+    },
+    {
+      "name": "prompt-builder",
+      "phase": "Meta",
+      "phaseNum": "01",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# prompt-builder\n\n- **prompt-builder** — brief Claude properly before it starts. Turns a rough ask into a complete, self-contained prompt: scans the project first so it never asks for what Claude can discover itself, interviews you briefly for the genuine gaps (goal, definition of done, constraints, references, output format), then delivers a polished copyable prompt and offers to run it on the spot. Paste in a draft prompt instead and it audits and upgrades it.\n\n**Meta, not phase-bound.** This plugin doesn't belong to any workflow phase — it sits *in front of* all of them. Use it to write a better brief for any other skill in this toolkit (or any Claude task at all). It also spots standing rules in your answers — \"we always use tokens\", \"output goes in /docs\" — and offers to promote them into `CLAUDE.md`, memory, or a new skill, so every future prompt gets shorter.\n\n**Ships ask-first routing for the whole toolkit.** Because it's the meta plugin, `prompt-builder` also carries a `SessionStart` hook that installs the toolkit's **ask-first routing** behavior automatically — no editing your `CLAUDE.md`. When a request could map to several skills (e.g. \"review this screen\" → `accessibility-check` / `heuristic-review` / `design-review` / `usability-testing`), Claude names the overlap and asks which you want instead of silently picking one. Unambiguous requests still route straight through. On by default once installed; to turn it off, uninstall `prompt-builder` (or remove `hooks/hooks.json`).\n\n**Project-agnostic.** No external services required. Triggers from natural language (\"help me write a prompt\", \"improve this prompt\", \"what context do you need?\", \"am I giving you enough context?\").\n\nInstall: `/plugin install prompt-builder@ai-ux-toolkit`"
+    },
+    {
+      "name": "rapid-prototyping",
+      "phase": "Prototype",
+      "phaseNum": "09",
+      "vendored": false,
+      "requirements": [
+        "browser"
+      ],
+      "readme": "# rapid-prototyping\n\n- **rapid-prototype** — turn a rough idea, brief, sketch, or a set of chosen concepts into a clickable, functional prototype: minimal runnable front-end code (single-file HTML or React), verified live in the browser preview so you can test real interaction instead of static comps.\n\n**Project-agnostic:** if the project has a design system or design tokens, the prototype uses them; otherwise it falls back to clean neutral defaults. Code-first by default (fast to run and test); can optionally scaffold in Figma instead.\n\n**Requires** a browser preview the skill can drive (built into this environment). Triggers from natural language (\"prototype this\", \"make a clickable version\", \"turn this into something I can click through\").\n\nInstall: `/plugin install rapid-prototyping@ai-ux-toolkit`"
+    },
+    {
+      "name": "research-planning",
+      "phase": "Research",
+      "phaseNum": "02",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# research-planning\n\n- **research-planning** — the front end of research: pick the method that actually answers your question, then draft the instrument — user interview/discussion guides, stakeholder/kickoff interview guides, usability-test scripts (tasks + scenarios), survey questionnaires, and recruiting screeners. Writes non-leading questions and builds in consent and realistic sample sizes.\n\n**Project-agnostic:** nothing about the domain or product is baked in — the skill starts from your research question and audience and adapts. Pairs directly with the `ux-research` plugin's `research-synthesis`, which takes the data you collect and turns it back into themes.\n\nNo external services required. Triggers from natural language (\"write an interview guide\", \"plan a usability test\", \"design a survey\", \"how should I research this?\").\n\nInstall: `/plugin install research-planning@ai-ux-toolkit`"
+    },
+    {
+      "name": "synthesis-artifacts",
+      "phase": "Define & plan",
+      "phaseNum": "03",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# synthesis-artifacts\n\nThe bridge from research to design — turns synthesized insight into the artifacts that steer product decisions.\n\n- **personas** — evidence-based personas and Jobs-to-be-Done statements grounded in real research (not invented demographics).\n- **empathy-map** — a fast Says / Thinks / Does / Feels (+ Pains & Gains) snapshot of a user, grounded in evidence, that surfaces contradictions and design implications.\n- **journey-map** — journey and experience maps: stages, actions, thoughts, emotions, pain points, and opportunities across an end-to-end experience.\n- **service-blueprint** — extend a journey with the behind-the-scenes layers (frontstage, backstage, support processes/systems) to reveal fail points, handoffs, and ownership gaps.\n- **success-metrics** — define what success looks like *before* you build, using HEART and the goal → signal → metric method, with guardrail metrics.\n\n**Project-agnostic:** each skill works from your own research and product context. They pair with the `ux-research` plugin's `research-synthesis` (which produces the themes these artifacts are built from) and feed the `design-planning` brief.\n\nNo external services required. Triggers from natural language (\"create personas\", \"map the user journey\", \"what metrics should we track for this?\").\n\nInstall: `/plugin install synthesis-artifacts@ai-ux-toolkit`"
+    },
+    {
+      "name": "usability-testing",
+      "phase": "Check",
+      "phaseNum": "08",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# usability-testing\n\n- **usability-testing** — the end-to-end usability study: a test plan (objectives, tasks with success criteria, metrics), moderation guidance, and a findings report with task-level success/error/ease data and severity-rated issues.\n\nThis is the **empirical, with-real-users** counterpart to the expert audits in `accessibility-heuristics` (`accessibility-check`, `heuristic-review`) and `design-review`. It's usability-method-specific — it complements, and cross-references, the more general `research-planning` (question craft) and `ux-research` → `research-synthesis` (qualitative coding).\n\n**Project-agnostic:** works for any product, prototype, or live flow. No external services required. Triggers from natural language (\"plan a usability test\", \"analyze my usability test results\", \"what tasks should I test?\", \"severity-rate these usability issues\").\n\nInstall: `/plugin install usability-testing@ai-ux-toolkit`"
+    },
+    {
+      "name": "ux-research",
+      "phase": "Research",
+      "phaseNum": "02",
+      "vendored": false,
+      "requirements": [],
+      "readme": "# ux-research\n\n- **research-synthesis** — feed in interview transcripts, survey responses, or support tickets and get back themes, patterns, representative quotes, frequency/severity, and prioritized opportunity areas.\n- **research-repository** — the ResearchOps layer: set up a research repository of atomic, tagged, evidence-linked insights (with a tagging taxonomy), so past research stays findable and reusable across studies instead of being lost or re-run.\n\n**Project-agnostic:** nothing about the domain is baked in. The skill reads whatever qualitative data you point it at (pasted text or file paths) and adapts to the source type. It never invents quotes and keeps participant PII out of the output.\n\nNo external services required. Can optionally push a synthesis summary into a Figma doc page (needs the Figma MCP server). Triggers from natural language (\"synthesize these interviews\", \"what themes are in this feedback?\").\n\nInstall: `/plugin install ux-research@ai-ux-toolkit`"
+    }
+  ],
+  "fingerprint": "7c0c8d563db46f3647af1c82379612ad7659a22ca0a6c72e30db79906fc1fcc7"
+}
