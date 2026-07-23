@@ -160,9 +160,16 @@ function build() {
     });
   }
 
-  const data = { generatedFrom: 'ai-ux-toolkit README files', phases, plugins };
+  // Hash the sync's own code too, so a change to the parser or the renderer
+  // (not just the READMEs) also flips the fingerprint and re-applies to Figma.
+  const toolHash = createHash('sha256')
+    .update(readFileSync(join(HERE, 'extract.mjs')))
+    .update(readFileSync(join(HERE, 'render.figma.js')))
+    .digest('hex');
+
+  const data = { generatedFrom: 'ai-ux-toolkit README files', phases, plugins, toolHash };
   const fingerprint = createHash('sha256')
-    .update(JSON.stringify({ phases, plugins }))
+    .update(JSON.stringify({ phases, plugins, tool: toolHash }))
     .digest('hex');
   data.fingerprint = fingerprint;
   return data;

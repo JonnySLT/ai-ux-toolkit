@@ -31,6 +31,11 @@ const REQ_CHIP = {
   browser: { text: 'Browser', bg: '#ECECEF', fg: '#52525B' },
   codebase: { text: 'Codebase', bg: '#ECECEF', fg: '#52525B' },
 };
+// Colors for any phase NOT in PHASE_COLOR — so a brand-new workflow phase added
+// to the repo gets a color deterministically by position, no code edit needed.
+const PHASE_FALLBACK = ['#0EA5E9', '#9333EA', '#CA8A04', '#059669', '#DC2626', '#7C3AED', '#0891B2', '#EA580C'];
+function phaseColor(name, idx) { return PHASE_COLOR[name] || PHASE_FALLBACK[idx % PHASE_FALLBACK.length]; }
+function shortName(name) { return name.split(/[\s&]+/).filter(Boolean)[0] || name; }
 
 // ---- shared helpers ---------------------------------------------------------
 function hex(h) { const n = parseInt(h.slice(1), 16); return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 }; }
@@ -79,7 +84,10 @@ function applyRanges(t, segs, base) {
 }
 
 // ---- section: What's inside -------------------------------------------------
-// data = phases[] from toolkit-data.json
+// data = phases[] from toolkit-data.json. Fully data-driven and self-healing:
+// rebuilds the workflow ribbon and both grid columns from scratch, so adding,
+// removing, renaming, or reordering a whole workflow phase in the repo all flow
+// through with no manual scaffold edits.
 async function renderWhatsInside(phases) {
   async function skillRow(body, name, marker, desc) {
     const sep = '  —  ';
@@ -93,16 +101,52 @@ async function renderWhatsInside(phases) {
     applyRanges(t, dsegs, prefix.length + sep.length);
     body.appendChild(t); t.layoutSizingHorizontal = 'FILL';
   }
-  const touched = [];
-  for (const ph of phases) {
-    const card = figma.currentPage.findOne((n) => n.name === 'Phase · ' + ph.name);
-    if (!card) { touched.push('MISSING: ' + ph.name); continue; }
-    const body = card.children.find((c) => c.name === 'B');
-    for (const ch of [...body.children]) ch.remove();
-    for (const s of ph.skills) await skillRow(body, s.skill, s.marker, s.desc);
-    touched.push(ph.name);
+  async function buildPhaseCard(col, ph, color) {
+    const card = AL('VERTICAL', { name: 'Phase · ' + ph.name, itemSpacing: 0 });
+    await card.setFillStyleIdAsync(PS['surface/white']); card.cornerRadius = 16; card.clipsContent = true;
+    card.strokes = [{ type: 'SOLID', color: hex('#E6E6EA') }]; card.strokeWeight = 1;
+    col.appendChild(card); card.layoutSizingHorizontal = 'FILL';
+    const h = AL('HORIZONTAL', { name: 'H', itemSpacing: 10, paddingLeft: 18, paddingRight: 18, paddingTop: 14, paddingBottom: 14, counterAxisAlignItems: 'CENTER' });
+    h.fills = [{ type: 'SOLID', color: mix(color, 0.12) }]; card.appendChild(h); h.layoutSizingHorizontal = 'FILL';
+    const num = await mk('Badge'); num.characters = ph.num; num.textCase = 'UPPER'; num.fills = [{ type: 'SOLID', color: hex(color) }]; h.appendChild(num);
+    const em = await mk('H3'); em.characters = ph.emoji; h.appendChild(em);
+    const nm = await mk('H3'); nm.characters = ph.name; nm.fills = [{ type: 'SOLID', color: hex(color) }]; h.appendChild(nm); nm.layoutSizingHorizontal = 'FILL';
+    const b = AL('VERTICAL', { name: 'B', itemSpacing: 12, paddingLeft: 18, paddingRight: 18, paddingTop: 16, paddingBottom: 18 });
+    card.appendChild(b); b.layoutSizingHorizontal = 'FILL';
+    for (const s of ph.skills) await skillRow(b, s.skill, s.marker, s.desc);
   }
-  return touched;
+
+  // 1) Workflow ribbon — rebuild the pill row from the phase list.
+  const ribbon = figma.currentPage.findOne((n) => n.name === 'Workflow ribbon');
+  if (ribbon) {
+    const pillRow = ribbon.children.find((c) => c.layoutMode === 'HORIZONTAL') || ribbon.children[ribbon.children.length - 1];
+    for (const ch of [...pillRow.children]) ch.remove();
+    for (let i = 0; i < phases.length; i++) {
+      const ph = phases[i], color = phaseColor(ph.name, i);
+      const pill = AL('HORIZONTAL', { itemSpacing: 6, paddingLeft: 11, paddingRight: 12, paddingTop: 6, paddingBottom: 6, cornerRadius: 999, counterAxisAlignItems: 'CENTER' });
+      pill.fills = [{ type: 'SOLID', color: mix(color, 0.13) }];
+      const n = await mk('Badge'); n.characters = ph.num; n.fills = [{ type: 'SOLID', color: hex(color) }]; pill.appendChild(n);
+      const nm = await mk('BodyStrong'); nm.characters = shortName(ph.name); nm.fills = [{ type: 'SOLID', color: hex(color) }]; pill.appendChild(nm);
+      pillRow.appendChild(pill);
+      if (i < phases.length - 1) { const ar = await mk('BodyStrong', 'ink/muted'); ar.characters = '→'; pillRow.appendChild(ar); }
+    }
+  }
+
+  // 2) Grid — rebuild both columns; split phases into two contiguous,
+  // order-preserving groups balanced by skill count.
+  const board = figma.currentPage.findOne((n) => n.name && n.name.indexOf('Board · What') === 0);
+  const grid = (board || figma.currentPage).findOne((n) => n.name === 'Grid');
+  const cols = grid.children.filter((c) => c.type === 'FRAME');
+  for (const c of cols) for (const ch of [...c.children]) ch.remove();
+  const total = phases.reduce((s, p) => s + p.skills.length, 0);
+  let acc = 0, breakAt = phases.length;
+  for (let i = 0; i < phases.length; i++) { if (acc + phases[i].skills.length > total / 2) { breakAt = i; break; } acc += phases[i].skills.length; }
+  if (breakAt === 0) breakAt = 1;
+  for (let i = 0; i < phases.length; i++) {
+    const col = i < breakAt ? cols[0] : (cols[1] || cols[0]);
+    await buildPhaseCard(col, phases[i], phaseColor(phases[i].name, i));
+  }
+  return phases.map((p) => p.name);
 }
 
 // ---- section: Plugin details ------------------------------------------------
