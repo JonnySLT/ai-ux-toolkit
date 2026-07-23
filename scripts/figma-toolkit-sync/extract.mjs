@@ -133,10 +133,17 @@ function build() {
   const phases = parsePhases(readme);
   const phaseByPlugin = pluginPhaseIndex(phases);
 
+  // Order plugins by workflow phase (matching the "What's inside" flow), then
+  // by their order within the phase heading — so Plugin details reads in the
+  // same sequence as What's inside rather than alphabetically. Anything not
+  // listed in a phase falls to the end, alphabetically.
+  const phaseOrder = [];
+  for (const ph of phases) for (const p of ph.plugins) if (!phaseOrder.includes(p)) phaseOrder.push(p);
+  const orderKey = (name) => { const i = phaseOrder.indexOf(name); return i === -1 ? Number.MAX_SAFE_INTEGER : i; };
   const pluginDirs = readdirSync(PLUGINS_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
-    .sort();
+    .sort((a, b) => orderKey(a) - orderKey(b) || a.localeCompare(b));
 
   const plugins = [];
   for (const name of pluginDirs) {

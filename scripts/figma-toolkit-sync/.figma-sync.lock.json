@@ -1,6 +1,6 @@
 {
-  "fingerprint": "7c0c8d563db46f3647af1c82379612ad7659a22ca0a6c72e30db79906fc1fcc7",
-  "lastSyncedAt": "2026-07-23T16:39:39Z",
+  "fingerprint": "24355d22c916bed0a59f9b3f52322bd4a67f915c24c247d57b2a21518793735a",
+  "lastSyncedAt": "2026-07-23T20:25:58Z",
   "figmaFileKey": "n4Hh5v0xiIdezIiiP0Hiu5",
-  "note": "Baseline written after the initial verbatim sync. extract.mjs --check must match this for the Figma file to be considered up to date."
+  "note": "Synced from ai-ux-toolkit repo. Sync is a no-op when this fingerprint matches toolkit-data.json's fingerprint."
 }

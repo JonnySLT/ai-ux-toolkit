@@ -296,6 +296,7 @@ For anyone on the team editing or extending this repo:
 - **Never edit the five vendored † plugins' skill files** — they're kept byte-identical to upstream (pinned in `.vendor/designer-skills.lock.json`). The weekly workflow flags upstream changes; re-syncing = re-copy verbatim + update the lockfile.
 - **Adding a plugin:** follow the existing shape (`.claude-plugin/plugin.json` + `README.md` ending in its install line + `skills/<name>/SKILL.md`), register it in `.claude-plugin/marketplace.json`, and add it to this README's install recipes and phase tables — `validate.mjs` enforces most of this.
 - **Bump the marketplace `version`** in `.claude-plugin/marketplace.json` on any catalog change.
+- **The Figma companion file stays in sync automatically.** The [AI UX Toolkit Figma file](https://www.figma.com/design/n4Hh5v0xiIdezIiiP0Hiu5/AI-UX-Toolkit) mirrors these READMEs — a weekly scheduled sync (`scripts/figma-toolkit-sync/`) regenerates its *What's inside* and *Plugin details* sections from the repo, so editing a plugin README (or the What's inside tables) updates Figma with no manual design work. If a plugin's requirement chips change, update the `REQUIREMENTS` map in `scripts/figma-toolkit-sync/extract.mjs`. See [`scripts/figma-toolkit-sync/README.md`](scripts/figma-toolkit-sync/README.md).
 
 ## Repository layout
 
