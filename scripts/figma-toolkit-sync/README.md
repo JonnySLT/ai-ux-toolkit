@@ -4,14 +4,15 @@ Keeps the **[AI UX Toolkit Figma file](https://www.figma.com/design/n4Hh5v0xiIde
 in sync with this repo. **The repo is the source of truth**; the Figma file is a
 generated view of it.
 
-When a plugin README, a `SKILL.md`, or the main README's "What's inside" tables
-change, this tool regenerates the data-driven Figma content so the file matches
-the repo verbatim:
+When the main README's opening paragraphs, a plugin README, a `SKILL.md`, or the
+main README's "What's inside" tables change, this tool regenerates the
+data-driven Figma content so the file matches the repo verbatim:
 
-- the Overview page's **What's inside** index (`render.figma.js`), and
+- the Overview page's **intro** — the hero subtitle and the "What it is" card — rewritten from the main README's opening paragraphs (`render.figma.js`, `section: "intro"`),
+- the Overview page's **What's inside** index (`render.figma.js`, `section: "whats-inside"`), and
 - one **per-plugin page** each — a mini-TOC of the plugin's skills plus its README notes, followed by every `SKILL.md` in full (`render-pages.figma.js`). In "What's inside", skills are grouped under their owning plugin and each plugin label links to its page (skill rows are plain text); on the plugin pages, each mini-TOC entry links to its skill's deep-dive frame.
 
-The curated **Overview** and **Reference** boards are left untouched. (Plugin detail content used to live in a "Plugin details" board on the Overview page; it now lives on each plugin's own page, paired with its skills.)
+The **rest** of the curated **Overview** and **Reference** boards is left untouched — only the intro paragraph *text* (in place, curated fonts preserved) and the What's-inside index are regenerated there; the hero title, scaffold, styles, and Reference content stay hand-authored. (Plugin detail content used to live in a "Plugin details" board on the Overview page; it now lives on each plugin's own page, paired with its skills.)
 
 ## Why it works the way it does
 
@@ -24,7 +25,7 @@ by two committed artifacts:
 | File | Role |
 |---|---|
 | `extract.mjs` | Parses the READMEs **and every `SKILL.md`** → `toolkit-data.json` (structured source of truth) + a sha256 `fingerprint`. Pure Node, no deps. |
-| `render.figma.js` | Renderer for the Overview page's **What's inside** index. Idempotent: locates nodes **by name**, clears the Grid, rebuilds every phase card from data. Passed to `use_figma`. |
+| `render.figma.js` | Renderer for the Overview page, dispatched by `SYNC.section`. `"whats-inside"` rebuilds the **What's inside** index (locates nodes **by name**, clears the Grid, rebuilds every phase card from data); `"intro"` rewrites the **hero subtitle + "What it is" card** from the README's opening paragraphs, changing only each node's characters and preserving its curated font. Passed to `use_figma`. |
 | `render-pages.figma.js` | Renderer for the **per-plugin pages** — one Figma page per plugin: header, an intro block (mini-TOC of the plugin's skills + README notes), then a frame per skill showing its full `SKILL.md` (markdown: headings, lists, tables, code, blockquotes). Ops: `plugin-page`, `add-intro` (retrofit the intro block), `organize` (phase dividers + ordering), `link` (self-discovering: wires mini-TOC entries and What's-inside rows to skill frames). Kept separate so one large SKILL.md body + the renderer stay under the `use_figma` size limit. |
 | `toolkit-data.json` | Generated. The exact data both renderers consume — includes each plugin's `skills[]` (full SKILL.md) and a `pagePlan` (order + phase dividers). Commit it so diffs are reviewable. |
 | `.figma-sync.lock.json` | The last-synced fingerprint. Sync is a no-op when the current fingerprint matches. |
@@ -41,7 +42,15 @@ toolkit content.
    ```
 2. **Change gate.** Compare `fingerprint` in `toolkit-data.json` against
    `.figma-sync.lock.json`. If equal → **stop, nothing to do.**
-3. **Rebuild "What's inside"** — one `use_figma` call. Prepend the SYNC object,
+3. **Rebuild the Overview intro** — one `use_figma` call. Prepend the SYNC
+   object, then the full contents of `render.figma.js`:
+   ```js
+   const SYNC = { section: "intro", data: /* toolkit-data.json .intro */ };
+   // …contents of render.figma.js…
+   ```
+   This rewrites the hero subtitle and the "What it is" card from the README's
+   opening paragraphs, changing only each node's text (curated fonts preserved).
+4. **Rebuild "What's inside"** — one `use_figma` call. Prepend the SYNC object,
    then the full contents of `render.figma.js`:
    ```js
    const SYNC = { section: "whats-inside", data: /* toolkit-data.json .phases */ };
@@ -50,7 +59,7 @@ toolkit content.
    This clears the Grid and rebuilds all phase cards, naming each skill row
    `WI · <skill>` so the `link` step (below) can hyperlink it. The board hugs its
    content (auto-layout), so no section refit is needed.
-4. **Rebuild the per-plugin pages** with `render-pages.figma.js`. For each plugin
+5. **Rebuild the per-plugin pages** with `render-pages.figma.js`. For each plugin
    in `toolkit-data.json` `.plugins` (in order), split its `.skills` into batches
    whose total `body` length stays under ~22 000 chars (a big skill goes alone):
    ```js
@@ -69,9 +78,9 @@ toolkit content.
    const SYNC = { op: "link" }; // wires each mini-TOC entry → its skill frame, and each What's-inside plugin label → its page
    ```
    *(`render-pages.figma.js` also exposes an `add-intro` op — `{ op: "add-intro", plugin }` — that retrofits the intro block onto an already-built plugin page without re-rendering its skills. It's a one-time migration helper, not part of the normal sync.)*
-5. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
+6. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
    `.figma-sync.lock.json`.
-6. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
+7. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
    `changelog-automation`.
 
 ## Scope & guarantees
@@ -83,12 +92,18 @@ toolkit content.
   `Grid` and `Workflow ribbon`) and the local text/paint styles must already
   exist (created by the initial build). This tool refreshes *content*; the
   What's-inside Grid and every plugin page are cleared and rebuilt from data.
-- **Only the What's inside board** on the Overview page is touched there; the
-  curated Overview and Reference boards are never overwritten. The per-plugin
-  pages (and phase-divider pages) are fully managed — tagged and safe to rebuild.
+- **On the Overview page, only the intro paragraphs and the What's inside board**
+  are rewritten (the intro in place — text only, curated fonts kept); the rest of
+  the curated Overview board and the whole Reference board are never overwritten.
+  The per-plugin pages (and phase-divider pages) are fully managed — tagged and
+  safe to rebuild.
 
 ## Editing checklist for maintainers
 
+- Changed the main README's **opening paragraphs** (hero subtitle / "What it is"
+  card)? The intro sync rewrites those Figma nodes to match — no manual Figma
+  edit needed. Keep them to a hero paragraph followed by the card paragraphs, in
+  the order they should read on the Overview page.
 - Changed a plugin's skills or copy? Just edit its `README.md` — the sync picks
   it up.
 - Added/removed a plugin, or moved a skill between phases? Edit the plugin
