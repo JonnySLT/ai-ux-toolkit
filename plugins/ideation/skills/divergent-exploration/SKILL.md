@@ -93,6 +93,8 @@ The concrete recipe — grayscale palette, content rules, side-by-side layout, a
 
 **4. Then the user picks one** to take to high fidelity (real components, color, final copy). That's a separate step — hand off to a build/prototyping skill or the design system; don't do it inside this skill.
 
+**If the chosen design contains a chart, graph, or any data visualization, load the `dataviz` skill and build the chart to its spec *during* that hi-fi build — not as a later cleanup pass.** A chart drawn with rough defaults (bare bars, no axis or labels) and refined afterward costs a redundant round and muddies the version history; getting it right the first time is cheaper. Charts belong to hi-fi only — keep them out of the low-fi wireframes above, which stay grayscale and chart-free.
+
 ---
 
 ## Guardrails
