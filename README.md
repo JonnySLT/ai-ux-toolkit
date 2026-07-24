@@ -1,6 +1,6 @@
 # AI UX Toolkit
 
-**Your team's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.
+**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.
 
 **Built for designers working on a team.** The workflow assumes you're not designing in a vacuum — it has first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, developer handoff specs and user stories, and cross-functional review. Solo designers can use it too, but the toolkit is shaped around designers, researchers, PMs, and engineers working in concert.
 
