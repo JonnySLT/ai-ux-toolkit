@@ -10,14 +10,17 @@
  *   // …contents of this file…
  *
  * Ops (idempotent; pages/nodes located BY NAME):
- *   - "plugin-page": ensure a page named plugin.name; reset:true clears it and
- *       builds the header, then appends a frame per skill in `skills` (its full
- *       SKILL.md). Batch skills across calls for big plugins (reset only on the
- *       first). Returns skill-frame ids so the catalogue can link to them.
+ *   - "plugin-page": ensure a page named plugin.name; reset:true clears it,
+ *       builds the header + intro block (mini-TOC of skills + README notes),
+ *       then appends a frame per skill in `skills` (its full SKILL.md). Batch
+ *       skills across calls for big plugins (reset only on the first).
+ *   - "add-intro": one-time migration — inject the intro block into an existing
+ *       plugin page without re-rendering its skills. Pass { plugin }.
  *   - "organize": create phase divider pages, order all managed pages after the
  *       main page, and delete stale plugin/divider pages. Pass { order, dividers }.
- *   - "link": on the main catalogue page, hyperlink each plugin-card skill name
- *       to its skill frame. Pass { links: [{plugin, skill, nodeId}] }.
+ *   - "link": self-discovering — scan every plugin page's `Skill · <name>`
+ *       frames and hyperlink both the same page's `TOC · <name>` mini-TOC entry
+ *       and the Overview `WI · <name>` What's-inside row to that frame. No args.
  */
 
 // ---- shared helpers ---------------------------------------------------------
@@ -128,6 +131,49 @@ async function chip(row, text, bg, fg) {
   c.appendChild(t); row.appendChild(c);
 }
 
+// ---- intro block (mini-TOC of skills + plugin notes) ------------------------
+// Sits at the top of each plugin page, below the header and above the skill
+// cards. The plugin README's per-skill bullets become a "Skills in this plugin"
+// mini-TOC — each skill name is named `TOC · <skill>` so the `link` op can
+// hyperlink it to the matching skill frame below. The remaining README prose
+// (notes, requirements, project-agnostic line) renders underneath as framing.
+// The `# title` and `Install:` lines are skipped — they already live in the
+// header. Returns the wrapper frame so callers can reposition it.
+async function introBlock(board, plugin) {
+  const bullets = [], prose = [];
+  for (const raw of (plugin.readme || '').split('\n')) {
+    const line = raw.replace(/\s+$/, '');
+    if (line.indexOf('# ') === 0) continue;
+    if (/^Install:/.test(line)) continue;
+    const bm = line.match(/^-\s+\*\*([^*]+)\*\*\s*[—–-]\s*(.*)$/);
+    if (bm) { bullets.push({ name: bm[1].trim(), desc: bm[2].trim() }); continue; }
+    prose.push(line);
+  }
+  const wrap = AL('VERTICAL', { name: 'Intro', itemSpacing: 18 });
+  board.appendChild(wrap); wrap.layoutSizingHorizontal = 'FILL';
+  if (bullets.length) {
+    const toc = AL('VERTICAL', { name: 'Skills TOC', itemSpacing: 11, paddingLeft: 22, paddingRight: 22, paddingTop: 20, paddingBottom: 22, cornerRadius: 16 });
+    await toc.setFillStyleIdAsync(PS['surface/subtle']); toc.strokes = [{ type: 'SOLID', color: hex('#E6E6EA') }]; toc.strokeWeight = 1;
+    wrap.appendChild(toc); toc.layoutSizingHorizontal = 'FILL';
+    const lab = await mk('Overline', 'accent/600'); lab.characters = bullets.length > 1 ? 'Skills in this plugin' : 'Skill in this plugin'; lab.textCase = 'UPPER'; toc.appendChild(lab); lab.layoutSizingHorizontal = 'FILL';
+    for (const b of bullets) {
+      const row = AL('HORIZONTAL', { itemSpacing: 9, counterAxisAlignItems: 'MIN' });
+      const dot = await mk('Body', 'accent/500'); dot.characters = '•'; row.appendChild(dot);
+      const t = await richText('Body', 'ink/secondary', '**' + b.name + '**  —  ' + b.desc);
+      t.name = 'TOC · ' + b.name; // link target for the `link` op
+      row.appendChild(t); t.layoutSizingHorizontal = 'FILL';
+      toc.appendChild(row); row.layoutSizingHorizontal = 'FILL';
+    }
+  }
+  const proseMd = prose.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  if (proseMd) {
+    const notes = AL('VERTICAL', { name: 'Intro notes', itemSpacing: 14 });
+    wrap.appendChild(notes); notes.layoutSizingHorizontal = 'FILL';
+    await renderMarkdown(notes, proseMd);
+  }
+  return wrap;
+}
+
 // board = the vertical container frame that holds a plugin page's content
 async function pluginPage(plugin, skills, reset) {
   const page = await ensurePage(plugin.name);
@@ -148,6 +194,8 @@ async function pluginPage(plugin, skills, reset) {
     const inst = AL('HORIZONTAL', { itemSpacing: 9, paddingLeft: 12, paddingRight: 12, paddingTop: 9, paddingBottom: 9, cornerRadius: 8, counterAxisAlignItems: 'CENTER' }); await inst.setFillStyleIdAsync(PS['surface/code']); head.appendChild(inst); inst.layoutSizingHorizontal = 'FILL';
     const lab = await mk('Badge', 'ink/muted'); lab.characters = 'INSTALL'; lab.textCase = 'UPPER'; inst.appendChild(lab);
     const cc = await mk('Code', 'ink/secondary'); cc.characters = '/plugin install ' + plugin.name + '@ai-ux-toolkit'; inst.appendChild(cc); cc.layoutSizingHorizontal = 'FILL';
+    // intro block (mini-TOC + notes) — sits between the header and the skill cards
+    await introBlock(board, plugin);
   } else {
     board = page.findOne((n) => n.name === 'PluginPage');
   }
@@ -194,26 +242,63 @@ async function organize(order, dividers) {
   return { pages: figma.root.children.map((p) => p.name) };
 }
 
-// ---- link: hyperlink catalogue skill names to their skill frames ------------
-async function linkCatalogue(links) {
+// ---- add-intro: one-time migration — inject the intro block into an existing
+// plugin page without re-rendering its skill cards. (Full syncs get the intro
+// for free via pluginPage's reset path; this is only for retrofitting pages
+// that were built before the intro block existed.) Idempotent: removes any
+// prior intro first, then re-inserts directly after the header.
+async function addIntro(plugin) {
+  const page = figma.root.children.find((p) => p.name === plugin.name);
+  if (!page) return { plugin: plugin.name, skipped: 'no page' };
+  await figma.setCurrentPageAsync(page);
+  const board = page.findOne((n) => n.name === 'PluginPage');
+  if (!board) return { plugin: plugin.name, skipped: 'no board' };
+  const old = board.findOne((n) => n.name === 'Intro');
+  if (old) old.remove();
+  const intro = await introBlock(board, plugin);
+  const headerIdx = board.children.findIndex((c) => c.name === 'Header');
+  board.insertChild(headerIdx >= 0 ? headerIdx + 1 : 1, intro);
+  return { plugin: plugin.name, ok: true, introChildren: intro.children.length };
+}
+
+// ---- link: self-discovering hyperlinks --------------------------------------
+// Scans every managed plugin page for its `Skill · <name>` frames, then wires:
+//   (a) each page's `TOC · <name>` mini-TOC entry → that skill's frame (same page)
+//   (b) each Overview `WI · <name>` What's-inside row → the skill's frame
+// No pre-collected node-id list needed — it re-derives everything from names,
+// so it's safe to re-run any time. Skills without a frame (e.g. the Figma MCP
+// `§` skills that have no plugin page) are simply left unlinked.
+async function linkAll() {
   const main = figma.root.children.find((p) => p.name === 'AI UX Toolkit') || figma.root.children[0];
+  let tocLinked = 0, wiLinked = 0; const bySkill = {};
+  for (const page of figma.root.children) {
+    if (page === main) continue;
+    if (page.getSharedPluginData('figmaToolkitSync', 'managed') !== '1') continue;
+    await figma.setCurrentPageAsync(page);
+    const board = page.findOne((n) => n.name === 'PluginPage');
+    if (!board) continue; // divider pages have no board
+    for (const sf of board.findAll((n) => n.type === 'FRAME' && n.name.indexOf('Skill · ') === 0)) {
+      const skill = sf.name.slice('Skill · '.length);
+      bySkill[skill] = sf.id;
+      for (const t of board.findAll((n) => n.type === 'TEXT' && n.name === 'TOC · ' + skill)) {
+        try { t.setRangeHyperlink(0, skill.length, { type: 'NODE', value: sf.id }); tocLinked++; } catch (e) { }
+      }
+    }
+  }
   await figma.setCurrentPageAsync(main);
   await figma.loadFontAsync({ family: 'Inter', style: 'Semi Bold' });
-  const stack = main.findOne((n) => n.name === 'PluginStack');
-  let linked = 0;
-  for (const lk of links) {
-    const card = stack.children.find((c) => { const t = c.children.find((x) => x.type === 'TEXT'); return t && t.characters === lk.plugin; });
-    if (!card) continue;
-    // match the skill BULLET (name followed by an em-dash), not the plugin title
-    const texts = card.findAll((n) => n.type === 'TEXT' && n.characters.indexOf(lk.skill) === 0 && /\s—\s/.test(n.characters));
-    for (const t of texts) { try { t.setRangeHyperlink(0, lk.skill.length, { type: 'NODE', value: lk.nodeId }); linked++; } catch (e) { } }
+  for (const skill of Object.keys(bySkill)) {
+    for (const t of main.findAll((n) => n.type === 'TEXT' && n.name === 'WI · ' + skill)) {
+      try { t.setRangeHyperlink(0, skill.length, { type: 'NODE', value: bySkill[skill] }); wiLinked++; } catch (e) { }
+    }
   }
-  return { linked };
+  return { tocLinked, wiLinked, skills: Object.keys(bySkill).length };
 }
 
 // ---- dispatcher -------------------------------------------------------------
 await loadStylesAndFonts();
 if (SYNC.op === 'plugin-page') return await pluginPage(SYNC.plugin, SYNC.skills || [], !!SYNC.reset);
+if (SYNC.op === 'add-intro') return await addIntro(SYNC.plugin);
 if (SYNC.op === 'organize') return await organize(SYNC.order || [], SYNC.dividers || []);
-if (SYNC.op === 'link') return await linkCatalogue(SYNC.links || []);
+if (SYNC.op === 'link') return await linkAll();
 throw new Error('Unknown SYNC.op: ' + SYNC.op);

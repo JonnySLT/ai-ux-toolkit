@@ -26,11 +26,6 @@ const PHASE_COLOR = {
   Structure: '#0D9488', Design: '#DB2777', Content: '#0891B2', Check: '#16A34A',
   Prototype: '#EA580C', 'Handoff & docs': '#4F46E5', 'Measure & iterate': '#E11D48',
 };
-const REQ_CHIP = {
-  'figma-mcp': { text: 'Figma MCP', bg: '#FCE3EC', fg: '#B0195C' },
-  browser: { text: 'Browser', bg: '#ECECEF', fg: '#52525B' },
-  codebase: { text: 'Codebase', bg: '#ECECEF', fg: '#52525B' },
-};
 // Colors for any phase NOT in PHASE_COLOR — so a brand-new workflow phase added
 // to the repo gets a color deterministically by position, no code edit needed.
 const PHASE_FALLBACK = ['#0EA5E9', '#9333EA', '#CA8A04', '#059669', '#DC2626', '#7C3AED', '#0891B2', '#EA580C'];
@@ -85,7 +80,7 @@ function applyRanges(t, segs, base) {
 
 // ---- section: What's inside -------------------------------------------------
 // data = phases[] from toolkit-data.json. Fully data-driven and self-healing:
-// rebuilds the workflow ribbon and both grid columns from scratch, so adding,
+// rebuilds the workflow ribbon and every phase card from scratch, so adding,
 // removing, renaming, or reordering a whole workflow phase in the repo all flow
 // through with no manual scaffold edits.
 async function renderWhatsInside(phases) {
@@ -99,13 +94,14 @@ async function renderWhatsInside(phases) {
     t.setRangeFills(0, name.length, [{ type: 'SOLID', color: hex('#18181B') }]);
     if (marker) { const ms = name.length + 1, me = ms + marker.length, mc = marker === '†' ? '#92400E' : '#B0195C'; t.setRangeFontName(ms, me, { family: 'Inter', style: 'Semi Bold' }); t.setRangeFills(ms, me, [{ type: 'SOLID', color: hex(mc) }]); }
     applyRanges(t, dsegs, prefix.length + sep.length);
+    t.name = 'WI · ' + name; // named so the `link` op can hyperlink this row → its skill frame
     body.appendChild(t); t.layoutSizingHorizontal = 'FILL';
   }
-  async function buildPhaseCard(col, ph, color) {
+  async function buildPhaseCard(parent, ph, color) {
     const card = AL('VERTICAL', { name: 'Phase · ' + ph.name, itemSpacing: 0 });
     await card.setFillStyleIdAsync(PS['surface/white']); card.cornerRadius = 16; card.clipsContent = true;
     card.strokes = [{ type: 'SOLID', color: hex('#E6E6EA') }]; card.strokeWeight = 1;
-    col.appendChild(card); card.layoutSizingHorizontal = 'FILL';
+    parent.appendChild(card); card.layoutSizingHorizontal = 'FILL';
     const h = AL('HORIZONTAL', { name: 'H', itemSpacing: 10, paddingLeft: 18, paddingRight: 18, paddingTop: 14, paddingBottom: 14, counterAxisAlignItems: 'CENTER' });
     h.fills = [{ type: 'SOLID', color: mix(color, 0.12) }]; card.appendChild(h); h.layoutSizingHorizontal = 'FILL';
     const num = await mk('Badge'); num.characters = ph.num; num.textCase = 'UPPER'; num.fills = [{ type: 'SOLID', color: hex(color) }]; h.appendChild(num);
@@ -132,72 +128,27 @@ async function renderWhatsInside(phases) {
     }
   }
 
-  // 2) Grid — rebuild both columns; split phases into two contiguous,
-  // order-preserving groups balanced by skill count.
-  const board = figma.currentPage.findOne((n) => n.name && n.name.indexOf('Board · What') === 0);
+  // 2) Grid — a single vertical column of phase cards. Clear whatever the grid
+  // currently holds (old cards, leftover column wrappers, or orphaned frames)
+  // and rebuild every phase as a direct child, in order. Self-healing: it makes
+  // NO assumption about the grid's prior child structure, so a corrupted grid
+  // scaffold can't survive a sync. (The previous "filter to the 2 column frames"
+  // logic accreted 9 empty orphan frames + ~2,700px of dead whitespace when the
+  // grid held anything other than exactly two column sub-frames.)
+  const board = figma.currentPage.findOne((n) => n.name && (n.name.indexOf('Board · What') === 0 || n.name === "What's Inside"));
   const grid = (board || figma.currentPage).findOne((n) => n.name === 'Grid');
-  const cols = grid.children.filter((c) => c.type === 'FRAME');
-  for (const c of cols) for (const ch of [...c.children]) ch.remove();
-  const total = phases.reduce((s, p) => s + p.skills.length, 0);
-  let acc = 0, breakAt = phases.length;
-  for (let i = 0; i < phases.length; i++) { if (acc + phases[i].skills.length > total / 2) { breakAt = i; break; } acc += phases[i].skills.length; }
-  if (breakAt === 0) breakAt = 1;
+  for (const ch of [...grid.children]) ch.remove();
   for (let i = 0; i < phases.length; i++) {
-    const col = i < breakAt ? cols[0] : (cols[1] || cols[0]);
-    await buildPhaseCard(col, phases[i], phaseColor(phases[i].name, i));
+    await buildPhaseCard(grid, phases[i], phaseColor(phases[i].name, i));
   }
   return phases.map((p) => p.name);
 }
 
-// ---- section: Plugin details ------------------------------------------------
-// data = plugins slice; clear=true empties the stack first (batch 1 only)
-async function renderPluginDetails(plugins, clear) {
-  const stack = figma.currentPage.findOne((n) => n.name === 'PluginStack');
-  if (!stack) throw new Error('PluginStack not found — run the initial build first.');
-  if (clear) for (const ch of [...stack.children]) ch.remove();
-
-  async function chip(row, text, bg, fg) {
-    const c = AL('HORIZONTAL', { paddingLeft: 8, paddingRight: 8, paddingTop: 3, paddingBottom: 3, cornerRadius: 6 });
-    c.fills = [{ type: 'SOLID', color: typeof bg === 'string' ? hex(bg) : bg }];
-    const t = figma.createText(); await t.setTextStyleIdAsync(TS['Badge']); t.characters = text; t.textCase = 'UPPER'; t.fills = [{ type: 'SOLID', color: hex(fg) }];
-    c.appendChild(t); row.appendChild(c);
-  }
-  async function card(p) {
-    const c = AL('VERTICAL', { name: 'Plugin card', itemSpacing: 13, paddingLeft: 28, paddingRight: 28, paddingTop: 26, paddingBottom: 28 });
-    await c.setFillStyleIdAsync(PS['surface/white']); c.cornerRadius = 16; c.strokes = [{ type: 'SOLID', color: hex('#E6E6EA') }]; c.strokeWeight = 1; c.clipsContent = true;
-    stack.appendChild(c); c.layoutSizingHorizontal = 'FILL';
-    const lines = p.readme.split('\n');
-    let titleDone = false;
-    for (const raw of lines) {
-      const line = raw.replace(/\s+$/, '');
-      if (line.trim() === '') continue;
-      if (line.startsWith('# ')) {
-        const t = await mk('H2', 'ink/primary'); t.characters = line.slice(2); c.appendChild(t); t.layoutSizingHorizontal = 'FILL';
-        // chip row right under the title
-        const row = AL('HORIZONTAL', { name: 'Chips', itemSpacing: 6, counterAxisAlignItems: 'CENTER' }); row.layoutWrap = 'WRAP';
-        c.appendChild(row); row.layoutSizingHorizontal = 'FILL';
-        if (p.phase && PHASE_COLOR[p.phase]) await chip(row, p.phase, mix(PHASE_COLOR[p.phase], 0.14), PHASE_COLOR[p.phase]);
-        if (p.vendored) await chip(row, 'Vendored †', '#FEF3C7', '#92400E'); else await chip(row, 'Original', '#ECECEF', '#52525B');
-        for (const r of p.requirements || []) { const cfg = REQ_CHIP[r]; if (cfg) await chip(row, cfg.text, cfg.bg, cfg.fg); }
-        titleDone = true; continue;
-      }
-      if (line.startsWith('## ')) { const t = await mk('H3', 'ink/primary'); const sg = parseInline(line.slice(3)); t.characters = sg.map((s) => s.t).join(''); applyRanges(t, sg); c.appendChild(t); t.layoutSizingHorizontal = 'FILL'; continue; }
-      if (line.trim() === '---') { const d = figma.createRectangle(); d.resize(1, 1); await d.setFillStyleIdAsync(PS['border/default']); c.appendChild(d); d.layoutSizingHorizontal = 'FILL'; d.resize(d.width, 1); continue; }
-      if (line.startsWith('- ')) { const row = AL('HORIZONTAL', { itemSpacing: 9, counterAxisAlignItems: 'MIN' }); const dot = await mk('Body', 'accent/500'); dot.characters = '•'; row.appendChild(dot); const t = await mk('Body', 'ink/secondary'); const sg = parseInline(line.slice(2)); t.characters = sg.map((s) => s.t).join(''); applyRanges(t, sg); row.appendChild(t); c.appendChild(row); row.layoutSizingHorizontal = 'FILL'; t.layoutSizingHorizontal = 'FILL'; continue; }
-      if (line.startsWith('> ')) { const q = AL('HORIZONTAL', { paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12, cornerRadius: 8 }); q.fills = [{ type: 'SOLID', color: hex('#F7F7F9') }]; q.strokes = [{ type: 'SOLID', color: hex('#6D5EF6') }]; q.strokeTopWeight = 0; q.strokeRightWeight = 0; q.strokeBottomWeight = 0; q.strokeLeftWeight = 3; const t = await mk('Body', 'ink/secondary'); const sg = parseInline(line.slice(2)); t.characters = sg.map((s) => s.t).join(''); applyRanges(t, sg); q.appendChild(t); c.appendChild(q); q.layoutSizingHorizontal = 'FILL'; t.layoutSizingHorizontal = 'FILL'; continue; }
-      if (line.startsWith('Install:')) { const cmd = (line.match(/`([^`]+)`/) || [])[1] || line.slice(8).trim(); const pill = AL('HORIZONTAL', { itemSpacing: 9, paddingLeft: 12, paddingRight: 12, paddingTop: 9, paddingBottom: 9, cornerRadius: 8, counterAxisAlignItems: 'CENTER' }); await pill.setFillStyleIdAsync(PS['surface/code']); const lab = await mk('Badge', 'ink/muted'); lab.characters = 'INSTALL'; lab.textCase = 'UPPER'; pill.appendChild(lab); const cc = await mk('Code', 'ink/secondary'); cc.characters = cmd; pill.appendChild(cc); c.appendChild(pill); pill.layoutSizingHorizontal = 'FILL'; cc.layoutSizingHorizontal = 'FILL'; continue; }
-      const t = await mk('Body', 'ink/secondary'); const sg = parseInline(line); t.characters = sg.map((s) => s.t).join(''); applyRanges(t, sg); c.appendChild(t); t.layoutSizingHorizontal = 'FILL';
-    }
-    return c.id;
-  }
-  const ids = [];
-  for (const p of plugins) ids.push(await card(p));
-  return ids;
-}
-
 // ---- dispatcher -------------------------------------------------------------
+// Plugin detail content now lives on each plugin's own page (as a mini-TOC +
+// notes intro block, built by render-pages.figma.js), paired with its skills —
+// so this renderer only owns the Overview page's "What's inside" index.
 await loadFonts();
 await loadStyles();
 if (SYNC.section === 'whats-inside') return await renderWhatsInside(SYNC.data);
-if (SYNC.section === 'plugin-details') return await renderPluginDetails(SYNC.data, !!SYNC.clear);
 throw new Error('Unknown SYNC.section: ' + SYNC.section);

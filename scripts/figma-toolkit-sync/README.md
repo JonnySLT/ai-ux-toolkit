@@ -8,10 +8,10 @@ When a plugin README, a `SKILL.md`, or the main README's "What's inside" tables
 change, this tool regenerates the data-driven Figma content so the file matches
 the repo verbatim:
 
-- the main page's **What's inside** and **Plugin details** sections (`render.figma.js`), and
-- one **per-plugin skill page** each, rendering every `SKILL.md` in full, cross-linked from the Plugin Details catalogue (`render-pages.figma.js`).
+- the Overview page's **What's inside** index (`render.figma.js`), and
+- one **per-plugin page** each — a mini-TOC of the plugin's skills plus its README notes, followed by every `SKILL.md` in full (`render-pages.figma.js`). Each What's-inside row and each page's mini-TOC entry hyperlinks to the matching skill deep-dive.
 
-The curated **Overview** and **Reference** sections are left untouched.
+The curated **Overview** and **Reference** boards are left untouched. (Plugin detail content used to live in a "Plugin details" board on the Overview page; it now lives on each plugin's own page, paired with its skills.)
 
 ## Why it works the way it does
 
@@ -24,8 +24,8 @@ by two committed artifacts:
 | File | Role |
 |---|---|
 | `extract.mjs` | Parses the READMEs **and every `SKILL.md`** → `toolkit-data.json` (structured source of truth) + a sha256 `fingerprint`. Pure Node, no deps. |
-| `render.figma.js` | Renderer for the **main catalogue page** (What's inside + Plugin details). Idempotent: locates nodes **by name**, clears, rebuilds from data. Passed to `use_figma`. |
-| `render-pages.figma.js` | Renderer for the **per-plugin skill deep-dive pages** — one Figma page per plugin, a frame per skill showing its full `SKILL.md` (markdown: headings, lists, tables, code, blockquotes). Ops: `plugin-page`, `organize` (phase dividers + ordering), `link` (catalogue → skill hyperlinks). Kept separate so one large SKILL.md body + the renderer stay under the `use_figma` size limit. |
+| `render.figma.js` | Renderer for the Overview page's **What's inside** index. Idempotent: locates nodes **by name**, clears the Grid, rebuilds every phase card from data. Passed to `use_figma`. |
+| `render-pages.figma.js` | Renderer for the **per-plugin pages** — one Figma page per plugin: header, an intro block (mini-TOC of the plugin's skills + README notes), then a frame per skill showing its full `SKILL.md` (markdown: headings, lists, tables, code, blockquotes). Ops: `plugin-page`, `add-intro` (retrofit the intro block), `organize` (phase dividers + ordering), `link` (self-discovering: wires mini-TOC entries and What's-inside rows to skill frames). Kept separate so one large SKILL.md body + the renderer stay under the `use_figma` size limit. |
 | `toolkit-data.json` | Generated. The exact data both renderers consume — includes each plugin's `skills[]` (full SKILL.md) and a `pagePlan` (order + phase dividers). Commit it so diffs are reviewable. |
 | `.figma-sync.lock.json` | The last-synced fingerprint. Sync is a no-op when the current fingerprint matches. |
 
@@ -47,37 +47,31 @@ toolkit content.
    const SYNC = { section: "whats-inside", data: /* toolkit-data.json .phases */ };
    // …contents of render.figma.js…
    ```
-4. **Rebuild "Plugin details"** — in batches of ~4 plugins to stay under the
-   `use_figma` 50 KB code limit. First batch clears the stack:
+   This clears the Grid and rebuilds all phase cards, naming each skill row
+   `WI · <skill>` so the `link` step (below) can hyperlink it. The board hugs its
+   content (auto-layout), so no section refit is needed.
+4. **Rebuild the per-plugin pages** with `render-pages.figma.js`. For each plugin
+   in `toolkit-data.json` `.plugins` (in order), split its `.skills` into batches
+   whose total `body` length stays under ~22 000 chars (a big skill goes alone):
    ```js
-   const SYNC = { section: "plugin-details", data: /* plugins[0..3] */, clear: true };
-   // …contents of render.figma.js…
-   ```
-   Subsequent batches: `clear: false`, next slices, in `toolkit-data.json` order.
-5. **Refit the sections.** After each board changes height, resize its wrapping
-   Section: `section.resizeWithoutConstraints(board.width + 96, board.height + 104)`
-   (What's inside → Section "02 · …"; Plugin details → Section "03 · …").
-6. **Rebuild the per-plugin skill pages** with `render-pages.figma.js`. For each
-   plugin in `toolkit-data.json` `.plugins` (in order), split its `.skills` into
-   batches whose total `body` length stays under ~22 000 chars (a big skill goes
-   alone), then:
-   ```js
-   // first batch of a plugin (clears + builds the page header):
+   // first batch of a plugin — clears the page, builds the header + intro block
+   // (mini-TOC of skills + README notes), then the first skill frames:
    const SYNC = { op: "plugin-page", reset: true,
-                  plugin: /* the plugin WITHOUT its skills field */,
+                  plugin: /* the plugin object (readme kept; heavy skills field dropped) */,
                   skills: /* first batch */ };
    // …contents of render-pages.figma.js…
    ```
-   Later batches for the same plugin use `reset: false`. Each call returns
-   `skillFrames: [{ skill, id }]` — collect `{ plugin, skill, nodeId: id }` for
-   every skill. Then order the pages and link the catalogue:
+   Later batches for the same plugin use `reset: false`. Then order the pages and
+   wire the hyperlinks — the `link` op is **self-discovering** (it re-derives skill
+   frames from node names), so it needs no pre-collected id list:
    ```js
    const SYNC = { op: "organize", order: /* pagePlan.order */, dividers: /* pagePlan.dividers */ };
-   const SYNC = { op: "link", links: /* the collected {plugin, skill, nodeId} list */ };
+   const SYNC = { op: "link" }; // wires each mini-TOC entry + each What's-inside row → its skill frame
    ```
-7. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
+   *(`render-pages.figma.js` also exposes an `add-intro` op — `{ op: "add-intro", plugin }` — that retrofits the intro block onto an already-built plugin page without re-rendering its skills. It's a one-time migration helper, not part of the normal sync.)*
+5. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
    `.figma-sync.lock.json`.
-8. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
+6. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
    `changelog-automation`.
 
 ## Scope & guarantees
@@ -85,11 +79,13 @@ toolkit content.
 - **Idempotent.** Re-running with no repo change is a no-op (fingerprint gate).
   Re-running after a change produces the same result regardless of prior state
   (nodes located by name, content cleared and rebuilt).
-- **Scaffold assumed.** Boards, sections, styles, and the 11 phase-card shells
-  must already exist (created by the initial build). This tool refreshes
-  *content*, it does not recreate the file from scratch.
-- **Only two sections** are touched. Overview and Reference are curated prose and
-  are never overwritten.
+- **Scaffold assumed.** The Overview page's boards (incl. the What's-inside
+  `Grid` and `Workflow ribbon`) and the local text/paint styles must already
+  exist (created by the initial build). This tool refreshes *content*; the
+  What's-inside Grid and every plugin page are cleared and rebuilt from data.
+- **Only the What's inside board** on the Overview page is touched there; the
+  curated Overview and Reference boards are never overwritten. The per-plugin
+  pages (and phase-divider pages) are fully managed — tagged and safe to rebuild.
 
 ## Editing checklist for maintainers
 
