@@ -3,15 +3,18 @@ name: annotate
 description: Annotate a Figma frame or page with the project's "Annotation" component. Places annotation panels beside the frame, each pointing at a high-level component with a pink dashed connector, and fills in component specs, color & tokens, assets & icons, and dev handoff notes. Trigger when the user says "annotate this frame/page", "add annotations", "document this screen", or shares a Figma URL asking for annotations.
 ---
 
-Annotate a Figma frame using the **Annotation** component that lives in the **same file you are annotating** — the project's own design system. The goal is a clean, scannable set of annotation panels that document the **high-level** components on a screen for both designers and developers.
+Annotate a Figma frame using the **Annotation** component from **this project's own design system** — whether that DS is embedded in the file itself or attached as a **linked/enabled library**. The goal is a clean, scannable set of annotation panels that document the **high-level** components on a screen for both designers and developers.
 
-> **Always use the current project's own design system — never another file.** Resolve the `Annotation` component, all tokens/variables, and the changelog **from the file the target frame is in**. Do **not** import, copy, or reference a component or tokens from any other Figma file (no `importComponentByKeyAsync` from an external library). Different projects have different design systems; the annotations must match the one in the file you're working in.
+> **Use this project's own design system — never an *unrelated* one.** Resolve the `Annotation` component, tokens/variables, and changelog from **this project's DS**: first the current file, then the design-system **library the file has linked/enabled** (the same DS the frame's own components and tokens already resolve to). What you must **not** do is pull an `Annotation` component or tokens from some *other, unrelated* project's file. A linked library that **is** this project's design system is not "another file" in that sense — instancing its `Annotation` component via `importComponentSetByKeyAsync` is correct.
 
 ## Before you start
 
 - **Always load the `figma:figma-use` skill before any `use_figma` call.**
-- The Annotation component lives **in the current file** as a **variant set** named `Annotation` (usually on an `Annotations` page). Discover it dynamically (don't hardcode IDs) — find a `COMPONENT_SET` named `Annotation`, or a `COMPONENT` whose name starts with `Direction=`, **within the current file only**.
-- **If the current file has no `Annotation` component:** stop and tell the user. Offer to build one in this file (it should bind to this project's own variables/styles) rather than pulling one from elsewhere. Only proceed once a local `Annotation` component exists.
+- **Resolve the `Annotation` component in this order** (discover dynamically; don't hardcode IDs):
+  1. **Local** — a `COMPONENT_SET` named `Annotation` (or a `COMPONENT` whose name starts with `Direction=`) **in the current file** (often on an `Annotations` page). Prefer this when the DS is embedded in the file.
+  2. **Linked library** — if there's no local one, find `Annotation` in the design-system **library the file has linked/enabled** — the same library the frame's own components and tokens come from. Search it (e.g. `search_design_system` for "Annotation"), then instance it with `importComponentSetByKeyAsync(<key>)`. This is the project's DS delivered as a shared library; using it is correct.
+  3. **Neither exists** — stop and tell the user; offer to build a local `Annotation` component in this file, bound to this project's own variables/styles. Only proceed once one exists.
+- **Match the component you actually resolved.** The content steps below assume a specific internal structure (named text nodes in a known order, `Swatch` ×4). If the resolved `Annotation` differs, **inspect its real text nodes and swatches first** and map content to those — don't blindly fill by index.
 - It has two variant properties:
   - **`Direction`** = `Left` | `Right`
     - `Direction=Left` — connector (pink dashed line + dot) on the **left** edge → panel sits to the **right** of the page.
