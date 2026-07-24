@@ -4,10 +4,14 @@ Keeps the **[AI UX Toolkit Figma file](https://www.figma.com/design/n4Hh5v0xiIde
 in sync with this repo. **The repo is the source of truth**; the Figma file is a
 generated view of it.
 
-When a plugin README or the main README's "What's inside" tables change, this
-tool regenerates the two data-driven Figma sections — **What's inside** and
-**Plugin details** — so the Figma file matches the repo verbatim. The curated
-**Overview** and **Reference** sections are left untouched.
+When a plugin README, a `SKILL.md`, or the main README's "What's inside" tables
+change, this tool regenerates the data-driven Figma content so the file matches
+the repo verbatim:
+
+- the main page's **What's inside** and **Plugin details** sections (`render.figma.js`), and
+- one **per-plugin skill page** each, rendering every `SKILL.md` in full, cross-linked from the Plugin Details catalogue (`render-pages.figma.js`).
+
+The curated **Overview** and **Reference** sections are left untouched.
 
 ## Why it works the way it does
 
@@ -19,9 +23,10 @@ by two committed artifacts:
 
 | File | Role |
 |---|---|
-| `extract.mjs` | Parses the READMEs → `toolkit-data.json` (structured source of truth) + a sha256 `fingerprint`. Pure Node, no deps. |
-| `render.figma.js` | The Figma Plugin API renderer. Idempotent: locates nodes **by name**, clears the data-driven content, rebuilds it from `toolkit-data.json`. Passed to `use_figma`. |
-| `toolkit-data.json` | Generated. The exact data the renderer consumes. Commit it so diffs are reviewable. |
+| `extract.mjs` | Parses the READMEs **and every `SKILL.md`** → `toolkit-data.json` (structured source of truth) + a sha256 `fingerprint`. Pure Node, no deps. |
+| `render.figma.js` | Renderer for the **main catalogue page** (What's inside + Plugin details). Idempotent: locates nodes **by name**, clears, rebuilds from data. Passed to `use_figma`. |
+| `render-pages.figma.js` | Renderer for the **per-plugin skill deep-dive pages** — one Figma page per plugin, a frame per skill showing its full `SKILL.md` (markdown: headings, lists, tables, code, blockquotes). Ops: `plugin-page`, `organize` (phase dividers + ordering), `link` (catalogue → skill hyperlinks). Kept separate so one large SKILL.md body + the renderer stay under the `use_figma` size limit. |
+| `toolkit-data.json` | Generated. The exact data both renderers consume — includes each plugin's `skills[]` (full SKILL.md) and a `pagePlan` (order + phase dividers). Commit it so diffs are reviewable. |
 | `.figma-sync.lock.json` | The last-synced fingerprint. Sync is a no-op when the current fingerprint matches. |
 
 Presentation-only details that are **not** in the repo (phase colors, chip
@@ -52,9 +57,27 @@ toolkit content.
 5. **Refit the sections.** After each board changes height, resize its wrapping
    Section: `section.resizeWithoutConstraints(board.width + 96, board.height + 104)`
    (What's inside → Section "02 · …"; Plugin details → Section "03 · …").
-6. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
+6. **Rebuild the per-plugin skill pages** with `render-pages.figma.js`. For each
+   plugin in `toolkit-data.json` `.plugins` (in order), split its `.skills` into
+   batches whose total `body` length stays under ~22 000 chars (a big skill goes
+   alone), then:
+   ```js
+   // first batch of a plugin (clears + builds the page header):
+   const SYNC = { op: "plugin-page", reset: true,
+                  plugin: /* the plugin WITHOUT its skills field */,
+                  skills: /* first batch */ };
+   // …contents of render-pages.figma.js…
+   ```
+   Later batches for the same plugin use `reset: false`. Each call returns
+   `skillFrames: [{ skill, id }]` — collect `{ plugin, skill, nodeId: id }` for
+   every skill. Then order the pages and link the catalogue:
+   ```js
+   const SYNC = { op: "organize", order: /* pagePlan.order */, dividers: /* pagePlan.dividers */ };
+   const SYNC = { op: "link", links: /* the collected {plugin, skill, nodeId} list */ };
+   ```
+7. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into
    `.figma-sync.lock.json`.
-7. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
+8. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
    `changelog-automation`.
 
 ## Scope & guarantees
