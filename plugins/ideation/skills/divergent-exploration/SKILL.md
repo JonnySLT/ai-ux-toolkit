@@ -1,6 +1,6 @@
 ---
 name: divergent-exploration
-description: Generate a wide, deliberately-varied spread of options to break fixation early in a project. Produces distinct product concepts, copy variants (CTAs, headlines, error messages, onboarding lines), or IA/layout structures — each genuinely different in strategy, spanning safe to bold, with a one-line rationale and trade-off — so the designer edits and selects rather than starting from a blank page. Trigger when the user wants to brainstorm, "give me options/variants/concepts", explore directions, "different ways to…", break out of a rut, or mentions "divergent", "ideation", or "explore".
+description: Generate a wide, deliberately-varied spread of options to break fixation early in a project, then make the user's favourites concrete as low-fidelity wireframes. Produces distinct product concepts, copy variants (CTAs, headlines, error messages, onboarding lines), or IA/layout structures — each genuinely different in strategy, spanning safe to bold, with a one-line rationale and trade-off. After the user selects a few options to explore further (typically 2–3), it builds low-fi wireframes of just those — grayscale, real labels and sample values, no brand color or finished components — so the differences are legible without distracting polish. Trigger when the user wants to brainstorm, "give me options/variants/concepts", explore directions, "different ways to…", "sketch/wireframe/mock up a few versions", break out of a rut, or mentions "divergent", "ideation", or "explore".
 ---
 
 Produce a broad, deliberately-spread set of options so the user has something to react to. The goal is **variety, not polish** — cover distinct strategies across a safe→bold range so nothing obvious gets skipped and fixation breaks early. The user narrows down; you widen out.
@@ -54,7 +54,7 @@ For every option give:
 
 ### Nudge at the end
 
-Close with a short "if you're stuck, try…" pointer — name the 1–2 boldest options worth prototyping, or an axis you didn't fully explore that the user could push on. Offer to expand any single option into a fuller treatment.
+Close with a short "if you're stuck, try…" pointer — name the 1–2 boldest options worth prototyping, or an axis you didn't fully explore that the user could push on. Then invite the user to pick a few options (typically 2–3) to see made concrete as low-fi wireframes — that's Phase 2. Offer to expand or combine any single option too.
 
 ---
 
@@ -74,6 +74,27 @@ End with the **"if you're stuck" nudge** and an offer to expand or combine optio
 
 ---
 
+## Phase 2 — Make the picks concrete as low-fi wireframes
+
+Applies to `layout`, `ia`, and `concepts` modes (skip for `copy`). Divergence gives the user something to react to; the natural next move is to make a few of the strongest options *concrete* so they can be compared side by side and one can be chosen for deeper work. Resist jumping straight to high fidelity — polishing one option before the direction is settled over-invests, and biases the choice toward whichever version looks most finished.
+
+**1. Let the user pick.** After presenting the set, invite them to choose the options worth seeing as wireframes (typically **2–3**). Don't choose for them — selection is theirs.
+
+**2. Wireframe only the picks**, one frame per option, laid out side by side so they're directly comparable.
+
+**3. Hit "just enough" fidelity — the crucial judgment.** The wireframe must carry enough real structure and content that the *difference between concepts* is obvious, yet stay rough enough that it doesn't read as "done" or pull the user into polish decisions before they've chosen a direction:
+
+- **Include:** real labels and copy (nav items, section headings, button text), representative sample values (real-looking numbers, names, dates, a few table rows), the actual structural blocks each concept implies, and one restrained accent to signal active/primary state.
+- **Leave out:** brand colors, finished design-system components, shadows, imagery, expressive icons, pixel polish. Keep it grayscale.
+
+Two failure modes to self-check against: if the wireframes look interchangeable, you've **under-specified the content** — add the labels and sample data that make each strategy legible. If the user starts reacting to color or spacing niceties instead of the structural idea, you've **over-cooked it** — strip back toward gray blocks and text.
+
+The concrete recipe — grayscale palette, content rules, side-by-side layout, and Figma build notes (including an auto-layout gotcha that silently breaks "hug" sizing) — is in **[references/low-fi-wireframes.md](references/low-fi-wireframes.md)**. Read it before building.
+
+**4. Then the user picks one** to take to high fidelity (real components, color, final copy). That's a separate step — hand off to a build/prototyping skill or the design system; don't do it inside this skill.
+
+---
+
 ## Guardrails
 
 - **Enforce genuine variety.** If two options share a strategy, replace one. Reworded duplicates defeat the purpose.
@@ -81,3 +102,4 @@ End with the **"if you're stuck" nudge** and an offer to expand or combine optio
 - **Don't self-edit to one answer.** This is divergent work; resist collapsing to a single recommendation. Convergence is the user's job (or a later step).
 - **Respect hard constraints.** Character limits, brand voice, platform rules are non-negotiable; be bold within them, not by breaking them.
 - **Label bold as bold.** Flag options that break an assumption so the user weighs them with eyes open.
+- **Match fidelity to the decision.** When you make picks concrete (Phase 2), wireframe at "just enough" fidelity — grayscale plus real content, no brand polish. Over-polishing early biases the choice and wastes effort on directions that won't ship.
