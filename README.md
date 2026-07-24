@@ -174,7 +174,8 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `design-system-docs` | handoff-docs | Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile. |
 | `user-stories` | handoff-docs | Turn a design or brief into agile user stories ("As a… I want… so that…") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices. |
 | `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice — loaded from a brand file or a quick interview, so it works for any brand. |
-| `design-system-changelog-sweep` | changelog-automation | Diff a design-system Figma file against a stored fingerprint baseline and auto-log any drift to the file's Changelog page. Built to run weekly via `/schedule`. **Requires the Figma MCP.** |
+| `changelog-setup` | changelog-automation | Bootstrap a Changelog on any Figma file (design system, design file, or both): creates the Changelog page + entries container, a styled seed entry, and captures the initial fingerprint baseline. **Requires the Figma MCP.** |
+| `changelog-sweep` | changelog-automation | Diff any Figma file against its stored baseline and auto-log drift — components/variables/styles **and/or** screens/frames — to its Changelog page. Scoped; built to run periodically via `/schedule`. **Requires the Figma MCP.** |
 
 ### 📈 Measure & iterate — `product-analytics`
 
@@ -244,7 +245,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 - **A browser the skill can drive** for `competitive-analysis`, `rapid-prototyping`, `accessibility-check` (live URLs), and `design-review` (screenshot capture).
 - **A codebase to build in** for `frontend-design` and `design-tokens` (they emit real code/tokens).
 - **Everything else needs nothing beyond Claude Code** — the research, define, ideate, content, metrics, and `prompt-builder` plugins all run on their own.
-- For `changelog-automation`: the target project should declare its design-system Figma file key in its `CLAUDE.md`/`AGENTS.md`, and keep a `figma-fingerprint.js` in its repo (a reference copy is bundled here).
+- For `changelog-automation`: the target project should declare its Figma file key (and optionally a `changelog` scope — `design-system` / `design-file` / `all`) in its `CLAUDE.md`/`AGENTS.md`. The fingerprint algorithm and a portable default of the changelog conventions are bundled here; a project can override either with its own copy.
 
 ## Connecting the Figma MCP
 
@@ -325,7 +326,7 @@ ai-ux-toolkit/
     ├── rapid-prototyping/              # original — rapid-prototype
     ├── handoff-docs/                   # original — component-spec, design-system-docs, user-stories
     ├── brand-voice/                    # original — brand-voice-tone
-    ├── changelog-automation/           # original — design-system-changelog-sweep (+ scripts/figma-fingerprint.js)
+    ├── changelog-automation/           # original — changelog-setup + changelog-sweep (+ scripts/figma-fingerprint.js, references/changelog-conventions.md)
     ├── product-analytics/              # original — measurement-plan, experimentation
     ├── prompt-builder/                 # original — prompt-builder (meta: better briefs + ask-first routing hook)
     ├── design-planning/                # vendored † — design-brief, grill-me, brief-to-tasks, design-flow

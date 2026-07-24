@@ -1,24 +1,43 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Canonical fingerprint algorithm — Claude Design System changelog baseline.
+// Canonical fingerprint algorithm — Figma changelog baseline.
 //
-// Usage: embed this file verbatim at the top of a use_figma call, then:
-//   const fp = await computeFingerprint()
+// Works for ANY Figma file — a design system, a design file (screens/flows), or
+// both — via a `scope`:
+//   computeFingerprint({ scope: 'design-system' })  // components, variables, styles (default)
+//   computeFingerprint({ scope: 'design-file' })     // top-level frames/screens
+//   computeFingerprint({ scope: 'all' })             // everything
 //
-// The returned object has five buckets:
-//   { pages, components, variables, textStyles, effectStyles }
-// Each bucket maps entity name → hash string.
+// Buckets returned depend on scope. Every bucket maps entity name → hash string:
+//   pages         — always: page name + top-level child count (structural add/remove)
+//   components    — design-system / all
+//   variables     — design-system / all
+//   textStyles    — design-system / all
+//   effectStyles  — design-system / all
+//   frames        — design-file / all: deep hash of each top-level FRAME/SECTION
+//
+// The default scope is 'design-system' so existing design-system baselines keep
+// hashing identically (backward compatible). Choose 'design-file' for a screens
+// file, or 'all' for a file that has both a local component library and screens.
 //
 // To capture a baseline:
-//   const json = JSON.stringify({ fp, meta: { capturedAt: Date.now() } })
+//   const fp = await computeFingerprint({ scope })
+//   const json = JSON.stringify({ fp, meta: { scope, capturedAt: Date.now() } })
 //   figma.root.setSharedPluginData('changelog', 'baseline', json)
 //
-// To diff against the baseline:
+// To diff against the baseline (use the SAME scope the baseline was captured with):
 //   const stored = figma.root.getSharedPluginData('changelog', 'baseline')
 //   const { fp: base } = JSON.parse(stored)
-//   // diff(base, fp) → { added, removed, changed } per bucket
+//   computeFingerprint.diff(base, fp) → { added, removed, changed } per bucket
 // ─────────────────────────────────────────────────────────────────────────────
 
-async function computeFingerprint() {
+async function computeFingerprint(opts) {
+  opts = opts || {};
+  const scope = opts.scope || 'design-system'; // 'design-system' | 'design-file' | 'all'
+  const wantDS = scope === 'design-system' || scope === 'all';
+  const wantFrames = scope === 'design-file' || scope === 'all';
+  // Meta pages that are never "screens" — excluded from the frames bucket so the
+  // sweep never detects its own changelog writes (or annotation docs) as drift.
+  const excludePages = opts.excludePages || [/changelog/i, /^annotations?$/i, /^cover$/i];
 
   // ── Deterministic hash (djb2 xor variant) ──────────────────────────────────
   function hash(str) {
@@ -100,12 +119,13 @@ async function computeFingerprint() {
     return parts.join('\x00') + '\x01' + childSigs.join('\x02');
   }
 
-  // ── Diff helper (exported for callers) ─────────────────────────────────────
+  // ── Diff helper (exported for callers) — iterates whatever buckets exist ────
   computeFingerprint.diff = function(base, current) {
     const result = {};
-    for (const bucket of ['pages', 'components', 'variables', 'textStyles', 'effectStyles']) {
-      const b = base[bucket] ?? {};
-      const c = current[bucket] ?? {};
+    const buckets = new Set([...Object.keys(base || {}), ...Object.keys(current || {})]);
+    for (const bucket of buckets) {
+      const b = (base && base[bucket]) || {};
+      const c = (current && current[bucket]) || {};
       const allKeys = new Set([...Object.keys(b), ...Object.keys(c)]);
       const added = [], removed = [], changed = [];
       for (const k of allKeys) {
@@ -118,51 +138,68 @@ async function computeFingerprint() {
     return result;
   };
 
-  const fp = { pages: {}, components: {}, variables: {}, textStyles: {}, effectStyles: {} };
+  const fp = { pages: {} };
 
-  // ── Pages ───────────────────────────────────────────────────────────────────
+  // ── Pages (always) — name + top-level child count (structural add/remove) ───
   for (const page of figma.root.children) {
     fp.pages[page.name] = hash(page.name + ':' + page.children.length);
   }
 
-  // ── Components and component sets ───────────────────────────────────────────
-  // Switch to each page to load its content, collect top-level component sets
-  // and standalone components (not variant children inside a set).
-  for (const page of figma.root.children) {
-    await figma.setCurrentPageAsync(page);
-    const nodes = page.findAll(n =>
-      n.type === 'COMPONENT_SET' ||
-      (n.type === 'COMPONENT' && n.parent?.type !== 'COMPONENT_SET')
-    );
-    for (const node of nodes) {
-      // Use page-qualified name to avoid collisions across pages
-      const key = page.name + '/' + node.name;
-      fp.components[key] = hash(nodeSig(node));
+  // ── Frames / screens (design-file / all) — deep hash of each top-level frame ─
+  if (wantFrames) {
+    fp.frames = {};
+    const isMeta = name => excludePages.some(re => re.test(name));
+    for (const page of figma.root.children) {
+      if (isMeta(page.name)) continue;
+      await figma.setCurrentPageAsync(page);
+      for (const node of page.children) {
+        if (node.type === 'FRAME' || node.type === 'SECTION') {
+          fp.frames[page.name + ' / ' + node.name] = hash(nodeSig(node));
+        }
+      }
     }
   }
 
-  // ── Variables ───────────────────────────────────────────────────────────────
-  const vars = await figma.variables.getLocalVariablesAsync();
-  for (const variable of vars) {
-    fp.variables[variable.name] = hash(j({ type: variable.resolvedType, values: variable.valuesByMode }));
-  }
+  // ── Design-system assets (design-system / all) ─────────────────────────────
+  if (wantDS) {
+    fp.components = {}; fp.variables = {}; fp.textStyles = {}; fp.effectStyles = {};
 
-  // ── Text styles ─────────────────────────────────────────────────────────────
-  for (const style of figma.getLocalTextStyles()) {
-    fp.textStyles[style.name] = hash(j({
-      fontSize: style.fontSize,
-      fontName: style.fontName,
-      lineHeight: style.lineHeight,
-      letterSpacing: style.letterSpacing,
-      textDecoration: style.textDecoration,
-      textCase: style.textCase,
-      paragraphSpacing: style.paragraphSpacing,
-    }));
-  }
+    // Components and component sets — top-level sets + standalone components.
+    for (const page of figma.root.children) {
+      await figma.setCurrentPageAsync(page);
+      const nodes = page.findAll(n =>
+        n.type === 'COMPONENT_SET' ||
+        (n.type === 'COMPONENT' && n.parent?.type !== 'COMPONENT_SET')
+      );
+      for (const node of nodes) {
+        const key = page.name + '/' + node.name; // page-qualified to avoid collisions
+        fp.components[key] = hash(nodeSig(node));
+      }
+    }
 
-  // ── Effect styles ────────────────────────────────────────────────────────────
-  for (const style of figma.getLocalEffectStyles()) {
-    fp.effectStyles[style.name] = hash(j(style.effects));
+    // Variables
+    const vars = await figma.variables.getLocalVariablesAsync();
+    for (const variable of vars) {
+      fp.variables[variable.name] = hash(j({ type: variable.resolvedType, values: variable.valuesByMode }));
+    }
+
+    // Text styles
+    for (const style of figma.getLocalTextStyles()) {
+      fp.textStyles[style.name] = hash(j({
+        fontSize: style.fontSize,
+        fontName: style.fontName,
+        lineHeight: style.lineHeight,
+        letterSpacing: style.letterSpacing,
+        textDecoration: style.textDecoration,
+        textCase: style.textCase,
+        paragraphSpacing: style.paragraphSpacing,
+      }));
+    }
+
+    // Effect styles
+    for (const style of figma.getLocalEffectStyles()) {
+      fp.effectStyles[style.name] = hash(j(style.effects));
+    }
   }
 
   return fp;
