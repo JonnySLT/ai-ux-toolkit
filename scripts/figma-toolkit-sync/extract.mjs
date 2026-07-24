@@ -4,6 +4,9 @@
  * data file (`toolkit-data.json`) that the Figma renderer consumes.
  *
  * The repo is the source of truth. This script derives, deterministically:
+ *   - intro      : the README's opening paragraphs (markdown-stripped) — the
+ *                  hero subtitle + the "What it is" card — so the curated
+ *                  Overview intro tracks the repo too, not just the catalog.
  *   - phases[]   : the "What's inside" table, grouped by workflow phase,
  *                  with each skill's verbatim "Use it to…" description.
  *   - plugins[]  : every plugin's full, verbatim README markdown, plus the
@@ -70,6 +73,43 @@ function markerOf(s) {
   if (s.includes('§')) return '§';
   if (s.includes('†')) return '†';
   return null;
+}
+
+/** Markdown inline → plain text: drop bold/italic emphasis, unwrap code + links. */
+function stripMarkdown(s) {
+  return s
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/<([^>]+)>/g, '$1')
+    .trim();
+}
+
+/**
+ * The README's opening paragraphs — the prose between the H1 title and the
+ * first horizontal rule (`---`) or `## ` section. These mirror the curated Figma
+ * Overview intro: the first paragraph is the hero subtitle; the rest are the
+ * "What it is" card, in order. Blockquote callouts (`> …`) and stray headings
+ * are skipped, and inline markdown is stripped so the text matches how the
+ * curated (uniformly-styled) Figma nodes render it.
+ */
+function parseIntro(readme) {
+  const lines = readme.split('\n');
+  let i = lines.findIndex((l) => /^#\s+/.test(l));
+  i = i === -1 ? 0 : i + 1; // start just after the H1
+  const paras = [];
+  let buf = [];
+  const flush = () => { if (buf.length) { paras.push(buf.join(' ').trim()); buf = []; } };
+  for (; i < lines.length; i++) {
+    const l = lines[i];
+    if (/^---\s*$/.test(l) || /^##\s+/.test(l)) break;   // end of the intro block
+    if (l.trim() === '' || l.startsWith('>') || l.startsWith('#')) { flush(); continue; }
+    buf.push(l.trim());
+  }
+  flush();
+  const clean = paras.map(stripMarkdown).filter(Boolean);
+  return { hero: clean[0] || '', card: clean.slice(1) };
 }
 
 /**
@@ -153,6 +193,7 @@ function skillOrder(readme, dirs) {
 
 function build() {
   const readme = readFileSync(MAIN_README, 'utf8');
+  const intro = parseIntro(readme);
   const phases = parsePhases(readme);
   const phaseByPlugin = pluginPhaseIndex(phases);
 
@@ -220,9 +261,9 @@ function build() {
     seenPhase.get(key).plugins.push(p.name);
   }
 
-  const data = { generatedFrom: 'ai-ux-toolkit README files', phases, plugins, pagePlan, toolHash };
+  const data = { generatedFrom: 'ai-ux-toolkit README files', intro, phases, plugins, pagePlan, toolHash };
   const fingerprint = createHash('sha256')
-    .update(JSON.stringify({ phases, plugins, tool: toolHash }))
+    .update(JSON.stringify({ intro, phases, plugins, tool: toolHash }))
     .digest('hex');
   data.fingerprint = fingerprint;
   return data;
@@ -238,6 +279,7 @@ if (process.argv.includes('--check')) {
   const skillCount = data.phases.reduce((n, p) => n + p.skills.length, 0);
   process.stdout.write(
     `Wrote ${OUT}\n` +
+      `  intro:   1 hero + ${data.intro.card.length} card paragraph(s)\n` +
       `  phases:  ${data.phases.length}\n` +
       `  skills:  ${skillCount} (rows in What's inside)\n` +
       `  plugins: ${data.plugins.length}\n` +

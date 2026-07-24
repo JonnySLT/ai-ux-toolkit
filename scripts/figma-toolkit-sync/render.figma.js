@@ -167,11 +167,55 @@ async function renderWhatsInside(phases) {
   return phases.map((p) => p.name);
 }
 
+// ---- section: Overview intro (hero subtitle + "What it is" card) ------------
+// data = { hero, card[] } from toolkit-data.json — the README's opening
+// paragraphs, markdown-stripped. Unlike the phase cards, these nodes live on the
+// CURATED Overview board, so we do NOT rebuild them: we locate the existing text
+// nodes and rewrite ONLY their `characters`, preserving each node's curated
+// font/size/color. Positional assignment for the card also re-imposes README
+// paragraph order, self-healing a manual reorder.
+async function setCharsPreservingFont(node, chars) {
+  for (const seg of node.getStyledTextSegments(['fontName'])) await figma.loadFontAsync(seg.fontName);
+  node.characters = chars;
+  return node.id;
+}
+async function renderIntro(intro) {
+  const ids = [];
+  // Hero subtitle: located by its stable name `Hero subtitle`. On first run
+  // (before the name is set) fall back to the SMALLER-font TEXT child of the
+  // "Hero" frame — the title is the larger font size — then set the stable name
+  // so later runs are exact. (Never identify by text length: dirtying/shortening
+  // the subtitle would then make the title look like the target.)
+  const hero = figma.currentPage.findOne((n) => n.name === 'Hero');
+  if (hero && intro.hero) {
+    let sub = hero.findOne((n) => n.type === 'TEXT' && n.name === 'Hero subtitle');
+    if (!sub) {
+      const texts = hero.children.filter((c) => c.type === 'TEXT');
+      const size = (t) => (typeof t.fontSize === 'number' ? t.fontSize : 0);
+      const title = texts.slice().sort((a, b) => size(b) - size(a))[0];
+      sub = texts.filter((t) => t !== title)[0];
+      if (sub) sub.name = 'Hero subtitle';
+    }
+    if (sub) ids.push(await setCharsPreservingFont(sub, intro.hero));
+  }
+  // "What it is" card: its direct TEXT children, in order, take the card
+  // paragraphs in README order.
+  const card = figma.currentPage.findOne((n) => n.name === 'What it is');
+  if (card && intro.card) {
+    const texts = card.children.filter((c) => c.type === 'TEXT');
+    for (let i = 0; i < intro.card.length && i < texts.length; i++) {
+      ids.push(await setCharsPreservingFont(texts[i], intro.card[i]));
+    }
+  }
+  return { mutatedNodeIds: ids };
+}
+
 // ---- dispatcher -------------------------------------------------------------
-// Plugin detail content now lives on each plugin's own page (as a mini-TOC +
-// notes intro block, built by render-pages.figma.js), paired with its skills —
-// so this renderer only owns the Overview page's "What's inside" index.
+// This renderer owns the Overview page: the "What's inside" index AND the intro
+// paragraphs (hero subtitle + "What it is" card). Plugin detail content lives on
+// each plugin's own page (built by render-pages.figma.js), paired with its skills.
 await loadFonts();
 await loadStyles();
 if (SYNC.section === 'whats-inside') return await renderWhatsInside(SYNC.data);
+if (SYNC.section === 'intro') return await renderIntro(SYNC.data);
 throw new Error('Unknown SYNC.section: ' + SYNC.section);

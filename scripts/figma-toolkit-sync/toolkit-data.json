@@ -1,5 +1,12 @@
 {
   "generatedFrom": "ai-ux-toolkit README files",
+  "intro": {
+    "hero": "SLT's shared UX toolkit. A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.",
+    "card": [
+      "Built for a UX team. It assumes you're not working in a vacuum — first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, and developer-handoff specs and user stories. Shaped for UX designers and researchers working side by side.",
+      "Everything here is project-agnostic. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of whatever project you run it in. Add it once, then install only the plugins you need."
+    ]
+  },
   "phases": [
     {
       "num": "01",
@@ -958,6 +965,6 @@
       }
     ]
   },
-  "toolHash": "2d57049021b6ed3de39b5579a2ee3159c7a647ed23416c40a1dc0bd71b1c954f",
-  "fingerprint": "57fa88a5971468ce6d5acb63736a32da827e884c32e7464c787fdcb2e540fbbc"
+  "toolHash": "338b7c3e3eff19304142882de538920a51209357ff45fcbb21c8de5239d01360",
+  "fingerprint": "2c8955936d277104725b1c773262c8b99e13c471d25b694e6a870aff5fb960ee"
 }
