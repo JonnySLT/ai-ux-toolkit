@@ -1,10 +1,10 @@
 # AI UX Toolkit
 
-A Claude Code **plugin marketplace** — a curated set of skills and automations that cover the full UX design *and* research workflow: from planning and synthesizing research, through ideation, information architecture, design, content, accessibility, and prototyping, to validation (expert reviews, usability testing, experimentation), developer handoff, and post-launch measurement. 22 plugins, 39 skills, organized by workflow phase.
+**Your team's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.
 
 **Built for designers working on a team.** The workflow assumes you're not designing in a vacuum — it has first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, developer handoff specs and user stories, and cross-functional review. Solo designers can use it too, but the toolkit is shaped around designers, researchers, PMs, and engineers working in concert.
 
-Everything here is **project-agnostic**. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of **whatever project you run it in**. Add the marketplace once, then install only the plugins you need.
+Everything here is **project-agnostic**. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of **whatever project you run it in**. Add it once, then install only the plugins you need.
 
 > **Original + vendored.** Most plugins are original to this toolkit. Five (`design-planning`, `information-architecture`, `design-tokens`, `frontend-design`, `design-review`) are vendored **verbatim** from Julian Oczkowski's excellent [designer-skills](https://github.com/julianoczkowski/designer-skills) under the Apache-2.0 license, so the whole workflow installs from one place — see [Attribution](#attribution--third-party-skills).
 
@@ -17,7 +17,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 ## Quick start
 
 ```text
-# 1. Add the marketplace (once)
+# 1. Add it to Claude Code (once)
 /plugin marketplace add JonnySLT/ai-ux-toolkit
 
 # 2. Install any single plugin — same pattern for all 22
@@ -26,7 +26,7 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 
 **Want everything?** Just ask Claude, right in your Claude Code session:
 
-> *"Install all 22 plugins from the ai-ux-toolkit marketplace."*
+> *"Install all 22 plugins from ai-ux-toolkit."*
 
 You can ask for **any subset** the same way — *"install just the research plugins,"* or *"everything except the Figma-dependent ones."* Prefer to browse? Run **`/plugin`** for an interactive menu.
 
@@ -126,7 +126,7 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-`figma-designer`, `reattach`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this marketplace. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
+`figma-designer`, `reattach`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
@@ -248,7 +248,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 
 ## Connecting the Figma MCP
 
-A few skills talk to Figma through Figma's **MCP server** — a remote connector you authorize once, **not** part of this marketplace: you connect it, you don't install it. It also brings its own skills (`figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect`) — the **§** rows in [What's inside](#whats-inside--organized-by-workflow-phase). Figma maintains and versions those against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
+A few skills talk to Figma through Figma's **MCP server** — a remote connector you authorize once, **not** part of this toolkit: you connect it, you don't install it. It also brings its own skills (`figma-use`, `figma-generate-design`, `figma-generate-library`, `figma-code-connect`) — the **§** rows in [What's inside](#whats-inside--organized-by-workflow-phase). Figma maintains and versions those against the live server, which is why this toolkit **references** the MCP rather than vendoring them (a copied version would drift out of sync).
 
 Everything installs fine without the MCP; the Figma-dependent plugins just stay inert until it's connected.
 
@@ -294,15 +294,15 @@ For anyone on the team editing or extending this repo:
 - **Before committing:** run `node scripts/validate.mjs` — the same structural check CI runs on every push/PR (manifests, name matches, frontmatter, licenses, install lines, hooks).
 - **After adding a skill or editing any description:** run `node scripts/route-eval.mjs` to confirm skill routing still lands (~20 model calls; a single `NONE` miss is usually sampling noise — rerun that prompt before editing anything).
 - **Never edit the five vendored † plugins' skill files** — they're kept byte-identical to upstream (pinned in `.vendor/designer-skills.lock.json`). The weekly workflow flags upstream changes; re-syncing = re-copy verbatim + update the lockfile.
-- **Adding a plugin:** follow the existing shape (`.claude-plugin/plugin.json` + `README.md` ending in its install line + `skills/<name>/SKILL.md`), register it in `.claude-plugin/marketplace.json`, and add it to this README's install recipes and phase tables — `validate.mjs` enforces most of this.
-- **Bump the marketplace `version`** in `.claude-plugin/marketplace.json` on any catalog change.
+- **Adding a plugin:** follow the existing shape (`.claude-plugin/plugin.json` + `README.md` ending in its install line + `skills/<name>/SKILL.md`), register it in `.claude-plugin/marketplace.json`, and add it to this README's phase tables — `validate.mjs` enforces most of this.
+- **Bump the catalog `version`** in `.claude-plugin/marketplace.json` on any change.
 - **The Figma companion file stays in sync automatically.** The [AI UX Toolkit Figma file](https://www.figma.com/design/n4Hh5v0xiIdezIiiP0Hiu5/AI-UX-Toolkit) mirrors these READMEs — a weekly scheduled sync (`scripts/figma-toolkit-sync/`) regenerates its *What's inside* and *Plugin details* sections from the repo, so editing a plugin README (or the What's inside tables) updates Figma with no manual design work. If a plugin's requirement chips change, update the `REQUIREMENTS` map in `scripts/figma-toolkit-sync/extract.mjs`. See [`scripts/figma-toolkit-sync/README.md`](scripts/figma-toolkit-sync/README.md).
 
 ## Repository layout
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # marketplace catalog (lists all 22 plugins)
+├── .claude-plugin/marketplace.json     # plugin catalog (lists all 22 plugins)
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)

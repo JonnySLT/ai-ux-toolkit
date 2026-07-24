@@ -126,6 +126,29 @@ function isVendored(md) {
   return /##\s*Attribution/i.test(md) || /vendored\s+\*\*verbatim\*\*/i.test(md);
 }
 
+/** Split a SKILL.md into its frontmatter (name, description) and body. */
+function parseSkill(md) {
+  const fm = md.match(/^---\n([\s\S]*?)\n---\n?/);
+  let name = null, description = null, body = md;
+  if (fm) {
+    const nm = fm[1].match(/^name:\s*(.+)$/m);
+    const dm = fm[1].match(/^description:\s*(.+)$/m);
+    if (nm) name = nm[1].trim();
+    if (dm) description = dm[1].trim();
+    body = md.slice(fm[0].length);
+  }
+  return { name, description, body: body.replace(/\s+$/, '') };
+}
+
+/** Ordered skill dirs for a plugin — README bullet order first, then any extras. */
+function skillOrder(readme, dirs) {
+  const bulletOrder = [...readme.matchAll(/^-\s+\*\*([^*]+)\*\*/gm)].map((m) => m[1]);
+  return dirs.slice().sort((a, b) => {
+    const ia = bulletOrder.indexOf(a), ib = bulletOrder.indexOf(b);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b);
+  });
+}
+
 // ---- build ------------------------------------------------------------------
 
 function build() {
@@ -150,6 +173,21 @@ function build() {
     const md = readIfExists(join(PLUGINS_DIR, name, 'README.md'));
     if (!md) continue;
     const phase = phaseByPlugin[name] || null;
+
+    // Read every skill's full SKILL.md (frontmatter + body) for the per-plugin
+    // deep-dive pages. Ordered to match the plugin README's skill bullets.
+    const skills = [];
+    const skillsDir = join(PLUGINS_DIR, name, 'skills');
+    if (existsSync(skillsDir)) {
+      const dirs = readdirSync(skillsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+      for (const sd of skillOrder(md, dirs)) {
+        const sm = readIfExists(join(skillsDir, sd, 'SKILL.md'));
+        if (!sm) continue;
+        const p = parseSkill(sm);
+        skills.push({ dir: sd, name: p.name || sd, description: p.description || '', body: p.body });
+      }
+    }
+
     plugins.push({
       name,
       phase: phase ? phase.name : null,
@@ -157,6 +195,7 @@ function build() {
       vendored: isVendored(md),
       requirements: REQUIREMENTS[name] || [],
       readme: md.replace(/\s+$/, ''), // verbatim, trailing whitespace trimmed
+      skills, // each: { dir, name, description, body } — full SKILL.md
     });
   }
 
@@ -165,9 +204,23 @@ function build() {
   const toolHash = createHash('sha256')
     .update(readFileSync(join(HERE, 'extract.mjs')))
     .update(readFileSync(join(HERE, 'render.figma.js')))
+    .update(readFileSync(join(HERE, 'render-pages.figma.js')))
     .digest('hex');
 
-  const data = { generatedFrom: 'ai-ux-toolkit README files', phases, plugins, toolHash };
+  // Page plan for the per-plugin skill pages: plugin order + phase dividers.
+  const pagePlan = { order: plugins.map((p) => p.name), dividers: [] };
+  const seenPhase = new Map();
+  for (const p of plugins) {
+    const key = (p.phaseNum || '99') + '|' + (p.phase || 'Other');
+    if (!seenPhase.has(key)) {
+      const div = { name: `──  ${p.phaseNum} · ${p.phase}  ──`, plugins: [] };
+      seenPhase.set(key, div);
+      pagePlan.dividers.push(div);
+    }
+    seenPhase.get(key).plugins.push(p.name);
+  }
+
+  const data = { generatedFrom: 'ai-ux-toolkit README files', phases, plugins, pagePlan, toolHash };
   const fingerprint = createHash('sha256')
     .update(JSON.stringify({ phases, plugins, tool: toolHash }))
     .digest('hex');
