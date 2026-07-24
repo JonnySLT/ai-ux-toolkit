@@ -1,6 +1,6 @@
 ---
 name: changelog-setup
-description: Set up a Changelog in ANY Figma file — a design system, a design file (screens/flows), or both — so the changelog-sweep can maintain it afterward. Creates a Changelog page, an entries auto-layout container, a first seed entry styled per the changelog conventions, and captures the initial fingerprint baseline. Trigger when the user wants to add/start a changelog on a file, initialize changelog tracking, or when a sweep reports there's no Changelog page or baseline yet.
+description: Set up a Changelog in ANY Figma file — a design system, a design file (screens/flows), or both — so the changelog-sweep can maintain it afterward. Creates a Changelog page, an entries auto-layout container, a first seed entry styled per the changelog conventions, captures the initial fingerprint baseline, AND schedules a recurring sweep (default weekly Mondays 9am, day/time configurable). Trigger when the user wants to add/start a changelog on a file, initialize changelog tracking, schedule automatic changelog updates, or when a sweep reports there's no Changelog page or baseline yet.
 ---
 
 Bootstrap a changelog in a Figma file that doesn't have one yet. After this runs once, the `changelog-sweep` skill can maintain it. This is the **create** step; `changelog-sweep` is the **maintain** step.
@@ -45,8 +45,11 @@ return { buckets: Object.fromEntries(Object.entries(fp).map(([k,v]) => [k, Objec
 ```
 Capturing the baseline **after** the page exists is fine — the `Changelog` page is excluded from the `frames` bucket by the fingerprint, so it won't show up as drift on the first sweep.
 
-### 5. Wire up the schedule (optional)
-Offer to schedule `changelog-sweep` to run periodically (e.g. weekly) via `/schedule`, pointed at this file's project config.
+### 5. Schedule the recurring sweep
+Setting up a changelog is only useful if it stays current, so **wire up a recurring `changelog-sweep` as part of setup** — don't leave it as a vague "you could schedule this." Follow `references/scheduled-sweep.md`:
+- **Propose the default cadence — weekly, Mondays at 9:00 AM local (`cron: 0 9 * * 1`)** — and ask the user to confirm or give a different **day and time**. Translate their plain-language answer to a cron expression (the reference has a cheat-sheet). Only skip creation if they decline a schedule outright.
+- **Register the task** with the environment's scheduler — a `create_scheduled_task`-style MCP tool if one is connected, otherwise `/schedule`. Fill the reference's **task-prompt template** with the values you resolved (`FIGMA_FILE_KEY`, `CHANGELOG_SCOPE`, the absolute `FINGERPRINT_SCRIPT` and `CHANGELOG_RULES` paths). The prompt must be **fully self-contained** — each run is a fresh session with no memory of this setup — so bake those resolved values in rather than telling the run to "resolve from project config." Use a stable task id like `<file-slug>-changelog-sweep`.
+- **Tell the user how to change it later** — update the task's cron for a new day/time, or disable/delete it to pause; the baseline stays in the file either way.
 
 ## Output
-Report: the Changelog page + entries frame created (or that they already existed), the seed entry added, the scope, and the baseline captured (bucket counts). Note that `changelog-sweep` now maintains it.
+Report: the Changelog page + entries frame created (or that they already existed), the seed entry added, the scope, the baseline captured (bucket counts), and **the recurring sweep scheduled** (its cadence, e.g. "weekly, Mondays 9:00 AM") — or that the user declined a schedule. Note that `changelog-sweep` now maintains it, and remind them the day/time is easy to change.

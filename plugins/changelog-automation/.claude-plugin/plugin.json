@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "changelog-automation",
-  "description": "Add and maintain a Changelog on any Figma file — a design system, a design file (screens/flows), or both. changelog-setup bootstraps the page + baseline; changelog-sweep fingerprints the file, detects drift from the baseline, and auto-logs changes. Includes the canonical scoped fingerprint algorithm and portable changelog conventions.",
+  "description": "Add and maintain a Changelog on any Figma file — a design system, a design file (screens/flows), or both. changelog-setup bootstraps the page + baseline and schedules a recurring sweep (default weekly Mondays 9am, day/time configurable); changelog-sweep fingerprints the file, detects drift from the baseline, and auto-logs changes. Includes the canonical scoped fingerprint algorithm, portable changelog conventions, and a scheduled-sweep template.",
   "version": "1.0.0",
   "author": { "name": "Jonny Bennett" }
 }
