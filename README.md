@@ -2,7 +2,7 @@
 
 **SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.
 
-**Built for designers working on a team.** The workflow assumes you're not designing in a vacuum — it has first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, developer handoff specs and user stories, and cross-functional review. Solo designers can use it too, but the toolkit is shaped around designers, researchers, PMs, and engineers working in concert.
+**Built for a UX team.** It assumes you're not working in a vacuum — first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, and developer-handoff specs and user stories. Shaped for UX designers and researchers working side by side.
 
 Everything here is **project-agnostic**. No skill is tied to a specific company, file, or industry — each one references the design system, tokens, voice, and conventions of **whatever project you run it in**. Add it once, then install only the plugins you need.
 
