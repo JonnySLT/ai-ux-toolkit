@@ -94,7 +94,6 @@ async function renderWhatsInside(phases) {
     t.setRangeFills(0, name.length, [{ type: 'SOLID', color: hex('#18181B') }]);
     if (marker) { const ms = name.length + 1, me = ms + marker.length, mc = marker === '†' ? '#92400E' : '#B0195C'; t.setRangeFontName(ms, me, { family: 'Inter', style: 'Semi Bold' }); t.setRangeFills(ms, me, [{ type: 'SOLID', color: hex(mc) }]); }
     applyRanges(t, dsegs, prefix.length + sep.length);
-    t.name = 'WI · ' + name; // named so the `link` op can hyperlink this row → its skill frame
     body.appendChild(t); t.layoutSizingHorizontal = 'FILL';
   }
   async function buildPhaseCard(parent, ph, color) {
@@ -107,9 +106,33 @@ async function renderWhatsInside(phases) {
     const num = await mk('Badge'); num.characters = ph.num; num.textCase = 'UPPER'; num.fills = [{ type: 'SOLID', color: hex(color) }]; h.appendChild(num);
     const em = await mk('H3'); em.characters = ph.emoji; h.appendChild(em);
     const nm = await mk('H3'); nm.characters = ph.name; nm.fills = [{ type: 'SOLID', color: hex(color) }]; h.appendChild(nm); nm.layoutSizingHorizontal = 'FILL';
-    const b = AL('VERTICAL', { name: 'B', itemSpacing: 12, paddingLeft: 18, paddingRight: 18, paddingTop: 16, paddingBottom: 18 });
+    const b = AL('VERTICAL', { name: 'B', itemSpacing: 18, paddingLeft: 18, paddingRight: 18, paddingTop: 16, paddingBottom: 18 });
     card.appendChild(b); b.layoutSizingHorizontal = 'FILL';
-    for (const s of ph.skills) await skillRow(b, s.skill, s.marker, s.desc);
+    // Group skills under their owning plugin (= the page you'd navigate to),
+    // falling back to the phase's single plugin when a skill's plugin is null;
+    // preserve first-appearance order. The plugin label is the navigation anchor:
+    // real plugins get an accent label named `WIP · <plugin>` that the `link` op
+    // hyperlinks to the plugin's page; a group whose plugin isn't one of the
+    // phase's real plugins (e.g. "Figma MCP") is external — labelled muted and
+    // left unlinked. Skill rows themselves are plain text, not links.
+    const groups = [], gi = {};
+    for (const s of ph.skills) {
+      const plug = s.plugin || (ph.plugins && ph.plugins[0]) || '—';
+      if (!(plug in gi)) { gi[plug] = groups.length; groups.push({ plugin: plug, skills: [] }); }
+      groups[gi[plug]].skills.push(s);
+    }
+    for (const grp of groups) {
+      const external = !(ph.plugins && ph.plugins.includes(grp.plugin));
+      const group = AL('VERTICAL', { name: 'PluginGroup · ' + grp.plugin, itemSpacing: 8 });
+      b.appendChild(group); group.layoutSizingHorizontal = 'FILL';
+      const lab = await mk('Overline', external ? 'ink/muted' : 'accent/600');
+      lab.characters = external ? grp.plugin + '  §' : grp.plugin; lab.textCase = 'UPPER';
+      if (!external) lab.name = 'WIP · ' + grp.plugin;
+      group.appendChild(lab); lab.layoutSizingHorizontal = 'FILL';
+      const rows = AL('VERTICAL', { name: 'Rows', itemSpacing: 9, paddingLeft: 14 });
+      group.appendChild(rows); rows.layoutSizingHorizontal = 'FILL';
+      for (const s of grp.skills) await skillRow(rows, s.skill, s.marker, s.desc);
+    }
   }
 
   // 1) Workflow ribbon — rebuild the pill row from the phase list.

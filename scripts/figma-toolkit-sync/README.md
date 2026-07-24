@@ -9,7 +9,7 @@ change, this tool regenerates the data-driven Figma content so the file matches
 the repo verbatim:
 
 - the Overview page's **What's inside** index (`render.figma.js`), and
-- one **per-plugin page** each — a mini-TOC of the plugin's skills plus its README notes, followed by every `SKILL.md` in full (`render-pages.figma.js`). Each What's-inside row and each page's mini-TOC entry hyperlinks to the matching skill deep-dive.
+- one **per-plugin page** each — a mini-TOC of the plugin's skills plus its README notes, followed by every `SKILL.md` in full (`render-pages.figma.js`). In "What's inside", skills are grouped under their owning plugin and each plugin label links to its page (skill rows are plain text); on the plugin pages, each mini-TOC entry links to its skill's deep-dive frame.
 
 The curated **Overview** and **Reference** boards are left untouched. (Plugin detail content used to live in a "Plugin details" board on the Overview page; it now lives on each plugin's own page, paired with its skills.)
 
@@ -66,7 +66,7 @@ toolkit content.
    frames from node names), so it needs no pre-collected id list:
    ```js
    const SYNC = { op: "organize", order: /* pagePlan.order */, dividers: /* pagePlan.dividers */ };
-   const SYNC = { op: "link" }; // wires each mini-TOC entry + each What's-inside row → its skill frame
+   const SYNC = { op: "link" }; // wires each mini-TOC entry → its skill frame, and each What's-inside plugin label → its page
    ```
    *(`render-pages.figma.js` also exposes an `add-intro` op — `{ op: "add-intro", plugin }` — that retrofits the intro block onto an already-built plugin page without re-rendering its skills. It's a one-time migration helper, not part of the normal sync.)*
 5. **Update the lock.** Write the new `fingerprint` + `lastSyncedAt` into

@@ -19,8 +19,9 @@
  *   - "organize": create phase divider pages, order all managed pages after the
  *       main page, and delete stale plugin/divider pages. Pass { order, dividers }.
  *   - "link": self-discovering — scan every plugin page's `Skill · <name>`
- *       frames and hyperlink both the same page's `TOC · <name>` mini-TOC entry
- *       and the Overview `WI · <name>` What's-inside row to that frame. No args.
+ *       frames and hyperlink the same page's `TOC · <name>` mini-TOC entry to
+ *       that frame, plus each Overview `WIP · <plugin>` plugin label to the
+ *       plugin page. Overview skill rows are plain text, not links. No args.
  */
 
 // ---- shared helpers ---------------------------------------------------------
@@ -264,22 +265,22 @@ async function addIntro(plugin) {
 // ---- link: self-discovering hyperlinks --------------------------------------
 // Scans every managed plugin page for its `Skill · <name>` frames, then wires:
 //   (a) each page's `TOC · <name>` mini-TOC entry → that skill's frame (same page)
-//   (b) each Overview `WI · <name>` What's-inside row → the skill's frame
+//   (b) each Overview `WIP · <plugin>` What's-inside plugin label → the plugin page
 // No pre-collected node-id list needed — it re-derives everything from names,
-// so it's safe to re-run any time. Skills without a frame (e.g. the Figma MCP
-// `§` skills that have no plugin page) are simply left unlinked.
+// so it's safe to re-run any time. Overview skill rows are plain text (not
+// links) — the plugin label is the only navigation affordance there.
 async function linkAll() {
   const main = figma.root.children.find((p) => p.name === 'AI UX Toolkit') || figma.root.children[0];
-  let tocLinked = 0, wiLinked = 0; const bySkill = {};
+  let tocLinked = 0, plgLinked = 0; const byPlugin = {};
   for (const page of figma.root.children) {
     if (page === main) continue;
     if (page.getSharedPluginData('figmaToolkitSync', 'managed') !== '1') continue;
     await figma.setCurrentPageAsync(page);
     const board = page.findOne((n) => n.name === 'PluginPage');
     if (!board) continue; // divider pages have no board
+    byPlugin[page.name] = board.id; // plugin page name === plugin name
     for (const sf of board.findAll((n) => n.type === 'FRAME' && n.name.indexOf('Skill · ') === 0)) {
       const skill = sf.name.slice('Skill · '.length);
-      bySkill[skill] = sf.id;
       for (const t of board.findAll((n) => n.type === 'TEXT' && n.name === 'TOC · ' + skill)) {
         try { t.setRangeHyperlink(0, skill.length, { type: 'NODE', value: sf.id }); tocLinked++; } catch (e) { }
       }
@@ -287,12 +288,12 @@ async function linkAll() {
   }
   await figma.setCurrentPageAsync(main);
   await figma.loadFontAsync({ family: 'Inter', style: 'Semi Bold' });
-  for (const skill of Object.keys(bySkill)) {
-    for (const t of main.findAll((n) => n.type === 'TEXT' && n.name === 'WI · ' + skill)) {
-      try { t.setRangeHyperlink(0, skill.length, { type: 'NODE', value: bySkill[skill] }); wiLinked++; } catch (e) { }
+  for (const plugin of Object.keys(byPlugin)) {
+    for (const t of main.findAll((n) => n.type === 'TEXT' && n.name === 'WIP · ' + plugin)) {
+      try { t.setRangeHyperlink(0, plugin.length, { type: 'NODE', value: byPlugin[plugin] }); plgLinked++; } catch (e) { }
     }
   }
-  return { tocLinked, wiLinked, skills: Object.keys(bySkill).length };
+  return { tocLinked, plgLinked, plugins: Object.keys(byPlugin).length };
 }
 
 // ---- dispatcher -------------------------------------------------------------
