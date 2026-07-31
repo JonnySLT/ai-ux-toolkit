@@ -1,13 +1,13 @@
 ---
 name: conceptual-architecture
-description: Create a conceptual architecture — a high-level, annotated sitemap of a product's top-level sections (areas), the key pages/screens in each, and a one-line purpose for every page, plus any global or cross-cutting features (persistent overlays, assistants, sitewide search). Renders natively into a Figma file using that file's own design system — its color variables, text styles, and icon components. Works from a description or brief you give it, from the screens already designed in the Figma file, or from a live site URL. Trigger when the user wants a "conceptual architecture", a "sitemap" or "site map", a "high-level structure / architecture", to "map the sections and pages", or to visualize a product's structure in Figma. For the detailed structural layer — navigation, content hierarchy, URL patterns, and user flows — use the information-architecture skill instead; this one is the high-level visual map that renders in Figma.
+description: Create a conceptual architecture — a high-level, annotated sitemap of a product's top-level sections (areas), the key pages/screens in each, and a one-line purpose for every page, plus any global or cross-cutting features (persistent overlays, assistants, sitewide search). Renders natively into a Figma file using that file's own design system — its color variables and text styles (text-only; it uses no icons). Works from a description or brief you give it, from the screens already designed in the Figma file, or from a live site URL. Trigger when the user wants a "conceptual architecture", a "sitemap" or "site map", a "high-level structure / architecture", to "map the sections and pages", or to visualize a product's structure in Figma. For the detailed structural layer — navigation, content hierarchy, URL patterns, and user flows — use the information-architecture skill instead; this one is the high-level visual map that renders in Figma.
 ---
 
 Create a **conceptual architecture**: a one-glance, annotated sitemap that shows a product's top-level **areas**, the **key pages** in each, a **short purpose line** for every page, and any **global / cross-cutting features** that live on every screen. It's the map you show early to align on scope and structure — broader and more visual than a full IA. This skill renders it **natively into a Figma file, styled with that file's own design system**.
 
 It is distinct from `information-architecture` (the detailed structural layer — nav, hierarchy, URL patterns, user flows). Conceptual architecture is the high-level visual; it can be built *from* an IA, or stand alone. If a request is really about detailed IA, hand off to that skill.
 
-> **Style everything with the design system and libraries the file ALREADY uses — never import from anywhere else.** Resolve every text style, color/spacing variable, paint style, component, and icon from the current file or the libraries it *already has enabled* — matching its brand color, type ramp, and icon set so the map reads as part of the same system. **Do not pull assets from any other library or file**, even one that a cross-library asset search surfaces (that search returns unrelated design systems from across the account). If something fitting isn't in the file's own system, **omit it or ask** — never substitute a foreign one. If the file has **no** design system at all, say so and offer clean neutral defaults.
+> **Style everything with the design system and libraries the file ALREADY uses — never import from anywhere else.** Resolve every text style, color/spacing variable, paint style, and component from the current file or the libraries it *already has enabled* — matching its brand color and type ramp so the map reads as part of the same system. (This map is **text-only — it uses no icons at all.**) **Do not pull assets from any other library or file**, even one that a cross-library asset search surfaces (that search returns unrelated design systems from across the account). If something fitting isn't in the file's own system, **omit it or ask** — never substitute a foreign one. If the file has **no** design system at all, say so and offer clean neutral defaults.
 
 ## Before you start
 
@@ -35,7 +35,6 @@ It is distinct from `information-architecture` (the detailed structural layer �
 - **Write a one-line purpose for each page** — what it's *for*, in a few words ("Faceted search, filters, sortable grid/list"; "PO number, payment terms, net account"). Terse, specific, scannable. Follow the **SLT house document voice**: concrete over vague, no filler, consistent terms. These are document annotations, not in-product UI copy.
 - **Identify global / cross-cutting features** — anything present on *every* page (a persistent AI assistant, sitewide search, a support chat overlay). Each gets a one-line description and is shown once, up top — not repeated in every area.
 - **Compute the summary counts** — total key pages ("screens") and number of areas, for the header line.
-- **Pick a fitting icon per area** from the file's own icon set (see Step 3) — e.g. a house for a home/discovery area, a cart for checkout, a person for account.
 
 ### Step 3 — Discover the design system
 
@@ -43,7 +42,7 @@ Resolve from the target file (local first, then its linked/enabled DS library) �
 
 - **Text styles** — a display/title style (for the header), a section-name style, a page-name style (semibold), a description/body style, and a small muted style (for counts and the subtitle). Map to the closest styles the file actually has.
 - **Color variables** — the **brand/primary** color (area headers + the global-feature accent), an on-brand text color (for text on the header fill), the default ink/body color (page names), a muted color (descriptions, counts), a subtle surface/border, and a light brand **tint** for the global-feature band. Bind fills to the file's variables rather than hardcoding hex.
-- **Icon components** — use **only icons the file already has**: icon components already placed in the file (reuse or clone existing instances — e.g. from an existing map), or an icon library the file *already has enabled*. Instance a fitting icon per area and per global-feature band. **Never run a cross-library asset search and import an icon from a library the file doesn't already use** — that pulls a foreign icon set into the design system. If the file's own icon set has no fitting icon, **omit the icon** rather than importing one from elsewhere or inventing a shape.
+**No icons.** This map is text-only — area headers and the global band carry no icons. Don't resolve, place, or import any icon (not from the file, not from any library).
 
 If the file has neither styles nor variables, tell the user and offer clean neutral defaults (a single accent, Inter type ramp).
 
@@ -55,9 +54,9 @@ Build with **auto-layout** so it stays tidy, and bind fills/text to the DS token
   - **Header** (vertical, ~8px spacing):
     - **Title** — "Conceptual Architecture" in the display/title style.
     - **Subtitle row** (horizontal, muted style) — `Product name` · `N screens across M areas` · `Feature (global)` for each global feature, joined by " · " separators.
-  - **Global-feature band** — one per global feature. Horizontal auto-layout, ~16px padding, rounded (~12px), filled with the brand **tint** and a brand stroke. Contains: a small rounded **icon chip** (brand fill, an icon or glyph) · a **label pill** (brand-soft fill, brand text, the feature name) · an em-dash · the **description** (fills remaining width).
+  - **Global-feature band** — one per global feature. Horizontal auto-layout, ~16px padding, rounded (~12px), filled with the brand **tint** and a brand stroke. Contains: a **label pill** (brand fill, on-brand text, the feature name) · an em-dash · the **description** (fills remaining width). No icon.
   - **Area columns** — a horizontal auto-layout row (~12px gap), each area a fixed-width column (~214–260px):
-    - **Area header** — rounded block filled with the **brand** color: a name row (icon instance + area name in the on-brand text color, semibold) and a "`N screens`" line in a lighter on-brand tone.
+    - **Area header** — rounded block filled with the **brand** color: the area name (on-brand text color, semibold) and a "`N screens`" line in a lighter on-brand tone. No icon.
     - **Screen list** — vertical stack of page items. Each item (~16px padding): the **page name** (page-name style, ink) then its **purpose** (description style, muted). Keep items evenly sized; let one- vs two-line purposes size naturally.
 
 Order areas by the product's flow (discovery → transaction → management → support), left to right. If there are more areas than fit one row comfortably, widen the frame or wrap to a second row — keep columns aligned.
@@ -78,12 +77,13 @@ If the file has a Changelog page and the project documents changes (e.g. convent
 - **Key pages, not every screen.** A conceptual architecture earns its value by being scannable — include what matters, cut the rest, and let the counts convey total scope.
 - **Purposes do work.** Each line should tell a stakeholder why the page exists in a few concrete words — never "The page for X" filler.
 - **Global features are shown once.** If it's on every screen, it belongs in the top band, not in each column.
-- **Look like the system.** Brand color on the headers, the file's type styles, the file's icons — the map should feel designed in the same DS as the product.
+- **Look like the system.** Brand color on the headers and the file's type styles — the map should feel designed in the same DS as the product. (No icons — it's a text-only map.)
 
 ## Guardrails
 
 - **Never render on top of existing work.** Use a fresh page or a clearly empty area of the canvas.
-- **Only ever reference the design system and libraries the file already uses.** Resolve every style, variable, component, and icon from the file itself or the libraries it *already has enabled* — never import from another library or file, even one a cross-library search returns. A linked library the file already uses is correct; anything the file doesn't already use is off-limits. If something fitting isn't in the file's own system, omit it or ask.
+- **No icons.** The map is text-only — area headers and the global band never carry an icon. Don't add, place, or import one.
+- **Only ever reference the design system and libraries the file already uses.** Resolve every style, variable, and component from the file itself or the libraries it *already has enabled* — never import from another library or file, even one a cross-library search returns. A linked library the file already uses is correct; anything the file doesn't already use is off-limits. If something fitting isn't in the file's own system, omit it or ask.
 - **Don't invent screens to look thorough.** Map what the input supports; where structure is genuinely uncertain, mark it as proposed and ask.
 - **Stay high-level.** This is the map, not the IA. Resist adding URL patterns, flow arrows, or every leaf page — hand detailed structure to `information-architecture`.
 - **Descriptions are documentation, not UI copy** — they follow the SLT document voice, not a product's brand voice.
