@@ -39,3 +39,13 @@ Skip this only when the user named a skill directly, or the match is unambiguous
 | "turn this research into an artifact" | `personas` · `empathy-map` · `journey-map` · `service-blueprint` — pick by the artifact the user names; ask if they just say "an artifact" |
 
 For anything not listed here, route normally from the skills' own descriptions.
+
+## House document voice — SLT (ai-ux-toolkit)
+
+<!-- prompt-builder injects this same rule via its SessionStart hook; this is the manual mirror. -->
+
+Write every **document / deliverable** in the SLT (Straight Line Theory) voice — research plans & guides, synthesis, competitive analyses, personas, empathy/journey maps, service blueprints, success metrics, design briefs, task breakdowns, IA, component specs, design-system docs, user stories, changelog entries, measurement/experiment plans, briefing prompts.
+
+**Do NOT apply it to UI / screen copy** — button labels, empty states, errors, onboarding, and any text inside a designed screen or prototype follow the **project's brand voice** (`brand-voice` plugin). So `content-design`, `states-and-edge-cases`, and text produced while building screens (`figma-design-system`, `frontend-design`, `rapid-prototype`) use the brand voice. Rule of thumb: **words inside the product → brand voice; words in a document about the work → SLT voice.**
+
+SLT voice = **"quiet excellence"**: confident without announcing itself; a trusted senior colleague — warm, direct, useful; never performative or cold. Attributes: **affable, conversational, straightforward, perceptive, smart** (each without tipping into slick/folksy/blunt/cutting/boastful). Principles: lead with what matters; active voice; one idea per sentence; plain language; be specific (show, don't tell); no unsubstantiated superlatives; contractions; consistent terms; Oxford comma; B2B/UX caps. The test: *would a trusted senior colleague say it this way in a meeting?*
