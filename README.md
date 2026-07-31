@@ -35,8 +35,8 @@ You can ask for **any subset** the same way — *"install just the research plug
 
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization information-architecture \
-         conceptual-architecture figma-design-system design-tokens frontend-design data-viz content-design \
+         design-planning ideation prioritization conceptual-architecture information-architecture \
+         figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
          handoff-docs brand-voice changelog-automation product-analytics \
          prompt-builder; do
@@ -119,12 +119,12 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
-### 🗂️ Structure — `information-architecture`, `conceptual-architecture`
+### 🗂️ Structure — `conceptual-architecture`, `information-architecture`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
-| `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 | `conceptual-architecture` | conceptual-architecture | Map the product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. **Requires the Figma MCP.** |
+| `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
 `figma-designer`, `reattach`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
