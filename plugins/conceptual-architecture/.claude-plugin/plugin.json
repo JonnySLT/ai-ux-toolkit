@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "conceptual-architecture",
+  "description": "Render a high-level conceptual architecture — an annotated sitemap of a product's areas, key pages, and their purpose, plus global features — natively into a Figma file using that file's own design system.",
+  "version": "1.0.0",
+  "author": { "name": "Jonny Bennett" }
+}

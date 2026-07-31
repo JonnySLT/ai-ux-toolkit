@@ -1,6 +1,6 @@
 # AI UX Toolkit
 
-**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 22 plugins, 39 skills, organized by workflow phase.
+**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 23 plugins, 41 skills, organized by workflow phase.
 
 **Built for a UX team.** It assumes you're not working in a vacuum — first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, and developer-handoff specs and user stories. Shaped for UX designers and researchers working side by side.
 
@@ -20,23 +20,23 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 # 1. Add it to Claude Code (once)
 /plugin marketplace add JonnySLT/ai-ux-toolkit
 
-# 2. Install any single plugin — same pattern for all 22
+# 2. Install any single plugin — same pattern for all 23
 /plugin install research-planning@ai-ux-toolkit
 ```
 
 **Want everything?** Just ask Claude, right in your Claude Code session:
 
-> *"Install all 22 plugins from ai-ux-toolkit."*
+> *"Install all 23 plugins from ai-ux-toolkit."*
 
 You can ask for **any subset** the same way — *"install just the research plugins,"* or *"everything except the Figma-dependent ones."* Prefer to browse? Run **`/plugin`** for an interactive menu.
 
 <details>
-<summary>Prefer a copy-paste terminal one-liner to install all 22?</summary>
+<summary>Prefer a copy-paste terminal one-liner to install all 23?</summary>
 
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
          design-planning ideation prioritization information-architecture \
-         figma-design-system design-tokens frontend-design data-viz content-design \
+         conceptual-architecture figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
          handoff-docs brand-voice changelog-automation product-analytics \
          prompt-builder; do
@@ -76,7 +76,7 @@ Claude picks skills by what each is *for* — no skill named, each output feedin
 
 ## What's inside — organized by workflow phase
 
-Twenty-two plugins (39 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
+Twenty-three plugins (41 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
 
 ### 🧰 Meta — `prompt-builder`
 
@@ -119,11 +119,12 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
-### 🗂️ Structure — `information-architecture`
+### 🗂️ Structure — `information-architecture`, `conceptual-architecture`
 
-| Skill | Use it to… |
-|---|---|
-| `information-architecture` **†** | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
+| Skill | Plugin | Use it to… |
+|---|---|---|
+| `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
+| `conceptual-architecture` | conceptual-architecture | Map the product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. **Requires the Figma MCP.** |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
 `figma-designer`, `reattach`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
@@ -266,7 +267,7 @@ Using a different client (VS Code, Cursor) or want deeper setup? Figma's own gui
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Every skill resolves the design system, tokens, voice, and config from the project it runs in. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty-two independent plugins; install only what you need. New here? Install `prompt-builder` first, then ask Claude for whatever phase you're working in.
+- **Pick à la carte.** Twenty-three independent plugins; install only what you need. New here? Install `prompt-builder` first, then ask Claude for whatever phase you're working in.
 - **First filter, not final word.** The expert checks and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing, assistive-tech testing, or design judgment.
 
 ## Attribution & third-party skills
@@ -303,7 +304,7 @@ For anyone on the team editing or extending this repo:
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # plugin catalog (lists all 22 plugins)
+├── .claude-plugin/marketplace.json     # plugin catalog (lists all 23 plugins)
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)
@@ -318,6 +319,7 @@ ai-ux-toolkit/
     ├── synthesis-artifacts/            # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
     ├── ideation/                       # original — divergent-exploration, facilitation
     ├── prioritization/                 # original — prioritization
+    ├── conceptual-architecture/        # original — conceptual-architecture (renders to Figma)
     ├── figma-design-system/            # original — figma-designer, reattach, annotate
     ├── data-viz/                       # original — data-visualization
     ├── content-design/                 # original — content-design, states-and-edge-cases

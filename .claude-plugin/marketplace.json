@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
   "description": "AI-assisted skills for UX design and research teams covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. Built for designers working alongside researchers, PMs, and engineers: stakeholder interviews, facilitated workshops, shared research repositories, and dev handoff are first-class. 22 plugins / 39 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -13,7 +13,13 @@
       "description": "Plan and instrument research with users and stakeholders: choose the method, then draft user interview guides, stakeholder/kickoff interview guides, usability-test scripts, survey questionnaires, and recruiting screeners. Feeds research-synthesis.",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["research", "planning", "interviews", "stakeholders", "surveys"]
+      "tags": [
+        "research",
+        "planning",
+        "interviews",
+        "stakeholders",
+        "surveys"
+      ]
     },
     {
       "name": "ux-research",
@@ -21,7 +27,13 @@
       "description": "Synthesize messy qualitative research into themes, evidence-backed insights, and prioritized opportunities — and manage them over time in a tagged, reusable research repository of atomic insights.",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["research", "synthesis", "qualitative", "insights", "repository"]
+      "tags": [
+        "research",
+        "synthesis",
+        "qualitative",
+        "insights",
+        "repository"
+      ]
     },
     {
       "name": "competitive-analysis",
@@ -29,7 +41,12 @@
       "description": "Live competitive analysis of 3–6 products: real-time browse + comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["research", "competitive", "benchmarking", "ux"]
+      "tags": [
+        "research",
+        "competitive",
+        "benchmarking",
+        "ux"
+      ]
     },
     {
       "name": "synthesis-artifacts",
@@ -37,7 +54,13 @@
       "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, empathy maps, journey/experience maps, service blueprints, and success-metric definitions (HEART / goal-signal-metric).",
       "version": "1.0.0",
       "category": "research",
-      "tags": ["personas", "empathy-map", "journey-map", "service-blueprint", "metrics"]
+      "tags": [
+        "personas",
+        "empathy-map",
+        "journey-map",
+        "service-blueprint",
+        "metrics"
+      ]
     },
     {
       "name": "design-planning",
@@ -45,8 +68,16 @@
       "description": "Define & plan a design: write a brief, get grilled on it, break it into tasks, and orchestrate the full design flow. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["brief", "planning", "tasks", "orchestration"],
-      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "tags": [
+        "brief",
+        "planning",
+        "tasks",
+        "orchestration"
+      ],
+      "author": {
+        "name": "Julian Oczkowski",
+        "url": "https://github.com/julianoczkowski"
+      },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
     },
@@ -56,7 +87,12 @@
       "description": "Break fixation and run the room: generate a wide, deliberately-spread set of concepts, copy, or IA/layout options, and plan/facilitate collaborative sessions (kickoffs, design sprints, ideation workshops, retros).",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["ideation", "divergent", "facilitation", "workshops"]
+      "tags": [
+        "ideation",
+        "divergent",
+        "facilitation",
+        "workshops"
+      ]
     },
     {
       "name": "prioritization",
@@ -64,7 +100,12 @@
       "description": "Decide what to build first: apply a fitting framework (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano) to ideas, features, or fixes and produce a defensible ranked list.",
       "version": "1.0.0",
       "category": "strategy",
-      "tags": ["prioritization", "rice", "impact-effort", "roadmap"]
+      "tags": [
+        "prioritization",
+        "rice",
+        "impact-effort",
+        "roadmap"
+      ]
     },
     {
       "name": "information-architecture",
@@ -72,10 +113,32 @@
       "description": "Define the structural layer — navigation, content hierarchy, page structure, URL patterns, and user flows — before visual design. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["ia", "navigation", "structure", "flows"],
-      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "tags": [
+        "ia",
+        "navigation",
+        "structure",
+        "flows"
+      ],
+      "author": {
+        "name": "Julian Oczkowski",
+        "url": "https://github.com/julianoczkowski"
+      },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
+    },
+    {
+      "name": "conceptual-architecture",
+      "source": "./plugins/conceptual-architecture",
+      "description": "Render a high-level conceptual architecture — an annotated sitemap of a product’s areas, key pages, and their purpose, plus global features — into a Figma file using that file’s own design system. Distinct from information-architecture (the detailed nav / URL / flows layer).",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "conceptual-architecture",
+        "sitemap",
+        "structure",
+        "figma",
+        "architecture"
+      ]
     },
     {
       "name": "figma-design-system",
@@ -83,7 +146,12 @@
       "description": "Figma + design-system toolkit: design and audit components in Figma, reattach raw frames to the system, and annotate screens for developer handoff.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["figma", "design-system", "annotation", "handoff"]
+      "tags": [
+        "figma",
+        "design-system",
+        "annotation",
+        "handoff"
+      ]
     },
     {
       "name": "design-tokens",
@@ -91,8 +159,16 @@
       "description": "Generate a design tokens file (CSS variables or Tailwind config): light/dark palettes, spacing scale, type ramp, component-level tokens. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["tokens", "css", "tailwind", "foundations"],
-      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "tags": [
+        "tokens",
+        "css",
+        "tailwind",
+        "foundations"
+      ],
+      "author": {
+        "name": "Julian Oczkowski",
+        "url": "https://github.com/julianoczkowski"
+      },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
     },
@@ -102,8 +178,16 @@
       "description": "Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["frontend", "build", "ui", "aesthetic"],
-      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "tags": [
+        "frontend",
+        "build",
+        "ui",
+        "aesthetic"
+      ],
+      "author": {
+        "name": "Julian Oczkowski",
+        "url": "https://github.com/julianoczkowski"
+      },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
     },
@@ -113,7 +197,12 @@
       "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible color and labeling, and lay out dashboards that answer questions at a glance.",
       "version": "1.0.0",
       "category": "design",
-      "tags": ["data-viz", "charts", "dashboards", "visualization"]
+      "tags": [
+        "data-viz",
+        "charts",
+        "dashboards",
+        "visualization"
+      ]
     },
     {
       "name": "content-design",
@@ -121,7 +210,12 @@
       "description": "Design the words and the states: systematic UI microcopy (errors, empty states, buttons, labels, confirmations) and enumeration of every screen state and edge case a design must cover.",
       "version": "1.0.0",
       "category": "content",
-      "tags": ["ux-writing", "microcopy", "content-design", "edge-cases"]
+      "tags": [
+        "ux-writing",
+        "microcopy",
+        "content-design",
+        "edge-cases"
+      ]
     },
     {
       "name": "accessibility-heuristics",
@@ -129,7 +223,12 @@
       "description": "Design accessibly and check it: proactive inclusive-design guidance up front, plus first-filter audits — WCAG accessibility issues and a Nielsen usability-heuristics evaluation.",
       "version": "1.0.0",
       "category": "quality",
-      "tags": ["accessibility", "wcag", "inclusive-design", "heuristics"]
+      "tags": [
+        "accessibility",
+        "wcag",
+        "inclusive-design",
+        "heuristics"
+      ]
     },
     {
       "name": "design-review",
@@ -137,8 +236,16 @@
       "description": "Run a structured design critique against the brief and codebase: visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. Vendored from Julian Oczkowski's designer-skills.",
       "version": "1.0.0",
       "category": "quality",
-      "tags": ["review", "critique", "qa", "polish"],
-      "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
+      "tags": [
+        "review",
+        "critique",
+        "qa",
+        "polish"
+      ],
+      "author": {
+        "name": "Julian Oczkowski",
+        "url": "https://github.com/julianoczkowski"
+      },
       "homepage": "https://github.com/julianoczkowski/designer-skills",
       "license": "Apache-2.0"
     },
@@ -148,7 +255,12 @@
       "description": "Run usability tests end-to-end with real users: a test plan with tasks and success criteria, moderation guidance, and a findings report with task-level metrics and severity ratings.",
       "version": "1.0.0",
       "category": "quality",
-      "tags": ["usability", "testing", "moderation", "severity"]
+      "tags": [
+        "usability",
+        "testing",
+        "moderation",
+        "severity"
+      ]
     },
     {
       "name": "rapid-prototyping",
@@ -156,7 +268,12 @@
       "description": "Turn a rough idea, brief, or sketch into a clickable, functional prototype — runnable front-end code verified live in the browser preview.",
       "version": "1.0.0",
       "category": "prototyping",
-      "tags": ["prototype", "frontend", "clickable", "ux"]
+      "tags": [
+        "prototype",
+        "frontend",
+        "clickable",
+        "ux"
+      ]
     },
     {
       "name": "handoff-docs",
@@ -164,7 +281,12 @@
       "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and agile user stories with acceptance criteria.",
       "version": "1.0.0",
       "category": "documentation",
-      "tags": ["handoff", "spec", "user-stories", "documentation"]
+      "tags": [
+        "handoff",
+        "spec",
+        "user-stories",
+        "documentation"
+      ]
     },
     {
       "name": "brand-voice",
@@ -172,7 +294,12 @@
       "description": "Review and rewrite UI copy to match a project's brand voice, using a per-project voice profile loaded at run time.",
       "version": "1.0.0",
       "category": "content",
-      "tags": ["copywriting", "brand", "voice", "ux-writing"]
+      "tags": [
+        "copywriting",
+        "brand",
+        "voice",
+        "ux-writing"
+      ]
     },
     {
       "name": "changelog-automation",
@@ -180,7 +307,12 @@
       "description": "Weekly Figma changelog sweep: fingerprint a design-system file, detect drift from a stored baseline, and auto-log changes. Includes the canonical fingerprint algorithm.",
       "version": "1.0.0",
       "category": "automation",
-      "tags": ["figma", "changelog", "automation", "design-system"]
+      "tags": [
+        "figma",
+        "changelog",
+        "automation",
+        "design-system"
+      ]
     },
     {
       "name": "prompt-builder",
@@ -188,7 +320,13 @@
       "description": "Brief Claude properly before it starts: turn a rough ask into a complete, context-rich prompt via a short targeted interview (or by upgrading a pasted draft), then run it on the spot. Promotes standing rules into CLAUDE.md/memory so future prompts stay short. Also ships the toolkit's ask-first routing as a SessionStart hook (Claude asks which skill you want on overlap — no setup). Meta — pairs with every other plugin.",
       "version": "1.0.0",
       "category": "meta",
-      "tags": ["prompting", "context", "briefing", "routing", "meta"]
+      "tags": [
+        "prompting",
+        "context",
+        "briefing",
+        "routing",
+        "meta"
+      ]
     },
     {
       "name": "product-analytics",
@@ -196,7 +334,12 @@
       "description": "Close the loop after launch: plan instrumentation (events, funnels), design and interpret A/B tests/experiments, and read product-outcome data to judge whether the design worked and feed the next round of research.",
       "version": "1.0.0",
       "category": "analytics",
-      "tags": ["analytics", "experimentation", "ab-testing", "measurement"]
+      "tags": [
+        "analytics",
+        "experimentation",
+        "ab-testing",
+        "measurement"
+      ]
     }
   ]
 }
