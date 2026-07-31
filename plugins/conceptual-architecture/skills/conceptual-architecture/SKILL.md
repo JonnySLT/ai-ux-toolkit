@@ -7,7 +7,7 @@ Create a **conceptual architecture**: a one-glance, annotated sitemap that shows
 
 It is distinct from `information-architecture` (the detailed structural layer — nav, hierarchy, URL patterns, user flows). Conceptual architecture is the high-level visual; it can be built *from* an IA, or stand alone. If a request is really about detailed IA, hand off to that skill.
 
-> **Style everything with the target file's own design system — never an unrelated one.** Resolve text styles, color variables, and icon components from **this project's DS**: first the current file, then the design-system **library the file has linked/enabled**. Match the file's look (brand color, type ramp, icon set) so the map reads as part of the same system. If the file has **no** design system, say so and offer to render with clean neutral defaults.
+> **Style everything with the design system and libraries the file ALREADY uses — never import from anywhere else.** Resolve every text style, color/spacing variable, paint style, component, and icon from the current file or the libraries it *already has enabled* — matching its brand color, type ramp, and icon set so the map reads as part of the same system. **Do not pull assets from any other library or file**, even one that a cross-library asset search surfaces (that search returns unrelated design systems from across the account). If something fitting isn't in the file's own system, **omit it or ask** — never substitute a foreign one. If the file has **no** design system at all, say so and offer clean neutral defaults.
 
 ## Before you start
 
@@ -43,7 +43,7 @@ Resolve from the target file (local first, then its linked/enabled DS library) �
 
 - **Text styles** — a display/title style (for the header), a section-name style, a page-name style (semibold), a description/body style, and a small muted style (for counts and the subtitle). Map to the closest styles the file actually has.
 - **Color variables** — the **brand/primary** color (area headers + the global-feature accent), an on-brand text color (for text on the header fill), the default ink/body color (page names), a muted color (descriptions, counts), a subtle surface/border, and a light brand **tint** for the global-feature band. Bind fills to the file's variables rather than hardcoding hex.
-- **Icon components** — the file's icon set (local components or a linked icon library). Instance a fitting icon per area and for each global-feature band. If there's no icon set, omit icons rather than inventing shapes.
+- **Icon components** — use **only icons the file already has**: icon components already placed in the file (reuse or clone existing instances — e.g. from an existing map), or an icon library the file *already has enabled*. Instance a fitting icon per area and per global-feature band. **Never run a cross-library asset search and import an icon from a library the file doesn't already use** — that pulls a foreign icon set into the design system. If the file's own icon set has no fitting icon, **omit the icon** rather than importing one from elsewhere or inventing a shape.
 
 If the file has neither styles nor variables, tell the user and offer clean neutral defaults (a single accent, Inter type ramp).
 
@@ -83,7 +83,7 @@ If the file has a Changelog page and the project documents changes (e.g. convent
 ## Guardrails
 
 - **Never render on top of existing work.** Use a fresh page or a clearly empty area of the canvas.
-- **Use the file's own design system — never an unrelated file's.** A linked library that *is* this project's DS is correct; another project's file is not.
+- **Only ever reference the design system and libraries the file already uses.** Resolve every style, variable, component, and icon from the file itself or the libraries it *already has enabled* — never import from another library or file, even one a cross-library search returns. A linked library the file already uses is correct; anything the file doesn't already use is off-limits. If something fitting isn't in the file's own system, omit it or ask.
 - **Don't invent screens to look thorough.** Map what the input supports; where structure is genuinely uncertain, mark it as proposed and ask.
 - **Stay high-level.** This is the map, not the IA. Resist adding URL patterns, flow arrows, or every leaf page — hand detailed structure to `information-architecture`.
 - **Descriptions are documentation, not UI copy** — they follow the SLT document voice, not a product's brand voice.
