@@ -37,6 +37,7 @@ Skip this only when the user named a skill directly, or the match is unambiguous
 | "prototype / build this" | `rapid-prototype` (throwaway, to test an interaction) · `frontend-design` (production-grade, ship-quality) |
 | "write / fix this copy" | `content-design` (decide what to say) · `brand-voice-tone` (match brand voice/tone) · `divergent-exploration` (generate options to choose from) |
 | "turn this research into an artifact" | `personas` · `empathy-map` · `journey-map` · `service-blueprint` — pick by the artifact the user names; ask if they just say "an artifact" |
+| "map the structure / sitemap" | `conceptual-architecture` (high-level annotated sitemap — areas, key pages, purpose — rendered into Figma with the file's DS) · `information-architecture` (detailed layer: nav, hierarchy, URL patterns, user flows) |
 
 For anything not listed here, route normally from the skills' own descriptions.
 
