@@ -113,14 +113,30 @@ Generate a consistent scale. The base unit should match the philosophy:
 --font-weight-semibold:
 --font-weight-bold:
 
---line-height-tight:         /* Headings: 1.1-1.3 */
---line-height-normal:        /* Body: 1.4-1.6 */
+--line-height-display:       /* Large display / hero: 1.05-1.15 */
+--line-height-tight:         /* Headings: 1.2-1.35 */
+--line-height-normal:        /* Body: 1.45-1.6 (WCAG 1.4.12: body >= 1.5) */
 --line-height-relaxed:       /* Spacious body: 1.6-1.8 */
 
 --letter-spacing-tight:      /* Display type */
 --letter-spacing-normal:
 --letter-spacing-wide:       /* All-caps, labels */
 ```
+
+#### Line-height rules
+
+Leading is not one value — it scales **inversely** with type size. Larger type needs proportionally less line-height; smaller type needs more. Assign each step in the type ramp its own line-height; never apply a single global multiplier across display and body.
+
+| Tier | Size range | Line-height ratio |
+|------|-----------|-------------------|
+| Display / hero | 40px+ | 1.05–1.15 |
+| Headings | 20–36px | 1.2–1.35 |
+| Body | 14–18px | 1.45–1.6 |
+| Small / caption | ≤12px | 1.3–1.4 |
+
+- **Body meets WCAG 2.1 SC 1.4.12** — set body line-height to at least **1.5**.
+- **Clipping-safety floor.** A line-height below the font's natural line box (its ascent + descent) clips ascenders/descenders inside any fixed-height or clipped container. Treat that box as the hard minimum: when unsure, don't set display below ~1.1 or headings below ~1.2. Measure the box directly rather than guessing — in Figma, set a sample line (with an ascender + descender, e.g. "Hg") to AUTO line-height and read its rendered height; in CSS, `line-height: normal` resolves to ≈ the same box.
+- **Round pixel line-heights to even numbers** so text sits on a consistent baseline grid.
 
 ### Layout
 
