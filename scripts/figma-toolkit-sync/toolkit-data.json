@@ -167,7 +167,7 @@
           "skill": "site-audit",
           "marker": null,
           "plugin": "site-architecture",
-          "desc": "Capture an **existing** website as a tabbed Figma document: an Overview, a Site Architecture tree, and a Page Inventory (Page · Path · Depth · Type · Function), all in the file's own tokens. Current-state only, with an optional visual Site Map diagram. **Requires the Figma MCP.**"
+          "desc": "Capture an **existing** website as a tabbed Figma document: an Overview, a Site Architecture tree, and a Page Inventory, all in the file's own tokens. Current-state only, with an optional visual Site Map diagram. **Requires the Figma MCP.**"
         },
         {
           "skill": "conceptual-architecture",
@@ -1030,5 +1030,5 @@
     ]
   },
   "toolHash": "18fd877b0782447d8dddcd4f90251f0e75d7175b4e0529fd2e23a2858799f450",
-  "fingerprint": "71c01601763e9775584fb8cf0c0241aa40c3a03eb6d7807cd8d41f4c8bb7a31e"
+  "fingerprint": "f0d0f648bf83d32dd3b8cf1ff082785c9e821ea6337a79187e6b242c8099025d"
 }
