@@ -123,8 +123,8 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
-| `site-audit` | site-architecture | Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. The current-state counterpart to `conceptual-architecture`. **Requires the Figma MCP.** |
-| `conceptual-architecture` | site-architecture | Map a **new or redesigned** product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. The forward-looking counterpart to `site-audit`. **Requires the Figma MCP.** |
+| `site-audit` | site-architecture | Capture an **existing** website as a tabbed Figma document: an Overview, a Site Architecture tree, and a Page Inventory (Page · Path · Depth · Type · Function), all in the file's own tokens. Current-state only, with an optional visual Site Map diagram. **Requires the Figma MCP.** |
+| `conceptual-architecture` | site-architecture | Map a **new or redesigned** product at a glance: top-level areas, the key pages in each with a one-line purpose, and any global features, rendered into Figma in the file's own design system. **Requires the Figma MCP.** |
 | `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
