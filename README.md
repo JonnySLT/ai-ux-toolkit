@@ -35,7 +35,7 @@ You can ask for **any subset** the same way — *"install just the research plug
 
 ```bash
 for p in research-planning ux-research competitive-analysis synthesis-artifacts \
-         design-planning ideation prioritization conceptual-architecture information-architecture \
+         design-planning ideation prioritization site-architecture information-architecture \
          figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
          handoff-docs brand-voice changelog-automation product-analytics \
@@ -47,7 +47,7 @@ done
 
 Plugins are independent — install any subset, uninstall with `/plugin uninstall <name>`, refresh the catalog with `/plugin marketplace update`. _(Every `/plugin …` command has a terminal CLI equivalent, e.g. `claude plugin install <name>@ai-ux-toolkit`.)_
 
-> The Figma-dependent plugins (`figma-design-system`, `changelog-automation`) also need Figma's MCP server connected — a one-time step: see [Connecting the Figma MCP](#connecting-the-figma-mcp). Everything else runs on Claude Code alone.
+> The Figma-dependent plugins (`site-architecture`, `figma-design-system`, `changelog-automation`) also need Figma's MCP server connected — a one-time step: see [Connecting the Figma MCP](#connecting-the-figma-mcp). Everything else runs on Claude Code alone.
 
 > **Tip:** Skills trigger automatically from natural language (e.g. "synthesize these interviews", "give me 10 concepts", "check this for accessibility"). You don't call them by name — just describe what you want.
 
@@ -119,13 +119,13 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
-### 🗂️ Structure — `conceptual-architecture`, `information-architecture`, `figma-design-system`
+### 🗂️ Structure — `site-architecture`, `information-architecture`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
-| `conceptual-architecture` | conceptual-architecture | Map the product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. **Requires the Figma MCP.** |
+| `site-audit` | site-architecture | Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. The current-state counterpart to `conceptual-architecture`. **Requires the Figma MCP.** |
+| `conceptual-architecture` | site-architecture | Map a **new or redesigned** product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. The forward-looking counterpart to `site-audit`. **Requires the Figma MCP.** |
 | `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
-| `site-audit` | figma-design-system | Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. The current-state counterpart to `conceptual-architecture`. **Requires the Figma MCP.** |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
 `figma-designer`, `reattach`, `harvest-components`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
@@ -321,8 +321,8 @@ ai-ux-toolkit/
     ├── synthesis-artifacts/            # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
     ├── ideation/                       # original — divergent-exploration, facilitation
     ├── prioritization/                 # original — prioritization
-    ├── conceptual-architecture/        # original — conceptual-architecture (renders to Figma)
-    ├── figma-design-system/            # original — figma-designer, reattach, harvest-components, site-audit, annotate
+    ├── site-architecture/              # original — site-audit, conceptual-architecture (render to Figma)
+    ├── figma-design-system/            # original — figma-designer, reattach, harvest-components, annotate
     ├── data-viz/                       # original — data-visualization
     ├── content-design/                 # original — content-design, states-and-edge-cases
     ├── accessibility-heuristics/       # original — inclusive-design, accessibility-check, heuristic-review

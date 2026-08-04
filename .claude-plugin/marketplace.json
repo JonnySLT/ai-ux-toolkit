@@ -127,17 +127,18 @@
       "license": "Apache-2.0"
     },
     {
-      "name": "conceptual-architecture",
-      "source": "./plugins/conceptual-architecture",
-      "description": "Render a high-level conceptual architecture — an annotated sitemap of a product’s areas, key pages, and their purpose, plus global features — into a Figma file using that file’s own design system. Distinct from information-architecture (the detailed nav / URL / flows layer).",
+      "name": "site-architecture",
+      "source": "./plugins/site-architecture",
+      "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit (Overview · Site Architecture · Page Inventory), and conceptual-architecture renders the new high-level sitemap — both styled from the file's own design system.",
       "version": "1.0.0",
       "category": "design",
       "tags": [
+        "site-architecture",
+        "site-audit",
         "conceptual-architecture",
         "sitemap",
         "structure",
-        "figma",
-        "architecture"
+        "figma"
       ]
     },
     {

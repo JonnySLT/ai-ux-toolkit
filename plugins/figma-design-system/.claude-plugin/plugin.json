@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "figma-design-system",
-  "description": "Figma + design-system toolkit: design and audit components in Figma, generate design tokens, reattach raw frames to the system, harvest components from finished designs, audit an existing site's information architecture, and annotate screens for developer handoff.",
+  "description": "Figma + design-system toolkit: design and audit components in Figma, generate design tokens, reattach raw frames to the system, harvest components from finished designs, and annotate screens for developer handoff.",
   "version": "1.0.0",
   "author": { "name": "Jonny Bennett" }
 }

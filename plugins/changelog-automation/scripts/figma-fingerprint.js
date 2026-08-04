@@ -66,30 +66,30 @@ async function computeFingerprint(opts) {
       s(node.y?.toFixed(1)),
       s(node.width?.toFixed(1)),
       s(node.height?.toFixed(1)),
-      s(node.rotation?.toFixed(2)),
+      s(p(node, 'rotation')?.toFixed?.(2)),
       // Paint / effects
       j(node.fills),
-      j(node.strokes),
-      j(node.strokeWeight),
-      j(node.strokeAlign),
-      j(node.effects),
-      j(node.opacity),
-      s(node.blendMode),
+      j(p(node, 'strokes')),
+      j(p(node, 'strokeWeight')),
+      j(p(node, 'strokeAlign')),
+      j(p(node, 'effects')),
+      j(p(node, 'opacity')),
+      s(p(node, 'blendMode')),
       // Bound variables
       j(node.boundVariables),
-      // Auto-layout
-      s(node.layoutMode),
-      s(node.layoutSizingHorizontal),
-      s(node.layoutSizingVertical),
-      s(node.primaryAxisAlignItems),
-      s(node.counterAxisAlignItems),
-      s(node.primaryAxisSizingMode),
-      s(node.counterAxisSizingMode),
-      s(node.itemSpacing),
-      s(node.paddingTop),
-      s(node.paddingBottom),
-      s(node.paddingLeft),
-      s(node.paddingRight),
+      // Auto-layout (SECTION nodes support none of these — must go through p())
+      s(p(node, 'layoutMode')),
+      s(p(node, 'layoutSizingHorizontal')),
+      s(p(node, 'layoutSizingVertical')),
+      s(p(node, 'primaryAxisAlignItems')),
+      s(p(node, 'counterAxisAlignItems')),
+      s(p(node, 'primaryAxisSizingMode')),
+      s(p(node, 'counterAxisSizingMode')),
+      s(p(node, 'itemSpacing')),
+      s(p(node, 'paddingTop')),
+      s(p(node, 'paddingBottom')),
+      s(p(node, 'paddingLeft')),
+      s(p(node, 'paddingRight')),
       // Radii
       s(p(node, 'cornerRadius')),
       j(p(node, 'rectangleCornerRadii')),
@@ -112,7 +112,7 @@ async function computeFingerprint(opts) {
       // Visibility
       s(node.visible),
       s(node.locked),
-      s(node.isMask),
+      s(p(node, 'isMask')), // SECTION has no BlendMixin, so no isMask
     ];
 
     const childSigs = node.children ? node.children.map(nodeSig) : [];

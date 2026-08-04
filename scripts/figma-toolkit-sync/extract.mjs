@@ -38,7 +38,7 @@ const OUT = join(HERE, 'toolkit-data.json');
  */
 const REQUIREMENTS = {
   'competitive-analysis': ['browser'],
-  'conceptual-architecture': ['figma-mcp', 'browser'],
+  'site-architecture': ['figma-mcp', 'browser'],
   'figma-design-system': ['figma-mcp'],
   'design-tokens': ['codebase'],
   'frontend-design': ['codebase'],
