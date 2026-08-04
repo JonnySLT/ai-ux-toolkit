@@ -26,7 +26,8 @@ Always load the **`figma-use`** skill before any `use_figma` call.
 **Every node this skill creates, in every step, must be dressed in the design system of the file it is built in — never a design system from anywhere else, and never hardcoded values.** Whatever file the audit (or the Site Map) is generated in, discover *that file's* variable collections and text styles at runtime and bind to them: fills, strokes, text colour, padding, radius, item-spacing, and every text style. The token *names* used throughout this doc (`brand/primary`, `background/subtle`, `content/secondary`, `Display/XL`, …) are **illustrative** — resolve the equivalent tokens/styles that actually exist in the current file, by role, and bind to those. If the file has no design system, say so and stop; this skill has no palette of its own. Treat "does this element bind to a token/style of *this* file?" as the check that gates every element.
 
 ## When to use vs. neighbours
-- **site-audit (this):** map an *existing* site's IA + templates into a document. Optionally also draws the visual Site Map diagram.
+- **site-audit (this):** map an *existing* site's IA + templates into a document — a record of **what exists today**. Optionally also draws the visual Site Map diagram. Current-state only.
+- **`conceptual-architecture`:** define the **NEW or redesigned** high-level architecture (the forward-looking target). This is the natural *next* step: audit the current site here, then hand the findings to `conceptual-architecture` to propose the redesign. If the user wants "the new structure / a redesigned sitemap," that skill owns it — this one never proposes changes.
 - **`figma-designer` / `figma-generate-design`:** design the *new* site. This skill deliberately does not.
 - **`harvest-components` / `reattach`:** work on components/tokens, not IA.
 
