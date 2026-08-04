@@ -160,7 +160,8 @@
       "name": "Structure",
       "plugins": [
         "conceptual-architecture",
-        "information-architecture"
+        "information-architecture",
+        "figma-design-system"
       ],
       "skills": [
         {
@@ -174,6 +175,12 @@
           "marker": "†",
           "plugin": "information-architecture",
           "desc": "Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows."
+        },
+        {
+          "skill": "site-audit",
+          "marker": null,
+          "plugin": "figma-design-system",
+          "desc": "Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. The current-state counterpart to `conceptual-architecture`. **Requires the Figma MCP.**"
         }
       ]
     },
@@ -205,12 +212,6 @@
           "marker": null,
           "plugin": "figma-design-system",
           "desc": "Audit a finished design and decide what should be a component — map bespoke frames to existing components, nominate recurring ones as new components, leave genuine one-offs — then swap and verify. The editorial layer above `reattach`."
-        },
-        {
-          "skill": "site-audit",
-          "marker": null,
-          "plugin": "figma-design-system",
-          "desc": "Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram."
         },
         {
           "skill": "annotate",
@@ -1030,5 +1031,5 @@
     ]
   },
   "toolHash": "0203e693b31ba08420a174ff97edabbb1b5aa2e8976876d7e9e9d4fb044acbb0",
-  "fingerprint": "d3477cf8e031f669b6506ada29f00b2c567d5fb7e390eb6473567e234b9fcad5"
+  "fingerprint": "7efea92de3188297a0cec3729dbb61176c4a39e33abbaf62b1f9f6e36609c10d"
 }

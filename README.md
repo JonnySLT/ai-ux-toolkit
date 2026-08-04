@@ -119,22 +119,22 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
-### 🗂️ Structure — `conceptual-architecture`, `information-architecture`
+### 🗂️ Structure — `conceptual-architecture`, `information-architecture`, `figma-design-system`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `conceptual-architecture` | conceptual-architecture | Map the product at a glance — top-level areas, the key pages in each with a one-line purpose, and any global features — rendered into Figma using the file's own design system. **Requires the Figma MCP.** |
 | `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
+| `site-audit` | figma-design-system | Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. The current-state counterpart to `conceptual-architecture`. **Requires the Figma MCP.** |
 
 ### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-`figma-designer`, `reattach`, `harvest-components`, `site-audit`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
+`figma-designer`, `reattach`, `harvest-components`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `figma-designer` | figma-design-system | Senior-designer knowledge for building accessible, consistent, polished UI in Figma. |
 | `reattach` | figma-design-system | Audit a raw/detached Figma frame and reconnect it to the design system — variables, text styles, and component instances (all discovered at runtime). |
 | `harvest-components` | figma-design-system | Audit a finished design and decide what should be a component — map bespoke frames to existing components, nominate recurring ones as new components, leave genuine one-offs — then swap and verify. The editorial layer above `reattach`. |
-| `site-audit` | figma-design-system | Map an existing website into a tabbed Figma document — Overview, Site Architecture, and a Page · Path · Depth · Type · Function inventory — styled from the file's own tokens; current-state only, with an optional visual Site Map diagram. |
 | `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). |
 | `figma-use` **§** | Figma MCP | The low-level engine behind every Figma canvas write — create/edit/delete nodes, set up variables & tokens, build components/variants, and wire auto-layout, fills, and variable bindings. Most other Figma work calls it under the hood. |
 | `figma-generate-design` **§** | Figma MCP | Turn an app page, view, or multi-section layout — from code or a description — into a Figma screen, reusing your design system's components, variables, and styles section by section. |
