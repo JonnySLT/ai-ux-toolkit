@@ -56,9 +56,7 @@ const tests = [
   ["usability-testing", "i want to put the onboarding flow in front of 5 real users and watch where they get stuck, then analyze the results"],
   ["inclusive-design", "how do i design this signup form to be accessible from the start for screen-reader and keyboard users?"],
   ["research-planning", "write me the moderator script and task list for a usability test of our new billing page"],
-  ["research-synthesis", "i've got notes from 6 usability sessions and 20 support tickets — pull out the top themes and pain points"],
-  ["research-repository", "help me set up a tagging taxonomy so our research insights stay findable and reusable across projects"],
-  ["research-planning", "draft a stakeholder interview guide for our project kickoff next week"],
+  ["research-synthesis", "i've got notes from 6 usability sessions and 20 support tickets — pull out the top themes and pain points"],  ["research-planning", "draft a stakeholder interview guide for our project kickoff next week"],
   ["success-metrics", "we're about to build a new onboarding flow — what should we measure to know if it actually worked?"],
   ["measurement-plan", "the checkout redesign shipped 3 weeks ago and here's the funnel data — did it improve conversion?"],
   ["experimentation", "i want to A/B test the new green CTA button against the current one — how many users do i need and how do i read the result?"],
@@ -68,9 +66,7 @@ const tests = [
   ["brand-voice-tone", "does this onboarding copy sound like us? rewrite it to match our brand voice"],
   ["divergent-exploration", "give me 10 different options for the headline on our landing page hero"],
   ["personas", "turn our interview findings into 2-3 evidence-based personas"],
-  ["journey-map", "map the end-to-end experience of a first-time buyer, including the emotional highs and lows"],
-  ["empathy-map", "i want a says / thinks / does / feels picture of our target user from this research"],
-  ["prompt-builder", "before i ask you to redesign this page, help me write a prompt that gives you all the context you need"],
+  ["journey-map", "map the end-to-end experience of a first-time buyer, including the emotional highs and lows"],  ["prompt-builder", "before i ask you to redesign this page, help me write a prompt that gives you all the context you need"],
   ["prompt-builder", "here's the prompt i was going to run — can you improve it so nothing important is missing?"],
 ];
 

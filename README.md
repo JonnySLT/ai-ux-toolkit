@@ -1,6 +1,6 @@
 # AI UX Toolkit
 
-**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 23 plugins, 41 skills, organized by workflow phase.
+**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 23 plugins, 38 skills, organized by workflow phase.
 
 **Built for a UX team.** It assumes you're not working in a vacuum — first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, and developer-handoff specs and user stories. Shaped for UX designers and researchers working side by side.
 
@@ -76,7 +76,7 @@ Claude picks skills by what each is *for* — no skill named, each output feedin
 
 ## What's inside — organized by workflow phase
 
-Twenty-three plugins (41 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
+Twenty-three plugins (38 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
 
 ### 🧰 Meta — `prompt-builder`
 
@@ -94,7 +94,6 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 |---|---|---|
 | `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
 | `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritized opportunities. The coding pass that would take hours by hand. |
-| `research-repository` | ux-research | Set up and maintain a repository of atomic, tagged, evidence-linked insights (with a taxonomy) so past research stays findable and reusable across studies. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
 
 ### 📝 Define & plan — `synthesis-artifacts`, `design-planning`
@@ -102,9 +101,7 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `personas` | synthesis-artifacts | Build evidence-based personas & JTBD statements from real research (flags thin data instead of inventing demographics). |
-| `empathy-map` | synthesis-artifacts | A fast Says / Thinks / Does / Feels (+ Pains & Gains) snapshot that surfaces contradictions and design implications. |
 | `journey-map` | synthesis-artifacts | Map an end-to-end experience — stages, actions, thoughts, emotion curve, pain points, and opportunities. |
-| `service-blueprint` | synthesis-artifacts | Extend a journey with the behind-the-scenes layers (frontstage, backstage, support systems) to expose fail points, handoffs, and ownership gaps. |
 | `success-metrics` | synthesis-artifacts | Define what success looks like *before* building — HEART and goal → signal → metric, with guardrail metrics. |
 | `design-brief` **†** | design-planning | Create a design brief through an interactive interview, codebase exploration, and experience-design decisions. |
 | `grill-me` **†** | design-planning | Get interviewed relentlessly about a plan or design until you reach shared understanding. |
@@ -116,7 +113,6 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `divergent-exploration` | ideation | Generate a wide, deliberately-spread set of concepts, copy variants, or IA/layout options — spanning safe → bold — so you break fixation early and edit rather than start blank. |
-| `facilitation` | ideation | Plan and run collaborative sessions (kickoffs, design sprints, ideation workshops, retros) — a timed agenda, the right activities, facilitation scripts, and outcome capture. |
 | `prioritization` | prioritization | Turn a list of ideas, features, or fixes into a defensible ranked order (RICE, impact/effort, MoSCoW, Kano) — with quick wins and the assumptions surfaced. |
 
 ### 🗂️ Structure — `site-architecture`, `information-architecture`
@@ -175,7 +171,6 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 |---|---|---|
 | `component-spec` | handoff-docs | Draft a dev-ready spec for one component — anatomy, variants, states, props, tokens, a11y, do/don't — from Figma, code, or a description. |
 | `design-system-docs` | handoff-docs | Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile. |
-| `user-stories` | handoff-docs | Turn a design or brief into agile user stories ("As a… I want… so that…") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices. |
 | `annotate` | handoff-docs | Place annotation cards beside a Figma screen, each pointing at a high-level component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). **Requires the Figma MCP.** |
 | `changelog-setup` | changelog-automation | Bootstrap a Changelog on any Figma file (design system, design file, or both): creates the Changelog page + entries container, a styled seed entry, and captures the initial fingerprint baseline. **Requires the Figma MCP.** |
 | `changelog-sweep` | changelog-automation | Diff any Figma file against its stored baseline and auto-log drift — components/variables/styles **and/or** screens/frames — to its Changelog page. Scoped; built to run periodically via `/schedule`. **Requires the Figma MCP.** |
@@ -208,8 +203,6 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 | Plan a study / write an interview, survey, or usability *script* | `research-planning` |
 | Run + moderate + analyze a full usability study | `usability-testing` |
 | Turn collected data into themes & insights | `research-synthesis` |
-| Store & reuse insights across studies | `research-repository` |
-
 **Building UI**
 | Your goal | Use |
 |---|---|
@@ -235,10 +228,7 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 | Your goal | Use |
 |---|---|
 | A behavioral archetype of a user | `personas` |
-| What a user says / thinks / does / feels | `empathy-map` |
 | The stage-by-stage experience + emotion curve | `journey-map` |
-| Frontstage + backstage layers delivering a service | `service-blueprint` |
-
 ---
 
 ## Requirements
@@ -316,10 +306,10 @@ ai-ux-toolkit/
 ├── README.md                           # this file
 └── plugins/
     ├── research-planning/              # original — research-planning
-    ├── ux-research/                    # original — research-synthesis, research-repository
+    ├── ux-research/                    # original — research-synthesis
     ├── competitive-analysis/           # original — competitive-analysis
-    ├── synthesis-artifacts/            # original — personas, empathy-map, journey-map, service-blueprint, success-metrics
-    ├── ideation/                       # original — divergent-exploration, facilitation
+    ├── synthesis-artifacts/            # original — personas, journey-map, success-metrics
+    ├── ideation/                       # original — divergent-exploration
     ├── prioritization/                 # original — prioritization
     ├── site-architecture/              # original — site-audit, conceptual-architecture (render to Figma)
     ├── figma-design-system/            # original — figma-designer, reattach, harvest-components
@@ -328,7 +318,7 @@ ai-ux-toolkit/
     ├── accessibility-heuristics/       # original — inclusive-design, accessibility-check, heuristic-review
     ├── usability-testing/              # original — usability-testing
     ├── rapid-prototyping/              # original — rapid-prototype
-    ├── handoff-docs/                   # original — component-spec, design-system-docs, user-stories, annotate
+    ├── handoff-docs/                   # original — component-spec, design-system-docs, annotate
     ├── brand-voice/                    # original — brand-voice-tone
     ├── changelog-automation/           # original — changelog-setup + changelog-sweep (+ scripts/figma-fingerprint.js, references/changelog-conventions.md)
     ├── product-analytics/              # original — measurement-plan, experimentation

@@ -24,7 +24,7 @@
     {
       "name": "ux-research",
       "source": "./plugins/ux-research",
-      "description": "Synthesize messy qualitative research into themes, evidence-backed insights, and prioritized opportunities — and manage them over time in a tagged, reusable research repository of atomic insights.",
+      "description": "Synthesize messy qualitative research into themes, evidence-backed insights, and prioritized opportunities.",
       "version": "1.0.0",
       "category": "research",
       "tags": [
@@ -51,15 +51,11 @@
     {
       "name": "synthesis-artifacts",
       "source": "./plugins/synthesis-artifacts",
-      "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, empathy maps, journey/experience maps, service blueprints, and success-metric definitions (HEART / goal-signal-metric).",
+      "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, journey/experience maps, and success-metric definitions (HEART / goal-signal-metric).",
       "version": "1.0.0",
       "category": "research",
       "tags": [
-        "personas",
-        "empathy-map",
-        "journey-map",
-        "service-blueprint",
-        "metrics"
+        "personas",        "journey-map",        "metrics"
       ]
     },
     {
@@ -84,14 +80,12 @@
     {
       "name": "ideation",
       "source": "./plugins/ideation",
-      "description": "Break fixation and run the room: generate a wide, deliberately-spread set of concepts, copy, or IA/layout options, and plan/facilitate collaborative sessions (kickoffs, design sprints, ideation workshops, retros).",
+      "description": "Break fixation: generate a wide, deliberately-spread set of concepts, copy, or IA/layout options, spanning safe to bold.",
       "version": "1.0.0",
       "category": "design",
       "tags": [
         "ideation",
-        "divergent",
-        "facilitation",
-        "workshops"
+        "divergent",        "workshops"
       ]
     },
     {
@@ -279,14 +273,12 @@
     {
       "name": "handoff-docs",
       "source": "./plugins/handoff-docs",
-      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, agile user stories with acceptance criteria, and on-canvas Figma annotations for developer handoff.",
+      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and on-canvas Figma annotations for developer handoff.",
       "version": "1.0.0",
       "category": "documentation",
       "tags": [
         "handoff",
-        "spec",
-        "user-stories",
-        "documentation"
+        "spec",        "documentation"
       ]
     },
     {
