@@ -67,7 +67,7 @@ Every frame, card, row, and text node below binds to the **host file's** tokens 
 - **"Top-level sections at a glance"** — a numbered list: index + section name (Label) + one-line description.
 
 ### Tab 2 — Site Architecture (the IA tree, as text)
-- A short notation caption.
+- A short notation caption / intro — keep the Site Architecture tab's description to **at most 2 lines** (trim the wording until it fits two lines).
 - A **white card** with the tree: a dark **root chip** (the domain); then each section = a brand bullet + section name (brand) + path (muted), and an indented child line listing its pages (comma-separated; `(+N)` for collapsed deeper pages; `→` for steps in a flow).
 - An **"Authenticated · My Account"** sub-block for sign-in-only areas.
 - A **"Site Map ↗"** link (top-right of the header) that drills down to the visual Site Map, if built (see optional step).
@@ -99,7 +99,7 @@ Include a compact **key** near the top of the Page Inventory only if the user wa
 This is a required part of the flow. **Once the skill is activated (after you understand the request / gather the IA), ask the user whether they also want a matching visual Site Map** — the diagram twin of the Site Architecture tab. Use `AskUserQuestion` (or a direct yes/no). Build the audit regardless; build the Site Map only if they say yes.
 
 If yes, build it bound to the **same host-file tokens/styles** (governing principle — resolve this file's equivalents by role) as a **tree diagram** (this is `layoutMode: NONE` / absolute positioning with thin **connector rectangles** — a border/gray token — from the root down to each section; it is not an auto-layout flow):
-- **Header**: same eyebrow + a Display title ("Site Map") + subtitle; plus a **"‹ Back"** link to the audit.
+- **Header**: same eyebrow + a Display title ("Site Map") + subtitle — **set the subtitle/description text to a max width of 760px** so it wraps cleanly; plus a **"‹ Back"** link to the audit.
 - **Root node**: a dark card (fill an inverse/deep-brand token) with the domain (Heading, on-brand) + a caption path.
 - **Section card**: a white *surface* frame; a **`head`** sub-frame filled `brand/primary` with the section name (Heading, on-brand) + path (Caption); then **rows** — each a small brand dot + page name (Body/Small) — with `(+N)` collapse badges and `↗` for external links.
 - **Authenticated band**: a differently-accented root (e.g. `accent/interactive`) labelled "Logged-in / My Account" + its sections in the same card style.
