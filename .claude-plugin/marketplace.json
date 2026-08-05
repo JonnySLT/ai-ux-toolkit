@@ -144,7 +144,7 @@
     {
       "name": "figma-design-system",
       "source": "./plugins/figma-design-system",
-      "description": "Figma + design-system toolkit: design and audit components in Figma, reattach raw frames to the system, and annotate screens for developer handoff.",
+      "description": "Figma + design-system toolkit: design and audit components in Figma, reattach raw frames to the system, and harvest components from finished designs.",
       "version": "1.0.0",
       "category": "design",
       "tags": [
@@ -279,7 +279,7 @@
     {
       "name": "handoff-docs",
       "source": "./plugins/handoff-docs",
-      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and agile user stories with acceptance criteria.",
+      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, agile user stories with acceptance criteria, and on-canvas Figma annotations for developer handoff.",
       "version": "1.0.0",
       "category": "documentation",
       "tags": [

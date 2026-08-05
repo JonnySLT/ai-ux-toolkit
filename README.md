@@ -127,15 +127,14 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `conceptual-architecture` | site-architecture | Map a **new or redesigned** product at a glance: top-level areas, the key pages in each with a one-line purpose, and any global features, rendered into Figma in the file's own design system. **Requires the Figma MCP.** |
 | `information-architecture` **†** | information-architecture | Define the structural layer before visual design — navigation, content hierarchy, page structure, URL patterns, and user flows. |
 
-### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`
-`figma-designer`, `reattach`, `harvest-components`, and `annotate` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, and `data-visualization` need neither.
+### 🎨 Design — `figma-design-system`, `design-tokens`, `frontend-design`, `data-viz`, `accessibility-heuristics`
+`figma-designer`, `reattach`, and `harvest-components` **require the [Figma MCP server](#connecting-the-figma-mcp)** to run; the rows marked **§** *are* the Figma MCP's own skills — they arrive **with** that connection, not from this toolkit. `design-tokens`, `frontend-design`, `data-visualization`, and `inclusive-design` need neither.
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `figma-designer` | figma-design-system | Senior-designer knowledge for building accessible, consistent, polished UI in Figma. |
 | `reattach` | figma-design-system | Audit a raw/detached Figma frame and reconnect it to the design system — variables, text styles, and component instances (all discovered at runtime). |
 | `harvest-components` | figma-design-system | Audit a finished design and decide what should be a component — map bespoke frames to existing components, nominate recurring ones as new components, leave genuine one-offs — then swap and verify. The editorial layer above `reattach`. |
-| `annotate` | figma-design-system | Place annotation cards beside a screen, each pointing at a component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). |
 | `figma-use` **§** | Figma MCP | The low-level engine behind every Figma canvas write — create/edit/delete nodes, set up variables & tokens, build components/variants, and wire auto-layout, fills, and variable bindings. Most other Figma work calls it under the hood. |
 | `figma-generate-design` **§** | Figma MCP | Turn an app page, view, or multi-section layout — from code or a description — into a Figma screen, reusing your design system's components, variables, and styles section by section. |
 | `figma-generate-library` **§** | Figma MCP | Build or update a full design system *in* Figma from a codebase — variables/tokens, component libraries, light/dark theming, and documented foundations. |
@@ -143,25 +142,15 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 | `design-tokens` **†** | design-tokens | Generate a design tokens file (CSS variables or Tailwind config) — light/dark palettes, spacing scale, type ramp, component-level tokens. |
 | `frontend-design` **†** | frontend-design | Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. |
 | `data-visualization` | data-viz | Design clear, accessible charts and dashboards — the right chart for the question, accessible color, honest scales, and glanceable layouts. Tool-agnostic. |
+| `inclusive-design` | accessibility-heuristics | Design accessibly **from the start** — for the range of human ability (vision, motor, hearing, cognitive, situational), baking WCAG into decisions before build. |
 
-### ✍️ Content — `content-design`
-
-| Skill | Use it to… |
-|---|---|
-| `content-design` | Write functional UI microcopy systematically — errors, empty states, buttons, labels, confirmations, onboarding. Decides *what to say*; pair with `brand-voice` for tone. |
-| `states-and-edge-cases` | Enumerate every state and edge case a screen must handle (empty, loading, error, offline, permission, overflow…) so they're designed on purpose, not found in production. |
-
-### ✅ Check — `accessibility-heuristics`, `design-review`, `usability-testing`
+### ✍️ Content — `content-design`, `brand-voice`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
-| `inclusive-design` | accessibility-heuristics | Design accessibly **from the start** — for the range of human ability (vision, motor, hearing, cognitive, situational), baking WCAG into decisions before build. |
-| `accessibility-check` | accessibility-heuristics | First-pass WCAG check on a screenshot, Figma frame, URL, or code — contrast, labels, focus, target size, structure. Cites the success criterion and a fix per finding. |
-| `heuristic-review` | accessibility-heuristics | Evaluate a screen or flow against Nielsen's 10 usability heuristics, scored by severity with concrete fixes. |
-| `design-review` **†** | design-review | Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. |
-| `usability-testing` | usability-testing | Plan, moderate, and analyze a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings. |
-
-> The first four are **expert** first-filters — fast, no users. `usability-testing` is the **empirical** counterpart that puts a real person in front of the design. Use both.
+| `content-design` | content-design | Write functional UI microcopy systematically — errors, empty states, buttons, labels, confirmations, onboarding. Decides *what to say*; pair with `brand-voice-tone` for tone. |
+| `states-and-edge-cases` | content-design | Enumerate every state and edge case a screen must handle (empty, loading, error, offline, permission, overflow…) so they're designed on purpose, not found in production. |
+| `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice — loaded from a brand file or a quick interview, so it works for any brand. |
 
 ### 🧪 Prototype — `rapid-prototyping`
 
@@ -169,14 +158,25 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 |---|---|
 | `rapid-prototype` | Turn a rough idea, brief, or sketch into a **throwaway, clickable** prototype — runnable front-end code verified live in the browser preview, so you can test real interaction instead of static comps. (For **production-grade** builds, use `frontend-design`.) |
 
-### 📦 Handoff & docs — `handoff-docs`, `brand-voice`, `changelog-automation`
+### ✅ Check — `accessibility-heuristics`, `design-review`, `usability-testing`
+
+| Skill | Plugin | Use it to… |
+|---|---|---|
+| `accessibility-check` | accessibility-heuristics | First-pass WCAG check on a screenshot, Figma frame, URL, or code — contrast, labels, focus, target size, structure. Cites the success criterion and a fix per finding. |
+| `heuristic-review` | accessibility-heuristics | Evaluate a screen or flow against Nielsen's 10 usability heuristics, scored by severity with concrete fixes. |
+| `design-review` **†** | design-review | Broad, holistic design critique against the brief — visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. |
+| `usability-testing` | usability-testing | Plan, moderate, and analyze a usability study with **real users** — tasks, success criteria, task-level metrics, and severity-rated findings. |
+
+> The first three are **expert** first-filters — fast, no users. `usability-testing` is the **empirical** counterpart that puts a real person in front of the design. Use both.
+
+### 📦 Handoff & docs — `handoff-docs`, `changelog-automation`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `component-spec` | handoff-docs | Draft a dev-ready spec for one component — anatomy, variants, states, props, tokens, a11y, do/don't — from Figma, code, or a description. |
 | `design-system-docs` | handoff-docs | Generate design-system documentation from a project's existing patterns: component inventory, usage guidelines, token reference, and inconsistencies to reconcile. |
 | `user-stories` | handoff-docs | Turn a design or brief into agile user stories ("As a… I want… so that…") with testable acceptance criteria (checklist or Given/When/Then), scoped to shippable slices. |
-| `brand-voice-tone` | brand-voice | Review and rewrite UI copy to match a project's brand voice — loaded from a brand file or a quick interview, so it works for any brand. |
+| `annotate` | handoff-docs | Place annotation cards beside a Figma screen, each pointing at a high-level component with specs, tokens, icons, and dev-handoff notes (from the file's own `Annotation` component, 32px from the frame). **Requires the Figma MCP.** |
 | `changelog-setup` | changelog-automation | Bootstrap a Changelog on any Figma file (design system, design file, or both): creates the Changelog page + entries container, a styled seed entry, and captures the initial fingerprint baseline. **Requires the Figma MCP.** |
 | `changelog-sweep` | changelog-automation | Diff any Figma file against its stored baseline and auto-log drift — components/variables/styles **and/or** screens/frames — to its Changelog page. Scoped; built to run periodically via `/schedule`. **Requires the Figma MCP.** |
 
@@ -322,13 +322,13 @@ ai-ux-toolkit/
     ├── ideation/                       # original — divergent-exploration, facilitation
     ├── prioritization/                 # original — prioritization
     ├── site-architecture/              # original — site-audit, conceptual-architecture (render to Figma)
-    ├── figma-design-system/            # original — figma-designer, reattach, harvest-components, annotate
+    ├── figma-design-system/            # original — figma-designer, reattach, harvest-components
     ├── data-viz/                       # original — data-visualization
     ├── content-design/                 # original — content-design, states-and-edge-cases
     ├── accessibility-heuristics/       # original — inclusive-design, accessibility-check, heuristic-review
     ├── usability-testing/              # original — usability-testing
     ├── rapid-prototyping/              # original — rapid-prototype
-    ├── handoff-docs/                   # original — component-spec, design-system-docs, user-stories
+    ├── handoff-docs/                   # original — component-spec, design-system-docs, user-stories, annotate
     ├── brand-voice/                    # original — brand-voice-tone
     ├── changelog-automation/           # original — changelog-setup + changelog-sweep (+ scripts/figma-fingerprint.js, references/changelog-conventions.md)
     ├── product-analytics/              # original — measurement-plan, experimentation

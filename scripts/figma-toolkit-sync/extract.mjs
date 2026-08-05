@@ -261,6 +261,10 @@ function build() {
     }
     seenPhase.get(key).plugins.push(p.name);
   }
+  // Divider order follows the workflow phase number (01→11), not plugin-array
+  // order — so a skill that straddles into an earlier phase (its plugin listed
+  // under two phase headings) can't pull its home-phase divider out of sequence.
+  pagePlan.dividers.sort((a, b) => a.name.localeCompare(b.name));
 
   const data = { generatedFrom: 'ai-ux-toolkit README files', intro, phases, plugins, pagePlan, toolHash };
   const fingerprint = createHash('sha256')
