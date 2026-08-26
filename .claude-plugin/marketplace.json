@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
-  "description": "AI-assisted skills for UX design and research teams covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. Built for designers working alongside researchers, PMs, and engineers: stakeholder interviews and dev handoff are first-class. 23 plugins / 38 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.6.0",
+  "description": "AI-assisted skills for UX design and research teams covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. Built for designers working alongside researchers, PMs, and engineers: stakeholder interviews and dev handoff are first-class. 24 plugins / 39 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
+  "version": "2.7.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -332,6 +332,20 @@
         "experimentation",
         "ab-testing",
         "measurement"
+      ]
+    },
+    {
+      "name": "highlight-reels",
+      "source": "./plugins/highlight-reels",
+      "description": "Turn research findings plus timestamped transcripts into a traceable, paste-ready clip list for cutting thematic quote-montages — one reel per finding. Surfaces counter-evidence, not just confirming clips, and logs emergent patterns separately.",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": [
+        "highlight-reel",
+        "clips",
+        "quote-montage",
+        "video",
+        "findings"
       ]
     }
   ]

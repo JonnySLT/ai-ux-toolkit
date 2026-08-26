@@ -1,6 +1,6 @@
 # AI UX Toolkit
 
-**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 23 plugins, 38 skills, organized by workflow phase.
+**SLT's shared UX toolkit.** A set of Claude Code skills for every stage of the design & research workflow — research → design → validation → developer handoff → post-launch measurement — so the whole team works from one playbook instead of reinventing each artifact by hand. 24 plugins, 39 skills, organized by workflow phase.
 
 **Built for a UX team.** It assumes you're not working in a vacuum — first-class support for the collaborative reality of product work: stakeholder and kickoff interviews, facilitated workshops and design sprints, a shared research repository the whole team can reuse, and developer-handoff specs and user stories. Shaped for UX designers and researchers working side by side.
 
@@ -20,21 +20,21 @@ Everything here is **project-agnostic**. No skill is tied to a specific company,
 # 1. Add it to Claude Code (once)
 /plugin marketplace add JonnySLT/ai-ux-toolkit
 
-# 2. Install any single plugin — same pattern for all 23
+# 2. Install any single plugin — same pattern for all 24
 /plugin install research-planning@ai-ux-toolkit
 ```
 
 **Want everything?** Just ask Claude, right in your Claude Code session:
 
-> *"Install all 23 plugins from ai-ux-toolkit."*
+> *"Install all 24 plugins from ai-ux-toolkit."*
 
 You can ask for **any subset** the same way — *"install just the research plugins,"* or *"everything except the Figma-dependent ones."* Prefer to browse? Run **`/plugin`** for an interactive menu.
 
 <details>
-<summary>Prefer a copy-paste terminal one-liner to install all 23?</summary>
+<summary>Prefer a copy-paste terminal one-liner to install all 24?</summary>
 
 ```bash
-for p in research-planning ux-research competitive-analysis synthesis-artifacts \
+for p in research-planning ux-research competitive-analysis highlight-reels synthesis-artifacts \
          design-planning ideation prioritization site-architecture information-architecture \
          figma-design-system design-tokens frontend-design data-viz content-design \
          accessibility-heuristics design-review usability-testing rapid-prototyping \
@@ -76,7 +76,7 @@ Claude picks skills by what each is *for* — no skill named, each output feedin
 
 ## What's inside — organized by workflow phase
 
-Twenty-three plugins (38 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
+Twenty-four plugins (39 skills), grouped by where they fall in a typical design process. Every skill is project-agnostic. Skills marked **†** are vendored from Julian Oczkowski's [designer-skills](https://github.com/julianoczkowski/designer-skills) (Apache-2.0) — see [Attribution](#attribution--third-party-skills). Rows marked **§** aren't shipped by this toolkit at all — they come with the [Figma MCP](#connecting-the-figma-mcp) itself and are listed here only so the full Figma workflow is visible in one place.
 
 ### 🧰 Meta — `prompt-builder`
 
@@ -88,13 +88,14 @@ Not tied to any phase — it sits *in front of* all of them. Install it first; i
 
 > **It also ships the toolkit's ask-first routing.** A `SessionStart` hook auto-loads the overlap map (below) into context — so when a request could map to more than one skill, Claude names the options and asks which you want, instead of silently picking. Zero setup; on by default once installed. *(A manual, project-scoped alternative lives in [`templates/CLAUDE.md`](templates/CLAUDE.md).)*
 
-### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`
+### 🔬 Research — `research-planning`, `ux-research`, `competitive-analysis`, `highlight-reels`
 
 | Skill | Plugin | Use it to… |
 |---|---|---|
 | `research-planning` | research-planning | Plan and instrument research *before* you collect it — choose the method, then draft user interview guides, **stakeholder/kickoff interview guides**, usability-test scripts, survey questionnaires, and recruiting screeners (non-leading, with consent and realistic sample sizes). |
 | `research-synthesis` | ux-research | Feed in interview transcripts, survey responses, or support tickets → themes, evidence-backed insights, frequency/severity, and prioritized opportunities. The coding pass that would take hours by hand. |
 | `competitive-analysis` | competitive-analysis | Live teardown of 3–6 products — browses each in real time and delivers a comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page. |
+| `highlight-reels` | highlight-reels | Turn a finding list + timestamped transcripts into candidate video clips — session, finding, in/out, verbatim, and a Supports/Contradicts valence — as paste-ready rows for the highlight-reel workbook, ready to cut into quote-montages (one reel per finding). Surfaces counter-evidence and logs emergent patterns separately. |
 
 ### 📝 Define & plan — `synthesis-artifacts`, `design-planning`
 
@@ -203,6 +204,8 @@ Most skills have an obvious lane — **just describe the outcome you want and Cl
 | Plan a study / write an interview, survey, or usability *script* | `research-planning` |
 | Run + moderate + analyze a full usability study | `usability-testing` |
 | Turn collected data into themes & insights | `research-synthesis` |
+| Find the video clips that back findings you already have | `highlight-reels` |
+
 **Building UI**
 | Your goal | Use |
 |---|---|
@@ -259,7 +262,7 @@ Using a different client (VS Code, Cursor) or want deeper setup? Figma's own gui
 ## How it's designed to stay reusable
 
 - **No hardcoded files or companies.** Every skill resolves the design system, tokens, voice, and config from the project it runs in. Drop any plugin into a new project and it adapts.
-- **Pick à la carte.** Twenty-three independent plugins; install only what you need. New here? Install `prompt-builder` first, then ask Claude for whatever phase you're working in.
+- **Pick à la carte.** Twenty-four independent plugins; install only what you need. New here? Install `prompt-builder` first, then ask Claude for whatever phase you're working in.
 - **First filter, not final word.** The expert checks and the research/synthesis passes are framed as fast first passes for a human to validate — never replacements for real usability testing, assistive-tech testing, or design judgment.
 
 ## Attribution & third-party skills
@@ -296,7 +299,7 @@ For anyone on the team editing or extending this repo:
 
 ```text
 ai-ux-toolkit/
-├── .claude-plugin/marketplace.json     # plugin catalog (lists all 23 plugins)
+├── .claude-plugin/marketplace.json     # plugin catalog (lists all 24 plugins)
 ├── .github/workflows/                  # validate.yml (structure check on push/PR) + check-upstream-skills.yml (weekly drift check)
 ├── .vendor/designer-skills.lock.json   # provenance + baseline hashes for vendored skills
 ├── scripts/validate.mjs                # structural integrity check (runs in CI)
@@ -308,6 +311,7 @@ ai-ux-toolkit/
     ├── research-planning/              # original — research-planning
     ├── ux-research/                    # original — research-synthesis
     ├── competitive-analysis/           # original — competitive-analysis
+    ├── highlight-reels/                # original — highlight-reels
     ├── synthesis-artifacts/            # original — personas, journey-map, success-metrics
     ├── ideation/                       # original — divergent-exploration
     ├── prioritization/                 # original — prioritization

@@ -14,6 +14,7 @@ Skip this only when the user named a skill directly, or the match is unambiguous
 |---|---|
 | "review / critique this screen" | `accessibility-check` (WCAG: contrast, labels, focus, target size) · `heuristic-review` (Nielsen usability heuristics) · `design-review` (broad critique vs the brief) · `usability-testing` (test with real users) |
 | "plan / run a usability test" | `research-planning` (write the script/guide only) · `usability-testing` (run + moderate + analyze the study) |
+| "pull themes / clips out of these transcripts" | `research-synthesis` (find the findings — themes, insights, opportunities) · `highlight-reels` (find the video moments for findings you already have) |
 | "what metrics should we track?" | `success-metrics` (define targets before build) · `measurement-plan` (instrument + read outcomes post-launch) · `experimentation` (design / read an A/B test) |
 | "prototype / build this" | `rapid-prototype` (throwaway, to test an interaction) · `frontend-design` (production-grade, ship-quality) |
 | "write / fix this copy" | `content-design` (decide what to say) · `brand-voice-tone` (match brand voice/tone) · `divergent-exploration` (generate options to choose from) |

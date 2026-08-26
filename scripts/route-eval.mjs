@@ -57,6 +57,8 @@ const tests = [
   ["inclusive-design", "how do i design this signup form to be accessible from the start for screen-reader and keyboard users?"],
   ["research-planning", "write me the moderator script and task list for a usability test of our new billing page"],
   ["research-synthesis", "i've got notes from 6 usability sessions and 20 support tickets — pull out the top themes and pain points"],  ["research-planning", "draft a stakeholder interview guide for our project kickoff next week"],
+  ["highlight-reels", "we've got the findings locked — pull the video clips that back F-02 out of my 12 transcripts, and any that push against it"],
+  ["highlight-reels", "i want a quote montage for each finding in the readout deck — find me the moments and their timecodes"],
   ["success-metrics", "we're about to build a new onboarding flow — what should we measure to know if it actually worked?"],
   ["measurement-plan", "the checkout redesign shipped 3 weeks ago and here's the funnel data — did it improve conversion?"],
   ["experimentation", "i want to A/B test the new green CTA button against the current one — how many users do i need and how do i read the result?"],
