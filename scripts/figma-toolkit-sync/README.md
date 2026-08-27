@@ -60,7 +60,8 @@ toolkit content.
    `WI · <skill>` so the `link` step (below) can hyperlink it. The board hugs its
    content (auto-layout), so no section refit is needed.
 5. **Rebuild the per-plugin pages** with `render-pages.figma.js`. For each plugin
-   in `toolkit-data.json` `.plugins` (in order), split its `.skills` into batches
+   that actually changed — see [Only rebuild the pages that changed](#only-rebuild-the-pages-that-changed);
+   on most syncs that is one or two, not all 24 — split its `.skills` into batches
    whose total `body` length stays under ~22 000 chars (a big skill goes alone):
    ```js
    // first batch of a plugin — clears the page, builds the header + intro block
@@ -82,6 +83,58 @@ toolkit content.
    `.figma-sync.lock.json`.
 7. *(Optional)* Log a one-line entry to the file's Changelog page, mirroring
    `changelog-automation`.
+
+## Only rebuild the pages that changed
+
+Step 5 reads as though every plugin page gets re-rendered. It doesn't have to.
+
+The fingerprint gate in step 2 is all-or-nothing: it tells you *something*
+changed, not *what*. But `toolkit-data.json` is committed, so the last-synced
+state is one `git show HEAD:` away — diff the two and you have the exact work
+list. Adding the `highlight-reels` plugin touched **2** pages, not 24.
+
+Run this from the repo root, after step 1 regenerates the data:
+
+```bash
+node -e '
+const { execSync } = require("child_process");
+const prev = JSON.parse(execSync("git show HEAD:scripts/figma-toolkit-sync/toolkit-data.json", { maxBuffer: 1e8 }));
+const next = require("./scripts/figma-toolkit-sync/toolkit-data.json");
+const was = new Map(prev.plugins.map((p) => [p.name, p]));
+const sig = (p) => JSON.stringify([p.readme, p.phase, p.requirements, p.skills.map((s) => [s.name, s.description, s.body])]);
+for (const p of next.plugins) {
+  const o = was.get(p.name);
+  if (!o) console.log("NEW PAGE      " + p.name);
+  else if (sig(o) !== sig(p)) console.log("REBUILD PAGE  " + p.name);
+}
+for (const n of was.keys()) if (!next.plugins.some((p) => p.name === n)) console.log("STALE PAGE    " + n);
+const chg = (k) => JSON.stringify(prev[k]) !== JSON.stringify(next[k]);
+console.log("intro:", chg("intro"), " whats-inside:", chg("phases"), " pagePlan:", chg("pagePlan"));
+'
+```
+
+Read the output as the work list:
+
+| Output | Do |
+|---|---|
+| `NEW PAGE` / `REBUILD PAGE` | Run step 5's `plugin-page` op for those plugins only |
+| `STALE PAGE` | Nothing — `organize` removes it |
+| `intro: true` | Run step 3 |
+| `whats-inside: true` | Run step 4 |
+| `pagePlan: true` | Run `organize` |
+
+Run `link` whenever any page was built or reordered — it re-derives everything
+from node names, so it is always safe and always cheap.
+
+**A single changed `description` still means rebuilding that plugin's whole
+page**, because the description renders inside the skill card. The one case
+worth doing by hand is a description-only change on a plugin whose skill bodies
+are untouched: locate the card's description TEXT node, load its fonts, and
+rewrite `characters` — the result is byte-identical to a re-render, because the
+renderer draws that node with the same plain-body styling.
+
+Rebuilding everything is never *wrong* — the renderers are idempotent. It is
+just a full clear-and-recreate on pages whose content did not move.
 
 ## Scope & guarantees
 
