@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "ai-ux-toolkit",
   "description": "AI-assisted skills for UX design and research teams covering the full workflow — from planning and synthesizing research, through ideation, IA, design, content, accessibility, and prototyping, to validation, developer handoff, and post-launch measurement. Built for designers working alongside researchers, PMs, and engineers: stakeholder interviews and dev handoff are first-class. 24 plugins / 39 skills, organized by workflow phase. Project-agnostic: every skill references the design system, voice, and conventions of the project it runs in. Includes original skills plus skills vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "owner": {
     "name": "Jonny Bennett"
   },
@@ -11,7 +11,7 @@
       "name": "research-planning",
       "source": "./plugins/research-planning",
       "description": "Plan and instrument research with users and stakeholders: choose the method, then draft user interview guides, stakeholder/kickoff interview guides, usability-test scripts, survey questionnaires, and recruiting screeners. Feeds research-synthesis.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "research",
       "tags": [
         "research",
@@ -25,7 +25,7 @@
       "name": "ux-research",
       "source": "./plugins/ux-research",
       "description": "Synthesize messy qualitative research into themes, evidence-backed insights, and prioritized opportunities.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "research",
       "tags": [
         "research",
@@ -39,7 +39,7 @@
       "name": "competitive-analysis",
       "source": "./plugins/competitive-analysis",
       "description": "Live competitive analysis of 3–6 products: real-time browse + comparison matrix, narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "research",
       "tags": [
         "research",
@@ -52,7 +52,7 @@
       "name": "synthesis-artifacts",
       "source": "./plugins/synthesis-artifacts",
       "description": "Turn research synthesis into define-phase artifacts: evidence-based personas & JTBD, journey/experience maps, and success-metric definitions (HEART / goal-signal-metric).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "research",
       "tags": [
         "personas",        "journey-map",        "metrics"
@@ -62,7 +62,7 @@
       "name": "design-planning",
       "source": "./plugins/design-planning",
       "description": "Define & plan a design: write a brief, get grilled on it, break it into tasks, and orchestrate the full design flow. Vendored from Julian Oczkowski's designer-skills.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "brief",
@@ -81,18 +81,18 @@
       "name": "ideation",
       "source": "./plugins/ideation",
       "description": "Break fixation: generate a wide, deliberately-spread set of concepts, copy, or IA/layout options, spanning safe to bold.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "ideation",
-        "divergent",        "workshops"
+        "divergent"
       ]
     },
     {
       "name": "prioritization",
       "source": "./plugins/prioritization",
       "description": "Decide what to build first: apply a fitting framework (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano) to ideas, features, or fixes and produce a defensible ranked list.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "strategy",
       "tags": [
         "prioritization",
@@ -105,7 +105,7 @@
       "name": "information-architecture",
       "source": "./plugins/information-architecture",
       "description": "Define the structural layer — navigation, content hierarchy, page structure, URL patterns, and user flows — before visual design. Vendored from Julian Oczkowski's designer-skills.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "ia",
@@ -124,7 +124,7 @@
       "name": "site-architecture",
       "source": "./plugins/site-architecture",
       "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit (Overview · Site Architecture · Page Inventory), and conceptual-architecture renders the new high-level sitemap — both styled from the file's own design system.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "site-architecture",
@@ -139,7 +139,7 @@
       "name": "figma-design-system",
       "source": "./plugins/figma-design-system",
       "description": "Figma + design-system toolkit: design and audit components in Figma, reattach raw frames to the system, and harvest components from finished designs.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "category": "design",
       "tags": [
         "figma",
@@ -152,7 +152,7 @@
       "name": "design-tokens",
       "source": "./plugins/design-tokens",
       "description": "Generate a design tokens file (CSS variables or Tailwind config): light/dark palettes, spacing scale, type ramp, component-level tokens. Vendored from Julian Oczkowski's designer-skills.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "tokens",
@@ -171,7 +171,7 @@
       "name": "frontend-design",
       "source": "./plugins/frontend-design",
       "description": "Build distinctive, production-grade frontend interfaces guided by named aesthetic philosophies. Vendored from Julian Oczkowski's designer-skills.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "frontend",
@@ -190,7 +190,7 @@
       "name": "data-viz",
       "source": "./plugins/data-viz",
       "description": "Design clear, accessible charts, dashboards, and data displays: pick the right chart for the question, apply accessible color and labeling, and lay out dashboards that answer questions at a glance.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "design",
       "tags": [
         "data-viz",
@@ -203,7 +203,7 @@
       "name": "content-design",
       "source": "./plugins/content-design",
       "description": "Design the words and the states: systematic UI microcopy (errors, empty states, buttons, labels, confirmations) and enumeration of every screen state and edge case a design must cover.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "content",
       "tags": [
         "ux-writing",
@@ -216,7 +216,7 @@
       "name": "accessibility-heuristics",
       "source": "./plugins/accessibility-heuristics",
       "description": "Design accessibly and check it: proactive inclusive-design guidance up front, plus first-filter audits — WCAG accessibility issues and a Nielsen usability-heuristics evaluation.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "quality",
       "tags": [
         "accessibility",
@@ -229,7 +229,7 @@
       "name": "design-review",
       "source": "./plugins/design-review",
       "description": "Run a structured design critique against the brief and codebase: visual hierarchy, consistency, responsiveness, accessibility, and aesthetic fidelity. Vendored from Julian Oczkowski's designer-skills.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "quality",
       "tags": [
         "review",
@@ -248,7 +248,7 @@
       "name": "usability-testing",
       "source": "./plugins/usability-testing",
       "description": "Run usability tests end-to-end with real users: a test plan with tasks and success criteria, moderation guidance, and a findings report with task-level metrics and severity ratings.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "quality",
       "tags": [
         "usability",
@@ -261,7 +261,7 @@
       "name": "rapid-prototyping",
       "source": "./plugins/rapid-prototyping",
       "description": "Turn a rough idea, brief, or sketch into a clickable, functional prototype — runnable front-end code verified live in the browser preview.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "prototyping",
       "tags": [
         "prototype",
@@ -274,7 +274,7 @@
       "name": "handoff-docs",
       "source": "./plugins/handoff-docs",
       "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and on-canvas Figma annotations for developer handoff.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "documentation",
       "tags": [
         "handoff",
@@ -285,7 +285,7 @@
       "name": "brand-voice",
       "source": "./plugins/brand-voice",
       "description": "Review and rewrite UI copy to match a project's brand voice, using a per-project voice profile loaded at run time.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "content",
       "tags": [
         "copywriting",
@@ -298,7 +298,7 @@
       "name": "changelog-automation",
       "source": "./plugins/changelog-automation",
       "description": "Weekly Figma changelog sweep: fingerprint a design-system file, detect drift from a stored baseline, and auto-log changes. Includes the canonical fingerprint algorithm.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "category": "automation",
       "tags": [
         "figma",
@@ -311,7 +311,7 @@
       "name": "prompt-builder",
       "source": "./plugins/prompt-builder",
       "description": "Brief Claude properly before it starts: turn a rough ask into a complete, context-rich prompt via a short targeted interview (or by upgrading a pasted draft), then run it on the spot. Promotes standing rules into CLAUDE.md/memory so future prompts stay short. Also ships the toolkit's ask-first routing as a SessionStart hook (Claude asks which skill you want on overlap — no setup). Meta — pairs with every other plugin.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "meta",
       "tags": [
         "prompting",
@@ -325,7 +325,7 @@
       "name": "product-analytics",
       "source": "./plugins/product-analytics",
       "description": "Close the loop after launch: plan instrumentation (events, funnels), design and interpret A/B tests/experiments, and read product-outcome data to judge whether the design worked and feed the next round of research.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "analytics",
       "tags": [
         "analytics",
@@ -338,7 +338,7 @@
       "name": "highlight-reels",
       "source": "./plugins/highlight-reels",
       "description": "Turn research findings plus timestamped transcripts into a traceable, paste-ready clip list for cutting thematic quote-montages — one reel per finding. Surfaces counter-evidence, not just confirming clips, and logs emergent patterns separately.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "research",
       "tags": [
         "highlight-reel",

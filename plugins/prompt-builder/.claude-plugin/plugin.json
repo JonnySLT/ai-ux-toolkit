@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "prompt-builder",
   "description": "Brief Claude properly before it starts. Turns a rough ask into a complete, context-rich prompt — through a short targeted interview or by upgrading a draft — then offers to run it immediately. Flags standing rules that belong in CLAUDE.md or memory so future prompts stay short. Also ships the toolkit's ask-first routing behavior as a SessionStart hook, so Claude asks which skill you want when a request overlaps several — no setup required.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": { "name": "Jonny Bennett" }
 }

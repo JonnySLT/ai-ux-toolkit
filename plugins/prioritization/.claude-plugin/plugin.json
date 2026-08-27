@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "prioritization",
   "description": "Decide what to build first. Apply a fitting prioritization framework (RICE, impact/effort, MoSCoW, value-vs-complexity, Kano) to a set of ideas, features, or fixes and produce a defensible ranked list.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": { "name": "Jonny Bennett" }
 }

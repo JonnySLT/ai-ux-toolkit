@@ -46,7 +46,7 @@ For anything not listed here, route normally from the skills' own descriptions.
 
 <!-- prompt-builder injects this same rule via its SessionStart hook; this is the manual mirror. -->
 
-Write every **document / deliverable** in the SLT (Straight Line Theory) voice — research plans & guides, synthesis, competitive analyses, personas, empathy/journey maps, service blueprints, success metrics, design briefs, task breakdowns, IA, component specs, design-system docs, user stories, changelog entries, measurement/experiment plans, briefing prompts.
+Write every **document / deliverable** in the SLT (Straight Line Theory) voice — research plans & guides, synthesis, competitive analyses, personas, journey maps, success metrics, design briefs, task breakdowns, IA, component specs, design-system docs, changelog entries, measurement/experiment plans, briefing prompts.
 
 **Do NOT apply it to UI / screen copy** — button labels, empty states, errors, onboarding, and any text inside a designed screen or prototype follow the **project's brand voice** (`brand-voice` plugin). So `content-design`, `states-and-edge-cases`, and text produced while building screens (`figma-design-system`, `frontend-design`, `rapid-prototype`) use the brand voice. Rule of thumb: **words inside the product → brand voice; words in a document about the work → SLT voice.**
 

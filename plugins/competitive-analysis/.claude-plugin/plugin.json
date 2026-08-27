@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "competitive-analysis",
   "description": "Live competitive analysis of 3–6 products: browses each in real time and delivers a comparison matrix, written narrative, and opportunities/gaps. Can push findings into a Figma doc page.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": { "name": "Jonny Bennett" }
 }

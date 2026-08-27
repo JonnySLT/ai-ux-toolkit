@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "design-tokens",
   "description": "Generate a design tokens file (CSS variables or Tailwind config) from a chosen aesthetic philosophy — light/dark palettes, spacing scale, type ramp, and component-level tokens. Vendored from Julian Oczkowski's designer-skills (Apache-2.0).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": { "name": "Julian Oczkowski", "url": "https://github.com/julianoczkowski" },
   "homepage": "https://github.com/julianoczkowski/designer-skills",
   "license": "Apache-2.0"
