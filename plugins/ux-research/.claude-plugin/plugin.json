@@ -2,6 +2,6 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "ux-research",
   "description": "Synthesize messy qualitative research — interview transcripts, survey responses, support tickets — into themes, evidence-backed insights, and prioritized opportunities.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": { "name": "Jonny Bennett" }
 }

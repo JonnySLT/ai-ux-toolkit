@@ -56,6 +56,10 @@ if (mkt) {
     if (pj.name !== p.name) fail(`${p.name}: plugin.json name "${pj.name}" != marketplace entry`);
     if (pj.name !== src.split("/").pop()) fail(`${p.name}: plugin.json name != directory`);
     for (const k of ["name", "version", "description"]) if (!pj[k]) fail(`${p.name}: plugin.json missing "${k}"`);
+    // `claude plugin update` compares versions, not content: if the two disagree — or a plugin
+    // ships changed skills under an unchanged version — installs silently keep stale content.
+    if (pj.version !== p.version) fail(`${p.name}: plugin.json version "${pj.version}" != marketplace entry "${p.version}" (they must agree, or updates resolve unpredictably)`);
+    if (!/^\d+\.\d+\.\d+$/.test(String(pj.version))) fail(`${p.name}: version "${pj.version}" is not semver x.y.z`);
     if (!existsSync(P(src, "README.md"))) fail(`${p.name}: no README.md`);
     else {
       const prme = readFileSync(P(src, "README.md"), "utf8");
