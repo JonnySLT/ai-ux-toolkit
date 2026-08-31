@@ -1,7 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "site-architecture",
-  "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit document, and conceptual-architecture renders the new high-level sitemap — both styled from the file's own design system.",
-  "version": "1.1.0",
-  "author": { "name": "Jonny Bennett" }
+  "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit (Overview · Site Architecture · Page Inventory), and conceptual-architecture renders the redesigned structure as a layered map plus the navigation model it produces, at desktop and mobile — both styled from the file's own design system.",
+  "version": "1.2.0",
+  "author": {
+    "name": "Jonny Bennett"
+  }
 }
