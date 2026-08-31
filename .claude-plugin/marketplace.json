@@ -123,8 +123,8 @@
     {
       "name": "site-architecture",
       "source": "./plugins/site-architecture",
-      "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit (Overview · Site Architecture · Page Inventory), and conceptual-architecture renders the new high-level sitemap — both styled from the file's own design system.",
-      "version": "1.1.0",
+      "description": "Map a site's architecture in Figma, from current state to redesign: site-audit captures an existing site as a tabbed audit (Overview · Site Architecture · Page Inventory), and conceptual-architecture renders the redesigned structure as a layered map plus the navigation model it produces, at desktop and mobile — both styled from the file's own design system.",
+      "version": "1.2.0",
       "category": "design",
       "tags": [
         "site-architecture",
@@ -132,7 +132,9 @@
         "conceptual-architecture",
         "sitemap",
         "structure",
-        "figma"
+        "figma",
+        "navigation-model",
+        "mobile"
       ]
     },
     {
@@ -278,7 +280,8 @@
       "category": "documentation",
       "tags": [
         "handoff",
-        "spec",        "documentation"
+        "spec",
+        "documentation"
       ]
     },
     {
