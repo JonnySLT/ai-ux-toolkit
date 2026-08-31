@@ -120,6 +120,8 @@ If the file has a Changelog page and the project documents changes (e.g. convent
 - **Domains are a mental model, not a menu dump.** If two "domains" are chosen in the same moment on the same axis, they're one domain.
 - **Purpose lines do work.** A few concrete words on why the thing exists — never "the page for X" filler.
 - **Shared systems are shown once**, with where they surface. If it's in every domain, it isn't a domain.
+- **A journey stage must produce pages.** If a finding describes something that happens *over time* — a return, a follow-up, an escalation into deeper involvement — check that it earns a **domain**, not just a shared system or a step in the chain. A system with no pages behind it, and a chain step with nothing to click, both vanish the moment this becomes a sitemap. Consolidating to hit "3–5 domains" is how the post-act journey gets quietly deleted.
+- **One treatment per element type.** Every goal or theme tag is the same pill everywhere it appears — same fill, stroke, radius, padding, and text style. Don't render a tag as a chip in one layer and as trailing text in another; check by comparing the built nodes, not by eye.
 - **Quote the evidence.** A finding in the supporting text — a participant's words, a measured failure — is worth more than an assertion, and it survives the meeting.
 - **Descriptions are documentation, not UI copy.** They follow the house document voice, not the product's brand voice. Respect the project's trademark and claims rules — those apply to every word you render.
 
@@ -142,6 +144,9 @@ These cost real rebuilds. Read before writing the render code.
   3. Set the row `counterAxisSizingMode = 'FIXED'` and resize it to that height.
   4. *Then* set each card `layoutSizingVertical = 'FILL'`.
   5. Only now re-apply `layoutGrow = 1` to a spacer that pins a footer to the bottom.
+- **Never fake a bullet with a `· ` prefix.** A manual bullet cannot hang-indent, so the moment an item wraps, its second line falls back to the left margin and reads as a new item. Use Figma's native list — `setRangeListOptions(0, node.characters.length, { type: 'UNORDERED' })` — which hangs wrapped lines under the text. Then give the node **paragraph spacing** so items separate from their own wraps.
+- **For a deliberately unbulleted list, paragraph spacing must beat the line height.** With a 20px line height, 4px between items is invisible — a wrapped item still reads as two. Use at least half the line height, and check a column whose longest item actually wraps.
+- **`setBoundVariable('paragraphSpacing', …)` silently no-ops.** It neither throws nor applies. Set paragraph spacing as a raw number and read the property back to confirm it took — this is the one spacing value that legitimately escapes tokenization.
 - **An empty auto-layout frame defaults to 100×100.** A spacer used to push items apart will silently dictate its row's height. Set it to `FILL` on **both** axes after appending — sizing it on the primary axis alone leaves the 100px default governing the counter axis.
 - **Long header text stretches the root frame.** Constrain intro paragraphs to a fixed width (~900) rather than letting them hug, or the frame grows far wider than its content column.
 - **Set the root width to `content + horizontal padding`.** Check the padding token's real value first — assuming 48 when the token resolves to 64 clips the last column.
