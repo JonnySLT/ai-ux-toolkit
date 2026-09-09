@@ -46,13 +46,30 @@ Locate by **name**, never by stored ID, so the skill survives a rebuild:
 
 ### Step 2 — Read the page
 
-- **Screens** = every top-level `FRAME` or `COMPONENT` except the index frame.
+- **Screens** = every top-level **`FRAME`** except the index frame. Nothing else: designs copied onto a page drag loose TEXT labels and component sets along with them, and none of those are screens.
 - **Order** by canvas `x`, so the index mirrors the layout someone sees when they zoom out.
 - **Device class** by width — a sensible split is ≤ 500 wide is mobile, everything else desktop. Prefer a name prefix (`Mobile/…`) when the file uses one, and fall back to width. Don't demand a naming convention; a copied frame won't have one.
 
-### Step 3 — Rebuild the cards
+### Step 3 — Reconcile the cards, don't rebuild them
 
-Delete every existing `Card · …` and rebuild. Regenerating is cheap, and diffing invites stale thumbnails and orphaned cards.
+**Only touch what changed.** Rebuilding every run is destructive — it discards any hand-edit to a card and re-exports screens nobody has opened. Reconcile instead:
+
+| State | Action |
+|---|---|
+| Screen has no card | **add** |
+| Card has no screen | **remove** |
+| Screen changed | **refresh the thumbnail** |
+| Links point at the wrong node | **re-wire** |
+| Otherwise | **leave it completely alone** |
+
+**Detecting a change.** `setPluginData` is unavailable in this API, so there is nowhere conventional to keep prior state. Two things solve it:
+
+1. **Fingerprint the screen structurally** — walk its descendants and hash (FNV-1a is plenty) the node count plus, per node, its type, name, rounded size and position, any text characters, and any solid fill colour. This catches added and removed nodes, moves, resizes, text edits and recolours, and costs well under a second for a few thousand nodes — far cheaper than exporting a PNG to find out nothing moved.
+2. **Store it in the thumbnail's node name** — `Thumbnail · fp:<hash>`. The thumbnail's name isn't used for matching, so it's free to carry state, and it survives saves and reopens. Never store it on a node whose name is an anchor.
+
+Verify a fingerprint is *stable across runs* before trusting it — if it drifts on its own, every run refreshes everything and you're back to rebuilding.
+
+**Card anatomy** (build once, on add):
 
 - **Grid maths first.** Content width ÷ cards per row. On a 1440 frame with a page margin of 120 and a 24 gap, four cards land at 282 wide. Derive it; don't guess.
 - **Card** — vertical, surface fill, subtle border, large radius, **zero item spacing**, clipping so the thumbnail's top corners stay rounded.
@@ -60,6 +77,8 @@ Delete every existing `Card · …` and rebuild. Regenerating is cheap, and diff
 - **Mobile shots must be narrow.** Filling the card width makes a phone look like a squashed desktop. Around 100px inside a 282 card reads as a phone.
 - **Title** — the screen name, tidied (strip a `Desktop/` or `Mobile/` prefix, turn remaining slashes into separators). Style it as a link, because on the canvas the title *is* the clickable thing.
 - **Drop the dimensions.** "1440 × 6960" under every card is noise for the people an index is for.
+
+Finally, order the cards within each section to match canvas `x`, and move a card between sections if its device class changed. Both are cheap, non-destructive repositions.
 
 ### Step 4 — Wire both kinds of link
 
@@ -101,6 +120,7 @@ Report what changed — added, removed, unchanged — not just "done".
 
 - **Never move or edit the screens.** This skill reads them and builds an index. Copying designs onto the page is the user's job unless they ask otherwise.
 - **Preserve hand-edits to the header.** Users retitle and rewrite the intro. Regenerate cards and the count; leave their words alone.
+- **Never regenerate a card that hasn't changed.** Users hand-edit these. Refresh a thumbnail only when the fingerprint moves, and re-wire only when a link actually points somewhere wrong.
 - **Don't invent screens.** If the page is empty, say so and produce the empty state.
 - **Don't add dimensions, dates, or status badges** unless asked. An index is for finding a screen.
 
@@ -111,9 +131,10 @@ Report what changed — added, removed, unchanged — not just "done".
 - **`resize()` reverts sizing modes to FIXED.** Re-apply `FILL`/`HUG` after every resize — especially on a thumbnail frame that must keep filling its card.
 - **An empty auto-layout frame defaults to 100×100** and will silently dictate a row's height. Set spacers to `FILL` on both axes.
 - **Prototype navigation cannot cross pages.** Verified by the API rejecting it outright. Design around it rather than discovering it late.
-- **Thumbnails are snapshots.** They go stale when a design changes, which is the main reason to re-run rather than diff.
+- **The first run refreshes everything.** No card carries a fingerprint yet, so every thumbnail is re-exported once and the hashes are stored. That's the migration, not a bug — say so in the report rather than letting it look like everything changed.
+- **Thumbnails are snapshots.** They only get refreshed when a fingerprint moves, so a screen edited outside this page's frames (a swapped library component, say) may not register. When in doubt, delete the `fp:` suffix from a thumbnail's name to force that one card to refresh.
 
 ---
 
 ## Output
-A short summary: how many screens the page holds, which cards were added, removed or rebuilt, the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
+A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
