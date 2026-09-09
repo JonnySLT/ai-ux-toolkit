@@ -91,7 +91,7 @@ Finally, order the cards within each section to match canvas `x`, and move a car
 
 - **Overlay it on the thumbnail**, top-right with a small inset. The thumbnail is a plain clipping frame, so position it absolutely.
 - **Don't use the call-to-action colour.** A "New" flag is a notice, not a button — reach for the brand colour rather than whatever the file uses for its primary action, or people will try to click it.
-- **Backfill existing screens as `added: null` when you first add tracking.** Screens that predate it are not new, and badging all of them at once is exactly the noise the badge exists to avoid.
+- **Backfilling existing screens: ask when they actually arrived.** Default to `added: null` — screens that predate tracking are not new, and badging a whole established index at once is the noise the badge exists to avoid. But if the page was populated recently and the user says so, date them properly; a freshly-built prototype where nothing is marked new is just as wrong. Don't apply the default blindly to a page that is one day old.
 
 ### Step 4 — Wire both kinds of link
 
