@@ -41,6 +41,7 @@ Locate by **name**, never by stored ID, so the skill survives a rebuild:
 | Grid | `Grid` | the wrapping row inside a section |
 | Card | `Card · <exact frame name>` | one per screen |
 | Link | `Link · <exact frame name>` | the hyperlinked title inside a card |
+| Registry | `Link registry` | hidden text node holding the inter-screen link graph as JSON |
 
 **Never name a node after its own content** (`7 screens`). The next sync changes the content and the anchor is lost. Name it for its role.
 
@@ -89,15 +90,37 @@ Every card gets **two**, because they work in different places:
 
 **Both must point at the copy on this page.** The classic failure is linking back to the original on the source page: the hyperlink still works, so it looks fine, but the prototype silently does nothing. Verify by node, not by name.
 
-### Step 5 — Make the index the starting point
+### Step 5 — Record and repair the inter-screen links
+
+**Figma deletes a prototype reaction outright when its destination frame is deleted.** No dangling reference, no warning, nothing left to inspect. So if someone edits a screen elsewhere and copy-replaces it onto this page, every *other* screen's link to it silently disappears — the index self-heals, and the navigation quietly dies. The only defence is to have written the graph down beforehand.
+
+**Record it** in the hidden `Link registry` text node (JSON; hidden children are excluded from auto-layout, so it costs no space). For each reaction whose destination is another screen on the page, store:
+
+- the **source** and **target** screen names
+- a **locator** for the node carrying the reaction: its name-path from the screen root (`Nav bar/Nav bar/Logo`) plus an ordinal to disambiguate repeats
+- the trigger, navigation, transition, and scroll-preservation, so a restored link matches the original
+- alongside it, a **screen-name → node-id map**, which is how a replacement is detected later
+
+Skip reactions that target components (variant swaps) — those are page-independent and survive a replace.
+
+**Repair, in this order.** Getting the order wrong produces false alarms, which destroy trust in the report faster than a missed link:
+
+1. **Check liveness first.** Does *any* node in the source screen already link to the target? If yes, the link is fine — stop. A source screen that was itself copied brings its reactions along, and if the target's id never changed they still work. Do not try to locate the node before checking this.
+2. **Only repair a genuine replacement.** Compare each recorded screen id against the current one. If it changed, the screen was replaced and any missing link to it is collateral damage worth restoring. If the id is unchanged and the link is gone, **someone deleted it on purpose** — report it, never resurrect it.
+3. **Locate, then append.** Resolve the node by name-path and ordinal, falling back to the first path match rather than giving up. Then **append** the restored reaction to whatever reactions the node already has — `setReactionsAsync` replaces the whole array, and these nodes commonly carry component variant swaps you must not clobber.
+4. **Refresh the registry** with the new ids once repairs are done.
+
+Report links that are live, repaired, deliberately removed, and unresolvable — and flag any link found on the page that isn't in the registry, since that's someone wiring by hand.
+
+### Step 6 — Make the index the starting point
 
 Set the index frame as the page's flow starting point (`page.flowStartingPoints`). The prototype then opens on the index, and **R** returns to it from any screen.
 
-### Step 6 — Update the count and handle empty
+### Step 7 — Update the count and handle empty
 
 Write the count into the `Screen count` node — singular for one, and a plain "No screens yet" for none. With no screens, remove the empty sections rather than leaving labelled voids.
 
-### Step 7 — Optional: a "how to use" band
+### Step 8 — Optional: a "how to use" band
 
 For a client-facing prototype, a short band under the header earns its place. Keep it to the shortcuts, as keycaps rather than prose:
 
@@ -107,12 +130,13 @@ For a client-facing prototype, a short band under the header earns its place. Ke
 
 Be accurate about where each works: **C** and **V** are editor shortcuts, **R** only applies in presentation view (in the editor, R is the rectangle tool). Add a line reminding people that comments pin to the clicked spot and that replies belong in threads — that's what keeps review feedback manageable.
 
-### Step 8 — Verify
+### Step 9 — Verify
 
 1. Every card's **reaction** and **hyperlink** resolve to a node **on this page**.
-2. The count matches the number of cards, and the cards match the frames on the page.
-3. Nothing is clipped; cards in a row are equal height.
-4. Every fill, stroke, padding, gap, radius and text style binds to the file's own design system.
+2. Every link in the registry is live, or accounted for as deliberately removed.
+3. The count matches the number of cards, and the cards match the frames on the page.
+4. Nothing is clipped; cards in a row are equal height.
+5. Every fill, stroke, padding, gap, radius and text style binds to the file's own design system.
 
 Report what changed — added, removed, unchanged — not just "done".
 
@@ -132,9 +156,11 @@ Report what changed — added, removed, unchanged — not just "done".
 - **An empty auto-layout frame defaults to 100×100** and will silently dictate a row's height. Set spacers to `FILL` on both axes.
 - **Prototype navigation cannot cross pages.** Verified by the API rejecting it outright. Design around it rather than discovering it late.
 - **The first run refreshes everything.** No card carries a fingerprint yet, so every thumbnail is re-exported once and the hashes are stored. That's the migration, not a bug — say so in the report rather than letting it look like everything changed.
+- **A deleted frame takes every reaction pointing at it with it — silently.** Text hyperlinks are *not* cleaned up the same way; they keep pointing at a dead id. So after a replace you get vanished reactions and dangling hyperlinks, two different failure shapes from one action.
+- **A failed locator is not a broken link.** Check whether the link is already live before reporting it missing, or a cloned screen whose reactions came along will be reported as damage that never happened.
 - **Thumbnails are snapshots.** They only get refreshed when a fingerprint moves, so a screen edited outside this page's frames (a swapped library component, say) may not register. When in doubt, delete the `fp:` suffix from a thumbnail's name to force that one card to refresh.
 
 ---
 
 ## Output
-A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
+A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus the state of the inter-screen links — live, repaired, deliberately removed, unresolvable — the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
