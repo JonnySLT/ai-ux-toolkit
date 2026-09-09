@@ -42,7 +42,8 @@ Locate by **name**, never by stored ID, so the skill survives a rebuild:
 | Grid | `Grid` | the wrapping row inside a section |
 | Card | `Card · <exact frame name>` | one per screen |
 | Link | `Link · <exact frame name>` | the hyperlinked title inside a card |
-| Registry | `Link registry` | hidden text node holding the inter-screen link graph as JSON |
+| Registry | `Link registry` | hidden text node holding the link graph and each screen's added-date, as JSON |
+| Badge | `New badge` | the "New" pill overlaid on a recently-added card |
 
 **Never name a node after its own content** (`7 Screens`, `Updated 09/09/26`). The next sync changes the content and the anchor is lost. Name it for its role — `Screen count`, `Last updated`.
 
@@ -64,6 +65,8 @@ This is the single most likely thing to break, because it breaks *from the outsi
 | Card has no screen | **remove** |
 | Screen changed | **refresh the thumbnail** |
 | Links point at the wrong node | **re-wire** |
+| Screen added recently | **show a `New` badge** |
+| Badge past its window | **remove it** |
 | Otherwise | **leave it completely alone** |
 
 **Detecting a change.** `setPluginData` is unavailable in this API, so there is nowhere conventional to keep prior state. Two things solve it:
@@ -84,6 +87,12 @@ Verify a fingerprint is *stable across runs* before trusting it — if it drifts
 
 Finally, order the cards within each section to match canvas `x`, and move a card between sections if its device class changed. Both are cheap, non-destructive repositions.
 
+**The `New` badge.** Record each screen's added-date in the registry (`{ id, added }`) the first time a card is built for it, then **re-evaluate every run**: show the badge while `today − added` is inside the window (a week is a sensible default), remove it once past. The badge is *derived state, not a sticky decoration* — removing it matters as much as adding it, or within a month everything is "new" and the badge means nothing.
+
+- **Overlay it on the thumbnail**, top-right with a small inset. The thumbnail is a plain clipping frame, so position it absolutely.
+- **Don't use the call-to-action colour.** A "New" flag is a notice, not a button — reach for the brand colour rather than whatever the file uses for its primary action, or people will try to click it.
+- **Backfill existing screens as `added: null` when you first add tracking.** Screens that predate it are not new, and badging all of them at once is exactly the noise the badge exists to avoid.
+
 ### Step 4 — Wire both kinds of link
 
 Every card gets **two**, because they work in different places:
@@ -99,6 +108,7 @@ Every card gets **two**, because they work in different places:
 
 **Record it** in the hidden `Link registry` text node (JSON; hidden children are excluded from auto-layout, so it costs no space). For each reaction whose destination is another screen on the page, store:
 
+- each screen's **added-date**, alongside its node id, which drives the `New` badge
 - the **source** and **target** screen names
 - a **locator** for the node carrying the reaction: its name-path from the screen root (`Nav bar/Nav bar/Logo`) plus an ordinal to disambiguate repeats
 - the trigger, navigation, transition, and scroll-preservation, so a restored link matches the original
@@ -161,6 +171,7 @@ Report what changed — added, removed, unchanged — not just "done".
 
 - **`createImage` rejects images over roughly 4096px on a side.** Long pages blow past this — a 9,488px-tall mobile screen fails at any scale above ~0.43. Compute per screen: `scale = Math.min(1, 4000 / node.height)`. Expect long pages to yield softer thumbnails; that's the ceiling, not a bug.
 - **Clip, don't transform.** A fixed-height clipping frame over a full-length shot is deterministic; `imageTransform` matrix maths for a top crop is not worth debugging.
+- **Capture a node's name before you remove it.** Reading `node.name` after `node.remove()` throws `the node with id … does not exist`, and it's an easy trap when cleaning up state keyed by name.
 - **`resize()` reverts sizing modes to FIXED.** Re-apply `FILL`/`HUG` after every resize — especially on a thumbnail frame that must keep filling its card.
 - **An empty auto-layout frame defaults to 100×100** and will silently dictate a row's height. Set spacers to `FILL` on both axes.
 - **Prototype navigation cannot cross pages.** Verified by the API rejecting it outright. Design around it rather than discovering it late.
@@ -172,4 +183,4 @@ Report what changed — added, removed, unchanged — not just "done".
 ---
 
 ## Output
-A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus whether the date was stamped and why, the state of the inter-screen links — live, repaired, deliberately removed, unresolvable — the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
+A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus which cards gained or lost a `New` badge, whether the date was stamped and why, the state of the inter-screen links — live, repaired, deliberately removed, unresolvable — the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
