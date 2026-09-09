@@ -275,13 +275,15 @@
     {
       "name": "handoff-docs",
       "source": "./plugins/handoff-docs",
-      "description": "Draft the documentation that ships a design: component specs, design-system documentation from existing patterns, and on-canvas Figma annotations for developer handoff.",
-      "version": "1.1.0",
+      "description": "Draft the documentation that ships a design: component specs (anatomy, variants, states, props, tokens, a11y, do/don't), design-system documentation from existing patterns, on-canvas Figma annotations for developer handoff, and an InVision-style prototype index page that lists every screen on a page and keeps itself in sync.",
+      "version": "1.2.0",
       "category": "documentation",
       "tags": [
         "handoff",
         "spec",
-        "documentation"
+        "documentation",
+        "prototype-index",
+        "prototype"
       ]
     },
     {
