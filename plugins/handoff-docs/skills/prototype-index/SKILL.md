@@ -37,13 +37,16 @@ Locate by **name**, never by stored ID, so the skill survives a rebuild:
 |---|---|---|
 | Index frame | `Prototype Index` | the root; the only top-level frame that is *not* a screen |
 | Count | `Screen count` | text node the header count is written into |
+| Date | `Last updated` | text node stamped when the screens actually change |
 | Section | `Section · <Device>` | one per device class present |
 | Grid | `Grid` | the wrapping row inside a section |
 | Card | `Card · <exact frame name>` | one per screen |
 | Link | `Link · <exact frame name>` | the hyperlinked title inside a card |
 | Registry | `Link registry` | hidden text node holding the inter-screen link graph as JSON |
 
-**Never name a node after its own content** (`7 screens`). The next sync changes the content and the anchor is lost. Name it for its role.
+**Never name a node after its own content** (`7 Screens`, `Updated 09/09/26`). The next sync changes the content and the anchor is lost. Name it for its role — `Screen count`, `Last updated`.
+
+This is the single most likely thing to break, because it breaks *from the outside*: a user restyling the header will naturally create a text node named after what it says. **Re-establish the anchors on every run** — find the count and date by matching their content as a fallback, rename them to their role names, and carry on. Failing silently because someone tidied the header is not acceptable behaviour for a scheduled task.
 
 ### Step 2 — Read the page
 
@@ -116,9 +119,15 @@ Report links that are live, repaired, deliberately removed, and unresolvable —
 
 Set the index frame as the page's flow starting point (`page.flowStartingPoints`). The prototype then opens on the index, and **R** returns to it from any screen.
 
-### Step 7 — Update the count and handle empty
+### Step 7 — Update the count and the date
 
-Write the count into the `Screen count` node — singular for one, and a plain "No screens yet" for none. With no screens, remove the empty sections rather than leaving labelled voids.
+**Adopt the formats already on the page; don't impose your own.** Read the existing copy and match its casing and shape — if the count says `7 Screens` with a capital S, write `8 Screens`, not `8 screens`. If the date reads `Updated 09/09/26`, keep `MM/DD/YY`. A sync that rewrites a user's wording every run is a sync they will turn off.
+
+- **Count** — write it into `Screen count` only when the number actually moved. Handle the singular, and produce something sensible for zero.
+- **Date** — stamp `Last updated` **only when the screens changed**: a card added, removed, or a thumbnail refreshed. Do **not** stamp it on a run that found nothing, and do not stamp it for a link repair alone. The date answers "when did the designs last move", not "when did this task last run" — a date that changes every morning tells the reader nothing.
+- **Empty** — with no screens, remove the empty sections rather than leaving labelled voids.
+
+Both nodes are optional. If a file has no `Last updated`, skip it rather than inventing one.
 
 ### Step 8 — Optional: a "how to use" band
 
@@ -163,4 +172,4 @@ Report what changed — added, removed, unchanged — not just "done".
 ---
 
 ## Output
-A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus the state of the inter-screen links — live, repaired, deliberately removed, unresolvable — the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
+A short summary: how many screens the page holds, and which cards were **added, removed, thumbnail-refreshed, re-wired, or left untouched** — naming the untouched ones matters, since it's the evidence the sync was incremental. Plus whether the date was stamped and why, the state of the inter-screen links — live, repaired, deliberately removed, unresolvable — the new count, confirmation that every card links to a screen on this page in both presentation and canvas, and confirmation that the index is the flow starting point.
