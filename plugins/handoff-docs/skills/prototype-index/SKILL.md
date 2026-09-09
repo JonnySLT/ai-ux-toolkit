@@ -87,7 +87,9 @@ Verify a fingerprint is *stable across runs* before trusting it — if it drifts
 
 Finally, order the cards within each section to match canvas `x`, and move a card between sections if its device class changed. Both are cheap, non-destructive repositions.
 
-**The `New` badge.** Record each screen's added-date in the registry (`{ id, added }`) the first time a card is built for it, then **re-evaluate every run**: show the badge while `today − added` is inside the window (a week is a sensible default), remove it once past. The badge is *derived state, not a sticky decoration* — removing it matters as much as adding it, or within a month everything is "new" and the badge means nothing.
+**The `New` badge.** Record each screen's added-date in the registry (`{ id, added }`) the first time a card is built for it, then **re-evaluate every run**: show the badge while `today − added` is inside the window, remove it once past.
+
+**Keep the window in the registry** (`newForDays`, defaulting to 7 if absent) rather than in the skill or a task's prose. It's a preference that belongs to the file, teams change their mind about it, and a value written in two documents is a value that drifts. The badge is *derived state, not a sticky decoration* — removing it matters as much as adding it, or within a month everything is "new" and the badge means nothing.
 
 - **Overlay it on the thumbnail**, top-right with a small inset. The thumbnail is a plain clipping frame, so position it absolutely.
 - **Don't use the call-to-action colour.** A "New" flag is a notice, not a button — never the colour the file uses for its primary action, or people will try to click it.
