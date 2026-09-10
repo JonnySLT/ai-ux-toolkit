@@ -87,9 +87,13 @@ Verify a fingerprint is *stable across runs* before trusting it — if it drifts
 
 Finally, order the cards within each section to match canvas `x`, and move a card between sections if its device class changed. Both are cheap, non-destructive repositions.
 
-**The `New` badge.** Record each screen's added-date in the registry (`{ id, added }`) the first time a card is built for it, then **re-evaluate every run**: show the badge while `today − added` is inside the window, remove it once past.
+**The `New` badge — badge a cohort, not a date range.** Record each screen's added-date in the registry the first time a card is built for it, then badge exactly **the screens the most recent sync added**, clearing the previous cohort every run.
 
-**Keep the window in the registry** (`newForDays`, defaulting to 7 if absent) rather than in the skill or a task's prose. It's a preference that belongs to the file, teams change their mind about it, and a value written in two documents is a value that drifts. The badge is *derived state, not a sticky decoration* — removing it matters as much as adding it, or within a month everything is "new" and the badge means nothing.
+Keep two values in the registry rather than in prose: `latestCohort` (the date of the last run that added anything) and `maxBadgeDays` (a staleness cap; 0 disables). A screen is badged when its `added` equals `latestCohort` **and** the cohort is younger than the cap.
+
+- **Only bump `latestCohort` on a run that actually adds screens.** A run that adds nothing must leave the badges alone. Get this wrong and an off-schedule run silently strips badges before anyone has seen them.
+- **Prefer this to a day-count window.** A window only clears correctly when the gap between runs happens to exceed it — run a day early and two cohorts are badged at once. Cohorts are correct regardless of when someone runs the sync, which matters most when runs are manual.
+- **Keep the cap anyway.** Without it, a team that adds nothing for a month leaves month-old screens marked "New". The cohort rule answers "what changed last time"; the cap stops that outliving its usefulness.
 
 - **Overlay it on the thumbnail**, top-right with a small inset. The thumbnail is a plain clipping frame, so position it absolutely.
 - **Don't use the call-to-action colour.** A "New" flag is a notice, not a button — never the colour the file uses for its primary action, or people will try to click it.
